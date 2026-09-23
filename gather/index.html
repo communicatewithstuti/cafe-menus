@@ -42,9 +42,6 @@
   .cover .line { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.25; max-width: 30ch; text-wrap: balance; color: var(--ink-soft); }
   .cover .facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; font-family: var(--cond); font-weight: 500; font-size: 14.5px; letter-spacing: .04em; }
   .cover .facts span + span::before { content: "·"; margin-right: 14px; opacity: .6; }
-  .sketch { position: absolute; bottom: 0; width: 92px; opacity: .55; pointer-events: none; }
-  .sketch.l { left: 6px; } .sketch.r { right: 6px; transform: scaleX(-1); }
-  @media (max-width: 440px) { .sketch { width: 64px; opacity: .35; } }
 
   .nivant { margin: 0; padding: 12px 18px; background: var(--navy); color: var(--peach); display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
   .nivant b { font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1; }
@@ -65,7 +62,7 @@
   .search input { width: 100%; font: 500 16px var(--sans); color: var(--navy); background: #FFFaf1; border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 13px; }
   .search input::placeholder { color: #8C93AE; }
   .search input:focus { outline: none; border-color: var(--cobalt); }
-  .chips { display: flex; gap: 22px; overflow-x: auto; padding: 0 20px; scrollbar-width: none; scroll-behavior: smooth; }
+  .chips { display: flex; gap: 22px; overflow-x: auto; padding: 0 20px; scrollbar-width: none; }
   .chips::-webkit-scrollbar { display: none; }
   .chip { flex: none; border: 0; background: none; cursor: pointer; padding: 6px 0 9px; font-family: var(--serif); font-size: 19px; line-height: 1; white-space: nowrap; color: var(--navy); opacity: .5; border-bottom: 2px solid transparent; transition: opacity .2s, border-color .2s; }
   .chip:hover { opacity: .8; }
@@ -106,26 +103,11 @@
   footer .wordmark { width: 110px; }
   footer a { color: var(--navy); }
   footer .concept { font-family: var(--cond); letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-top: 6px; }
-  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 </style>
 
 <div class="book">
   <div class="tiles" aria-hidden="true"></div>
   <header class="cover">
-    <svg class="sketch l" viewBox="0 0 100 130" fill="none" stroke="#1E3478" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-      <path d="M50 0v30M50 30 30 48M50 30l20 18"/>
-      <path d="M26 48h48c0 13-11 22-24 22S26 61 26 48z"/>
-      <path d="M26 48h48"/>
-      <path d="M32 60c-8 10-10 24-6 40M44 69c-2 14 0 28 6 42M60 68c5 12 5 26 0 38M70 58c8 9 11 21 9 33"/>
-      <path d="M26 76c-8-1-11 7-5 10 5 2 9-4 5-10zM26 96c-8 0-10 8-4 10 6 1 8-6 4-10zM46 92c-7 1-8 9-2 10 6 1 7-6 2-10zM50 112c-6 2-6 9 0 9 6-1 5-8 0-9zM63 86c7 0 9 8 3 10-6 1-8-6-3-10zM60 104c7 1 7 9 1 10-6 0-6-7-1-10zM79 72c7-1 10 7 4 9-6 2-8-5-4-9zM80 90c6 1 7 8 1 9-6 0-6-7-1-9z"/>
-    </svg>
-    <svg class="sketch r" viewBox="0 0 100 130" fill="none" stroke="#1E3478" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-      <path d="M50 0v30M50 30 30 48M50 30l20 18"/>
-      <path d="M26 48h48c0 13-11 22-24 22S26 61 26 48z"/>
-      <path d="M26 48h48"/>
-      <path d="M32 60c-8 10-10 24-6 40M44 69c-2 14 0 28 6 42M60 68c5 12 5 26 0 38M70 58c8 9 11 21 9 33"/>
-      <path d="M26 76c-8-1-11 7-5 10 5 2 9-4 5-10zM26 96c-8 0-10 8-4 10 6 1 8-6 4-10zM46 92c-7 1-8 9-2 10 6 1 7-6 2-10zM50 112c-6 2-6 9 0 9 6-1 5-8 0-9zM63 86c7 0 9 8 3 10-6 1-8-6-3-10zM60 104c7 1 7 9 1 10-6 0-6-7-1-10zM79 72c7-1 10 7 4 9-6 2-8-5-4-9zM80 90c6 1 7 8 1 9-6 0-6-7-1-9z"/>
-    </svg>
     <span class="wordmark" role="img" aria-label="Gather, for good"></span>
     <div class="kicker">All-day dining &amp; bar</div>
     <div class="line">Come as you are, stay as long as you like.</div>
