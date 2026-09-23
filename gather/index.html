@@ -53,7 +53,7 @@
   /* Sticky controls */
   .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--page); border-bottom: 1px solid var(--line); }
   .bar-top { display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px; }
-  .tabs { display: inline-flex; border: 1.5px solid var(--navy); border-radius: 999px; padding: 3px; gap: 2px; }
+  .tabs { display: inline-flex; border: 1px solid var(--navy); border-radius: 999px; padding: 3px; gap: 2px; }
   .tabs button { border: 0; background: none; cursor: pointer; padding: 6px 15px; border-radius: 999px; font-family: var(--cond); font-weight: 600; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--navy); }
   .tabs button[aria-selected="true"] { background: var(--navy); color: var(--page); }
   .veg { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-family: var(--cond); font-weight: 600; font-size: 14.5px; letter-spacing: .04em; cursor: pointer; user-select: none; white-space: nowrap; }
@@ -65,11 +65,11 @@
   .search input { width: 100%; font: 500 16px var(--sans); color: var(--navy); background: #FFFaf1; border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 13px; }
   .search input::placeholder { color: #8C93AE; }
   .search input:focus { outline: none; border-color: var(--cobalt); }
-  .chips { display: flex; gap: 0; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
+  .chips { display: flex; gap: 22px; overflow-x: auto; padding: 0 20px; scrollbar-width: none; scroll-behavior: smooth; }
   .chips::-webkit-scrollbar { display: none; }
-  .chip { flex: none; border: 0; cursor: pointer; padding: 9px 14px 8px; font-family: var(--serif); font-size: 18px; line-height: 1; white-space: nowrap; border-radius: 8px 8px 0 0; color: var(--navy); background: var(--aqua); }
-  .chip:nth-child(even) { background: var(--cobalt); color: #EAF0FF; }
-  .chip.on { background: var(--peach); color: var(--navy); box-shadow: inset 0 3px 0 var(--navy); }
+  .chip { flex: none; border: 0; background: none; cursor: pointer; padding: 6px 0 9px; font-family: var(--serif); font-size: 19px; line-height: 1; white-space: nowrap; color: var(--navy); opacity: .5; border-bottom: 2px solid transparent; transition: opacity .2s, border-color .2s; }
+  .chip:hover { opacity: .8; }
+  .chip.on { opacity: 1; border-bottom-color: var(--navy); }
 
   /* Pages */
   .pages { padding: 4px 20px 34px; }
@@ -87,6 +87,8 @@
   .mark { width: 13px; height: 13px; border: 1.5px solid currentColor; border-radius: 2px; display: inline-grid; place-items: center; flex: none; }
   .mark::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
   .mark.v { color: var(--veg); } .mark.n { color: var(--nonveg); }
+  .loved { font-family: var(--serif); font-style: italic; font-size: 15px; letter-spacing: 0; text-transform: none; font-weight: 400; color: #A86F12; }
+  .loved::before { content: "✦ "; font-style: normal; font-size: 11px; vertical-align: 1px; }
   .tag { font-family: var(--cond); font-weight: 500; font-size: 12px; letter-spacing: .08em; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--leaf); color: #5B7329; }
   .wine { grid-template-columns: 1fr 58px 64px; }
   .wine .price { min-width: 0; }
@@ -389,8 +391,12 @@ const fmt = n => n == null ? "·" : n.toLocaleString("en-IN");
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const state = { tab: "food", veg: false, q: "" };
 
+// Dishes Google marks as popular with Gather's diners
+const LOVED = new Set(["Jakhia Kulcha", "Guacamole", "Lamb Seekh", "Pistachio Burrata", "Mangalorean Prawn Gassi", "Coffee Tres Leches"]);
+
 function itemHTML([name, price, desc, diet]) {
   let marks = "";
+  if (LOVED.has(name)) marks += '<span class="loved">most loved</span>';
   if (diet === "v" || diet === "vg") marks += '<span class="mark v" title="Vegetarian"></span>';
   if (diet === "n") marks += '<span class="mark n" title="Non vegetarian"></span>';
   if (diet === "vg") marks += '<span class="tag">VEGAN</span>';
@@ -426,7 +432,7 @@ function render() {
   }
   if (!html) html = `<div class="empty">Nothing matches “${esc(state.q)}”. Try another word.</div>`;
   if (state.tab === "food" && html.indexOf("empty") === -1)
-    html = '<div class="legend"><span><span class="mark v"></span>Vegetarian</span><span><span class="mark n"></span>Non vegetarian</span><span>Unmarked: ask us about eggs and gelatin</span></div>' + html;
+    html = '<div class="legend"><span><span class="mark v"></span>Vegetarian</span><span><span class="mark n"></span>Non vegetarian</span><span class="loved">most loved</span><span>Unmarked: ask us about eggs and gelatin</span></div>' + html;
   $("#pages").innerHTML = html;
   $("#chips").innerHTML = chips;
   $("#veg-wrap").hidden = state.tab !== "food";
@@ -439,9 +445,12 @@ function spy() {
   const barH = document.querySelector(".bar").getBoundingClientRect().bottom + 10;
   let cur = secs[0];
   for (const s of secs) if (s.getBoundingClientRect().top <= barH) cur = s;
-  document.querySelectorAll(".chip").forEach(c => {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = secs[secs.length - 1];
+  const row = $("#chips");
+  row.querySelectorAll(".chip").forEach(c => {
     const on = cur && c.dataset.target === cur.id;
-    if (on && !c.classList.contains("on")) c.scrollIntoView({ block: "nearest", inline: "center" });
+    // Scroll only the tab row sideways; scrollIntoView would also move the page and fight the reader
+    if (on && !c.classList.contains("on")) row.scrollTo({ left: c.offsetLeft - (row.clientWidth - c.offsetWidth) / 2 });
     c.classList.toggle("on", on);
   });
 }
