@@ -81,8 +81,8 @@
   .item h3 { margin: 0; font-family: var(--cond); font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; line-height: 1.2; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .item .price { font-family: var(--cond); font-weight: 600; font-size: 17px; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
   .item p { grid-column: 1 / -1; margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); max-width: 58ch; }
-  .mark { width: 13px; height: 13px; border: 1.5px solid currentColor; border-radius: 2px; display: inline-grid; place-items: center; flex: none; }
-  .mark::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  /* Whole pixels only: 14px box, 2px border, 6px dot leaves exactly 2px on every side */
+  .mark { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 2px; flex: none; padding: 2px; background: radial-gradient(circle at center, currentColor 0 2.6px, transparent 3px) content-box; }
   .mark.v { color: var(--veg); } .mark.n { color: var(--nonveg); }
   .loved { font-family: var(--serif); font-style: italic; font-size: 15px; letter-spacing: 0; text-transform: none; font-weight: 400; color: #A86F12; }
   .loved::before { content: "✦ "; font-style: normal; font-size: 11px; vertical-align: 1px; }
