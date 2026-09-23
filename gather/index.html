@@ -1,0 +1,471 @@
+<title>Gather Menu</title>
+<meta name="description" content="The Gather menu: food, coffee and the bar. Senapati Bapat Road, Pune.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --peach: #F7DDB6;
+    --page: #FDF3E3;
+    --page-2: #F6E7CF;
+    --navy: #1E3478;
+    --ink-soft: #4A5A86;
+    --cobalt: #2C4FA3;
+    --aqua: #9ED3CC;
+    --mustard: #D9A23C;
+    --leaf: #7E9A3F;
+    --sage: #8FB3A2;
+    --line: #E3CFAE;
+    --veg: #3E8A4A;
+    --nonveg: #A8402C;
+    --serif: "Instrument Serif", "Didot", Georgia, serif;
+    --cond: "Barlow Condensed", "Avenir Next Condensed", "Arial Narrow", sans-serif;
+    --sans: "Barlow", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FBF6EA'/%3E%3Cg fill='none' stroke='%23D9A23C' stroke-width='5'%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='64' cy='0' r='22'/%3E%3Ccircle cx='0' cy='64' r='22'/%3E%3Ccircle cx='64' cy='64' r='22'/%3E%3C/g%3E%3Cg fill='%231E3478'%3E%3Ccircle cx='0' cy='0' r='12'/%3E%3Ccircle cx='64' cy='0' r='12'/%3E%3Ccircle cx='0' cy='64' r='12'/%3E%3Ccircle cx='64' cy='64' r='12'/%3E%3Ccircle cx='32' cy='8' r='1.6'/%3E%3Ccircle cx='32' cy='56' r='1.6'/%3E%3Ccircle cx='8' cy='32' r='1.6'/%3E%3Ccircle cx='56' cy='32' r='1.6'/%3E%3Ccircle cx='22' cy='14' r='1.4'/%3E%3Ccircle cx='42' cy='14' r='1.4'/%3E%3Ccircle cx='22' cy='50' r='1.4'/%3E%3Ccircle cx='42' cy='50' r='1.4'/%3E%3Ccircle cx='14' cy='22' r='1.4'/%3E%3Ccircle cx='50' cy='22' r='1.4'/%3E%3Ccircle cx='14' cy='42' r='1.4'/%3E%3Ccircle cx='50' cy='42' r='1.4'/%3E%3C/g%3E%3Cg fill='%237E9A3F'%3E%3Cellipse cx='32' cy='22' rx='4' ry='8'/%3E%3Cellipse cx='32' cy='42' rx='4' ry='8'/%3E%3Cellipse cx='22' cy='32' rx='8' ry='4'/%3E%3Cellipse cx='42' cy='32' rx='8' ry='4'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='4.5' fill='%23D9A23C'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-padding-top: 150px; }
+  body { margin: 0; background: var(--sage); color: var(--navy); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  button, input { font: inherit; color: inherit; }
+  :focus-visible { outline: 2.5px solid var(--cobalt); outline-offset: 2px; border-radius: 4px; }
+
+  .book { max-width: 620px; margin-inline: auto; background: var(--page); min-height: 100vh; box-shadow: 0 0 0 1px rgba(30,52,120,.08), 0 20px 60px rgba(30,52,120,.18); }
+
+  /* Cover */
+  .tiles { height: 34px; background: var(--tile) 0 0 / 34px 34px; border-bottom: 3px solid var(--navy); }
+  .cover { background: var(--peach); padding-block: 30px 26px; padding-inline: 20px; text-align: center; display: grid; justify-items: center; gap: 10px; position: relative; overflow: hidden; }
+  .wordmark { width: 190px; max-width: 70%; aspect-ratio: 544 / 160; background: var(--navy); -webkit-mask: url(images/gather-wordmark.png) center / contain no-repeat; mask: url(images/gather-wordmark.png) center / contain no-repeat; }
+  .cover .kicker { font-family: var(--cond); font-weight: 600; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; }
+  .cover .line { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.25; max-width: 30ch; text-wrap: balance; color: var(--ink-soft); }
+  .cover .facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; font-family: var(--cond); font-weight: 500; font-size: 14.5px; letter-spacing: .04em; }
+  .cover .facts span + span::before { content: "·"; margin-right: 14px; opacity: .6; }
+  .sketch { position: absolute; bottom: 0; width: 92px; opacity: .55; pointer-events: none; }
+  .sketch.l { left: 6px; } .sketch.r { right: 6px; transform: scaleX(-1); }
+  @media (max-width: 440px) { .sketch { width: 64px; opacity: .35; } }
+
+  .nivant { margin: 0; padding: 12px 18px; background: var(--navy); color: var(--peach); display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  .nivant b { font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1; }
+  .nivant span { font-size: 14px; opacity: .9; }
+
+  /* Sticky controls */
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--page); border-bottom: 1px solid var(--line); }
+  .bar-top { display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px; }
+  .tabs { display: inline-flex; border: 1.5px solid var(--navy); border-radius: 999px; padding: 3px; gap: 2px; }
+  .tabs button { border: 0; background: none; cursor: pointer; padding: 6px 15px; border-radius: 999px; font-family: var(--cond); font-weight: 600; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--navy); }
+  .tabs button[aria-selected="true"] { background: var(--navy); color: var(--page); }
+  .veg { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-family: var(--cond); font-weight: 600; font-size: 14.5px; letter-spacing: .04em; cursor: pointer; user-select: none; white-space: nowrap; }
+  .veg input { appearance: none; -webkit-appearance: none; width: 36px; height: 21px; border-radius: 999px; background: var(--line); position: relative; margin: 0; cursor: pointer; transition: background .2s; }
+  .veg input::after { content: ""; position: absolute; top: 2.5px; left: 2.5px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .veg input:checked { background: var(--veg); }
+  .veg input:checked::after { transform: translateX(15px); }
+  .search { padding: 0 16px 10px; }
+  .search input { width: 100%; font: 500 16px var(--sans); color: var(--navy); background: #FFFaf1; border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 13px; }
+  .search input::placeholder { color: #8C93AE; }
+  .search input:focus { outline: none; border-color: var(--cobalt); }
+  .chips { display: flex; gap: 0; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; border: 0; cursor: pointer; padding: 9px 14px 8px; font-family: var(--serif); font-size: 18px; line-height: 1; white-space: nowrap; border-radius: 8px 8px 0 0; color: var(--navy); background: var(--aqua); }
+  .chip:nth-child(even) { background: var(--cobalt); color: #EAF0FF; }
+  .chip.on { background: var(--peach); color: var(--navy); box-shadow: inset 0 3px 0 var(--navy); }
+
+  /* Pages */
+  .pages { padding: 4px 20px 34px; }
+  section.sec { padding-top: 34px; }
+  .sec-head { display: flex; align-items: center; gap: 14px; }
+  .sec-head h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 38px; line-height: 1; letter-spacing: -.005em; white-space: nowrap; }
+  .sec-head::after { content: ""; flex: 1; height: 1.5px; background: var(--navy); opacity: .7; }
+  .sec:nth-of-type(even) .sec-head { flex-direction: row-reverse; }
+  .sec-note { margin: 8px 0 0; font-size: 14px; color: var(--ink-soft); font-style: italic; }
+  .item { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 13px 0; border-bottom: 1px dashed var(--line); }
+  .item:last-child { border-bottom: 0; }
+  .item h3 { margin: 0; font-family: var(--cond); font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; line-height: 1.2; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .item .price { font-family: var(--cond); font-weight: 600; font-size: 17px; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .item p { grid-column: 1 / -1; margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); max-width: 58ch; }
+  .mark { width: 13px; height: 13px; border: 1.5px solid currentColor; border-radius: 2px; display: inline-grid; place-items: center; flex: none; }
+  .mark::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .mark.v { color: var(--veg); } .mark.n { color: var(--nonveg); }
+  .tag { font-family: var(--cond); font-weight: 500; font-size: 12px; letter-spacing: .08em; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--leaf); color: #5B7329; }
+  .wine { grid-template-columns: 1fr 58px 64px; }
+  .wine .price { min-width: 0; }
+  .wine .origin { grid-column: 1; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--cond); }
+  .cols { display: grid; grid-template-columns: 1fr 58px 64px; gap: 14px; font-family: var(--cond); font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); padding: 12px 0 0; }
+  .cols span { text-align: right; }
+  .vegan-box { display: flex; margin-top: 14px; border: 1.5px solid var(--navy); font-family: var(--cond); font-size: 14px; letter-spacing: .04em; }
+  .vegan-box b { background: var(--navy); color: var(--page); padding: 7px 12px; font-weight: 600; text-transform: uppercase; }
+  .vegan-box span { padding: 7px 12px; }
+  .empty { text-align: center; padding: 44px 10px; font-family: var(--serif); font-size: 22px; color: var(--ink-soft); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-soft); padding: 16px 0 0; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+  footer { background: var(--peach); padding-block: 22px 28px; padding-inline: 20px; text-align: center; font-size: 13px; line-height: 1.55; color: var(--ink-soft); display: grid; gap: 6px; justify-items: center; }
+  footer .wordmark { width: 110px; }
+  footer a { color: var(--navy); }
+  footer .concept { font-family: var(--cond); letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-top: 6px; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="book">
+  <div class="tiles" aria-hidden="true"></div>
+  <header class="cover">
+    <svg class="sketch l" viewBox="0 0 100 130" fill="none" stroke="#1E3478" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <path d="M50 0v30M50 30 30 48M50 30l20 18"/>
+      <path d="M26 48h48c0 13-11 22-24 22S26 61 26 48z"/>
+      <path d="M26 48h48"/>
+      <path d="M32 60c-8 10-10 24-6 40M44 69c-2 14 0 28 6 42M60 68c5 12 5 26 0 38M70 58c8 9 11 21 9 33"/>
+      <path d="M26 76c-8-1-11 7-5 10 5 2 9-4 5-10zM26 96c-8 0-10 8-4 10 6 1 8-6 4-10zM46 92c-7 1-8 9-2 10 6 1 7-6 2-10zM50 112c-6 2-6 9 0 9 6-1 5-8 0-9zM63 86c7 0 9 8 3 10-6 1-8-6-3-10zM60 104c7 1 7 9 1 10-6 0-6-7-1-10zM79 72c7-1 10 7 4 9-6 2-8-5-4-9zM80 90c6 1 7 8 1 9-6 0-6-7-1-9z"/>
+    </svg>
+    <svg class="sketch r" viewBox="0 0 100 130" fill="none" stroke="#1E3478" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <path d="M50 0v30M50 30 30 48M50 30l20 18"/>
+      <path d="M26 48h48c0 13-11 22-24 22S26 61 26 48z"/>
+      <path d="M26 48h48"/>
+      <path d="M32 60c-8 10-10 24-6 40M44 69c-2 14 0 28 6 42M60 68c5 12 5 26 0 38M70 58c8 9 11 21 9 33"/>
+      <path d="M26 76c-8-1-11 7-5 10 5 2 9-4 5-10zM26 96c-8 0-10 8-4 10 6 1 8-6 4-10zM46 92c-7 1-8 9-2 10 6 1 7-6 2-10zM50 112c-6 2-6 9 0 9 6-1 5-8 0-9zM63 86c7 0 9 8 3 10-6 1-8-6-3-10zM60 104c7 1 7 9 1 10-6 0-6-7-1-10zM79 72c7-1 10 7 4 9-6 2-8-5-4-9zM80 90c6 1 7 8 1 9-6 0-6-7-1-9z"/>
+    </svg>
+    <span class="wordmark" role="img" aria-label="Gather, for good"></span>
+    <div class="kicker">All-day dining &amp; bar</div>
+    <div class="line">Come as you are, stay as long as you like.</div>
+    <div class="facts"><span>153/A Senapati Bapat Road</span><span>12 pm to 12 am</span></div>
+  </header>
+  <p class="nivant" id="nivant" hidden><b>Nivānt</b><span>Our unhurried sunset hours, 4 to 7 pm. The grill rests until 7.</span></p>
+
+  <div class="bar">
+    <div class="bar-top">
+      <div class="tabs" role="tablist" aria-label="Menu">
+        <button role="tab" id="tab-food" aria-selected="true" data-tab="food">Food</button>
+        <button role="tab" id="tab-drinks" aria-selected="false" data-tab="drinks">Drinks</button>
+        <button role="tab" id="tab-bar" aria-selected="false" data-tab="bar">Bar</button>
+      </div>
+      <label class="veg" id="veg-wrap"><input type="checkbox" id="veg-only"> Veg only</label>
+    </div>
+    <div class="search"><input id="q" type="search" aria-label="Search the menu" placeholder="Search dishes, drinks, ingredients" autocomplete="off"></div>
+    <nav class="chips" id="chips" aria-label="Sections"></nav>
+  </div>
+
+  <main class="pages" id="pages"></main>
+
+  <footer>
+    <span class="wordmark" role="img" aria-label="Gather"></span>
+    <div>All prices in rupees. Government taxes and a 5% optional service charge apply; the service charge goes to our staff and can be removed on request.</div>
+    <div>Alcohol is served only to guests aged 25 and above. Standard spirit pour is 30 ml. Please tell us about any allergies.</div>
+    <div><a href="https://www.instagram.com/gather.in.pune/" target="_blank" rel="noopener">@gather.in.pune</a> · 086004 44284</div>
+    <div class="concept">Digital menu concept for Gather</div>
+  </footer>
+</div>
+
+<script>
+// [name, price, description, diet]  diet: v = veg, vg = vegan, n = non veg, "" = ask your server
+const MENU = {
+  food: [
+    { name: "Snacks", items: [
+      ["Jakhia Kulcha", 320, "Belper knolle cheese, pickled onion, tomato bhaang chutney, green chillies", "v"],
+      ["Dahi Kebab", 380, "Mango choonda, pickled jalapeño, mint chutney", "v"],
+      ["Guacamole", 460, "Kharda crumble, raw mango, pickled onion, jalapeño, kothimbir wadi crackers", "vg"],
+      ["Mushroom Pâté", 420, "Smoked hiratake, pickled shimeji, arugula, aged grana padano, ponzu, toasted sourdough", "v"],
+      ["Nadru and Brown Onion Galouti", 460, "Walnut and truffle crema, lotus stem chips, truffle extract", "v"],
+      ["Crudo Puri", 420, "Salt-cured sea bass, tom kha tiger's milk, cucumber, crispy buckwheat", "n"]
+    ]},
+    { name: "Cold plates", items: [
+      ["Burmese Tomato and Avocado", 540, "Seasonal tomato, avocado, onion, red amaranth, crispy val beans, fried garlic, peanut, toasted sesame, pickled lotus stem", "vg"],
+      ["Baby Burrata", 570, "Sun-dried tomato pesto, ezme, toasted focaccia", "v"],
+      ["Chef's Bowl", 520, "Foxtail millet, pomegranate, chickpea, bell peppers, tomatoes, cucumber, feta, citrus, water chestnut, trail mix, jaggery and turmeric dressing", "v"],
+      ["Smoked Chicken Caesar", 550, "Romaine lettuce, toasted croutons, anchovy-garlic dressing, cured egg yolk, parmesan", "n"]
+    ]},
+    { name: "Small plates", items: [
+      ["Chickpea Basil Hummus", 470, "Olive and caper tapenade, sunflower seeds, grana padano, hot honey, multigrain lavash", "v"],
+      ["Mushroom & Lotus Stem Gyoza", 590, "Shiitake and lotus stem dumplings, crisp tuile, black bean jam, homemade mushroom ketchup. Five pieces", "v"],
+      ["Prawn Wontons", 600, "Flying fish roe, dried prawn-chilli crisp, scallions, soy broth", "n"],
+      ["Ros Omelette", 570, "Shredded chicken, raw mango kachumber, tendli pickle, warm poee", "n"],
+      ["Shack Style Squid Rechado", 550, "Served with lemon and warm poee", "n"],
+      ["House-made Gnocchi", 580, "Chicken fricassée, porcini-chicken jus, thyme", "n"],
+      ["Prawn Pepper Fry", 630, "Ceylon-style tamarind and pepper sauce, lemongrass, curry leaves, potato bread", "n"],
+      ["Grilled Chicken Tacos", 520, "Monterey Jack cheese, al pastor chicken, ragi tortilla, pineapple salsa, sour cream", "n"],
+      ["Pork Chilli Fry", 690, "Choris, kokum, warm poee", "n"],
+      ["Surti Duck Gotala", 590, "Fresh chives, potato salli, homemade brioche pao, fried egg", "n"],
+      ["Sambal Fish", 650, "Hawker-style grilled river sole with Thai herbs and coconut milk, nam pla, crushed peanuts, lettuce, chopped pickle", "n"]
+    ]},
+    { name: "Grills", note: "The grill rests between 4 and 7 pm.", items: [
+      ["Bhatti Chicken", 670, "Tandoori spring chicken, homemade spice mix, mint chutney. Four pieces", "n"],
+      ["Shakarkand ki Seekh", 550, "Sweet potato and raw banana seekh with ginger and green chilli, pumpkin and apricot chutney. No onion, no garlic", "v"],
+      ["Cottage Cheese Shish Taouk", 590, "Harissa-marinated cottage cheese, preserved lemon labneh, sumac onions, pickled Bhavnagari chillies", "v"],
+      ["Black Pepper Chicken", 620, "Chicken thigh in a black pepper spice blend, aubergine pachadi, curry leaf oil", "n"],
+      ["Joojeh Kebab", 620, "Chicken thigh with saffron, white onion, yoghurt and crushed pepper, lemon labneh, sumac onions", "n"],
+      ["Spicy Miso Chicken Wings", 590, "Chilli, miso and soy, cooked in the tandoor, ginger-soy dipping sauce. Eight pieces", "n"],
+      ["Lamb Seekh", 670, "Minced lamb skewers with rose and warm spices, cooked in the tandoor", "n"],
+      ["Andhra Prawn Tikka", 740, "Spicy tomato pickle, fenugreek and mustard, ginger, tamarind and jaggery glaze", "n"]
+    ]},
+    { name: "Breadery", items: [
+      ["Hass Avocado on Multigrain", 630, "Homemade multigrain bread, mixed berry vinaigrette, cumin jaggery dressing, feta, trail mix", "v"],
+      ["Grilled Vegetable Panini", 560, "Zucchini, eggplant, peppers, fior di latte, basil pesto, arugula, balsamic", "v"],
+      ["Ham & Cheese Panini", 600, "Smoked ham, Swiss cheese, honey mustard, lettuce, tomato", "n"],
+      ["Truffle Mushroom Burger", 580, "Truffle aioli, brie, arugula, caramelised onion", "v"],
+      ["Juicy Chicken Burger", 590, "Spicy mayo, black pepper cheddar", "n"],
+      ["Grilled Lamb Burger", 640, "Black pepper mayo, caramelised onions, aged cheddar, bread and butter pickles", "n"],
+      ["Reshmi Kebab Wrap", 590, "Chicken seekh, egg roomali, mint chutney, sliced onions, lettuce", "n"],
+      ["Chicken Shawarma", 590, "Smoky chicken in roomali roti, cucumber pickle, garlic toum, spicy toum, orange pomegranate salad", "n"]
+    ]},
+    { name: "Pizzas & pasta", note: "Hand-tossed, ten inches.", items: [
+      ["The Classic", 690, "Mozzarella di bufala, San Marzano pomodoro, fresh basil, extra virgin olive oil", "v"],
+      ["Mediterranean", 790, "Sun-dried tomatoes, olives, artichokes, spinach, smoked gouda, caciocavallo, goat cheese crema, maple", "v"],
+      ["Shrooms", 830, "White sauce, goat cheese cream, button mushroom, caramelised onion, mushroom pâté, truffle oil", "v"],
+      ["Pistachio Burrata", 850, "Pesto, black olives, pistachio, sun-dried tomato, balsamic reduction, arugula", "v"],
+      ["Latino Pollo", 830, "Smoked chipotle roast chicken, sweet corn, jalapeño, pickled onion, salsa macha, aji verde", "n"],
+      ["El Diavolo", 830, "Arrabbiata base, spicy grilled chicken, pickled jalapeños, sun-dried tomato, hot red peppers, sumac garlic aioli", "n"],
+      ["Artisanal Pepperoni", 930, "Pelati sauce, pepperoni, jalapeños, puffed amaranth, homemade hot honey", "n"],
+      ["Rigatoni alla Vodka", 540, "Pomodoro, black olive, parmesan", "v"]
+    ]},
+    { name: "Sharing plates", items: [
+      ["Raw Banana Kofta", 690, "Marwari tomato saunf curry, ker sangri pickle, sirka pyaaz, green chilli laccha paratha, bajra papad", "v"],
+      ["Grilled Chicken Berry Pulav", 790, "Chicken and rice pilaf with Parsi sambar masala, zereshk berries and fresh herbs", "n"],
+      ["Kundapur Chicken Roast", 750, "Boneless chicken leg in a robust coastal Karnataka spice blend, with flaky puff paratha", "n"],
+      ["Mangalorean Prawn Gassi", 820, "Large prawns in bedgi chilli and fresh coconut curry, steamed rice and lentil cakes, prawn raw mango pickle", "n"],
+      ["Gosht Nihari", 1100, "Bhavnagari chillies, ginger, khameeri roti, mooli pyaaz laccha", "n"]
+    ]},
+    { name: "Sides", items: [
+      ["Poee", 90, "Goan whole wheat bread, soft and airy. One piece", "vg"],
+      ["Khameeri Roti", 90, "Fermented flatbread from the tandoor. One piece", "v"],
+      ["Puff Paratha", 90, "Flaky layered flatbread. One piece", "v"],
+      ["Green Chilli Laccha Paratha", 110, "One piece", "v"],
+      ["Multigrain Toasted Bread", 157, "Two slices", "v"],
+      ["Oven Roasted Focaccia", 160, "With herbs. Two pieces", "v"],
+      ["Steamed Rice", 270, "", "v"]
+    ]},
+    { name: "Desserts", items: [
+      ["Chocolate and Coffee Cake", 490, "Chocolate sponge, coffee and chocolate truffle", "v"],
+      ["Peanut Crownie", 520, "Choco-chip cookie, peanut brownie, salted caramel, cinnamon ice cream", "v"],
+      ["Cereal Milk Panna Cotta", 470, "Espresso-honey syrup, blueberries, sour cherry jelly, bee pollen, granola, honeycomb", ""],
+      ["Coffee Tres Leches", 550, "Monsoon Malabar coffee, mascarpone cream, chocolate meringue", ""],
+      ["Crème Brûlée Cheesecake", 550, "Marayoor vanilla beans, hibiscus-strawberry-lime sorbet, milk crumble, caramelised hazelnut, poppy seed tuile", ""],
+      ["Godavari", 570, "67% Andhra Pradesh single-origin dark chocolate mousse, Jaipur olive oil, smoked sea salt, sesame butterscotch", ""]
+    ]}
+  ],
+  drinks: [
+    { name: "Hot coffee", note: "Coffees by Bili Hū, roasted from Indian estates.", vegan: true, items: [
+      ["Cappuccino", 225, "Espresso with steamed milk and foam"],
+      ["Café Latte", 255, "Smooth espresso with milk"],
+      ["Flat White", 255, "Espresso with silky microfoam"],
+      ["Cortado", 255, "Equal parts espresso and steamed milk. 120 ml"],
+      ["Spiced Cortado", 330, "Espresso, milk, cinnamon maple"],
+      ["Earl Grey Coffee", 315, "Espresso, Earl Grey milk"],
+      ["Café Mocha", 355, "Espresso, rich chocolate, steamed milk"],
+      ["Hot Chocolate", 347, "Rich and creamy"],
+      ["Vegan Hot Chocolate", 455, "Made with soy milk"]
+    ]},
+    { name: "Cold coffee", items: [
+      ["Cold Brew", 225, "Slow-brewed, served over ice"],
+      ["Iced Americano", 255, "Espresso and water over ice"],
+      ["Iced Café Latte", 295, "Espresso with chilled milk"],
+      ["Iced Cappuccino", 295, "Iced coffee with milk and foam"],
+      ["Cold Brew with Condensed Milk", 315, ""],
+      ["Cold Coffee", 325, "Chilled and blended smooth"],
+      ["Espresso Tonic", 355, "Espresso over sparkling tonic"],
+      ["Coconut Coffee", 395, "Coffee with coconut notes"],
+      ["Dalgona Coffee", 395, "Whipped coffee over milk. 180 ml"],
+      ["Mango Iced Latte", 400, "Espresso, mango, milk"],
+      ["Iced Earl Grey Coffee", 410, "Espresso, Earl Grey milk"]
+    ]},
+    { name: "Matcha", items: [
+      ["Hot Matcha", 350, "Matcha, hot water"],
+      ["Hot Matcha Latte", 380, "Matcha, milk, milk foam"],
+      ["Hot Roselle Rose Matcha Latte", 390, "Matcha, roselle rose, milk"],
+      ["Iced Matcha", 370, "Matcha, cold water"],
+      ["Iced Matcha Latte", 380, "Matcha, cold milk"],
+      ["Strawberry Matcha Iced Latte", 410, "Matcha, cold milk, strawberry purée"],
+      ["Mango Matcha Iced Latte", 410, "Matcha, cold milk, mango purée"],
+      ["Roselle Rose Matcha Latte", 440, "Matcha, roselle rose, coconut water"]
+    ]},
+    { name: "Teas", items: [
+      ["Elaichi Masala Tea", 245, ""],
+      ["Jasmine Tea", 245, ""],
+      ["Mint & Lemongrass", 245, ""],
+      ["Earl Grey", 245, ""],
+      ["Kashmiri Kahwa", 315, "Tea leaves, saffron, cinnamon, cardamom"],
+      ["First Flush Lavender", 315, "Black tea, lavender, lemongrass"],
+      ["Awaken Your Zen", 315, "Chamomile, marigold, rosehip, cardamom"],
+      ["Find Your Passion", 315, "Hibiscus, rose petal, cinnamon, citrus"],
+      ["Moon", 315, "Blue pea flower, lavender, brahmi, ashwagandha"]
+    ]},
+    { name: "Iced teas", items: [
+      ["Peach", 275, ""], ["Ginger Lemon", 275, ""], ["Lemon and Mint", 275, ""], ["Spiced", 275, ""]
+    ]},
+    { name: "Smoothies & shakes", vegan: true, items: [
+      ["Mango and Guava Smoothie", 425, "Rolled oats and yoghurt"],
+      ["Dark Chocolate and Peanut Butter Shake", 425, "Whipped cream, cacao nibs, banana"],
+      ["Strawberry and Avocado Shake", 425, "Sour cherry, basil seeds"]
+    ]},
+    { name: "Cold pressed", items: [
+      ["Watermelon", 315, "300 ml"], ["Pineapple", 315, "300 ml"]
+    ]},
+    { name: "Zero proof", items: [
+      ["Mayer's Basil Smash", 341, "Basil, sweet and sour, ginger fizz"],
+      ["Western & Eastern Ghats", 341, "Strawberry, passion fruit, pineapple juice"],
+      ["Some Fizz", 341, "Sweet lime, basil, lime, honey and fizz"]
+    ]},
+    { name: "Soft drinks", items: [
+      ["Coke", 129, ""], ["Diet Coke", 129, ""], ["Sprite", 129, ""], ["Tonic Water", 151, ""], ["Ginger Ale", 151, ""], ["Bottled Water", 191, ""], ["Red Bull", 259, ""], ["Perrier", 279, "330 ml"]
+    ]}
+  ],
+  bar: [
+    { name: "Gather classics", items: [
+      ["Bees Knees", 553, "Greater Than gin, Moonshine honey, lime"],
+      ["Daiquiri", 553, "Bacardi white rum, sweet and sour"],
+      ["Jungle Bird", 553, "Old Monk, Campari, pineapple, sweet and sour"],
+      ["Gin Basil Smash", 591, "Greater Than gin, Italian basil, sweet and sour"],
+      ["Fitzgerald", 591, "Beefeater, sweet and sour, Angostura bitters"],
+      ["Espresso Martini", 617, "Absolut, coffee liqueur, espresso, vanilla"],
+      ["Hemingway Special Daiquiri", 617, "Bacardi white rum, maraschino liqueur, grapefruit"],
+      ["Garibaldi", 617, "Campari, fresh fluffy orange"],
+      ["Hanky Panky", 617, "Greater Than gin, rosso vermouth, Fernet Branca, saline"],
+      ["Porn Star Martini", 627, "Absolut, passion fruit, pineapple, vanilla, lime"],
+      ["Sidecar", 633, "Brandy, triple sec, lime"],
+      ["Boulevardier", 663, "Jim Beam, sweet vermouth, Campari, orange"],
+      ["Mimosa", 663, "Sparkling wine, orange juice"],
+      ["Paper Plane", 667, "Jim Beam, Campari, amaro, lime"],
+      ["Manhattan", 667, "Jim Beam, sweet vermouth, Angostura bitters"],
+      ["Old Fashioned", 667, "Jim Beam, sugar, Angostura bitters, splash of water"],
+      ["Whisky Sour", 667, "Jim Beam, Angostura bitters, sweet and sour, vegan foam"],
+      ["Vesper Dry Martini", 677, "Tanqueray, Absolut, Lillet Blanc"],
+      ["Picante de la Casa", 687, "Jose Cuervo, jalapeños, coriander, agave"],
+      ["Margarita", 687, "Jose Cuervo, triple sec, lime, Maldon salt"],
+      ["Paloma", 687, "Jose Silver, grapefruit, soda, Maldon salt"],
+      ["Negroni", 691, "Beefeater, Campari, sweet vermouth, orange"],
+      ["Sazerac", 697, "Cognac, rye whisky, Peychaud's bitters, absinthe"]
+    ]},
+    { name: "Wine", wine: true, groups: [
+      ["Bubbles", [
+        ["Sula Brut", "India", 593, 2759], ["Chandon Brut", "India", null, 3499], ["Villa Sandi", "Italy", 875, 3757],
+        ["Moët & Chandon", "France", null, 20739], ["G.H. Mumm Cordon Rouge", "France", null, 21973]
+      ]],
+      ["Whites", [
+        ["Sula Muscat Blanc", "India", 629, 2401], ["The Source Sauvignon Blanc", "India", 627, 2853],
+        ["Pete's Pure Sauvignon Blanc", "Australia", null, 3755], ["Pete's Pure Chardonnay", "Australia", 791, 3759],
+        ["Wolfberger Riesling", "France", null, 6917]
+      ]],
+      ["Reds", [
+        ["The Source Cabernet Sauvignon", "India", 627, 2851], ["Rasa Syrah", "India", null, 3353],
+        ["Michel Torino Malbec", "Argentina", null, 3751], ["Pete's Pure Cabernet Sauvignon", "Australia", null, 3957],
+        ["Pete's Pure Shiraz", "Australia", 871, 3959], ["Bacchus Bordeaux Rouge", "France", null, 4155],
+        ["Paul Mas Pinot Noir", "France", 873, 4157], ["Protos Roble Ribera del Duero", "Spain", null, 6911]
+      ]],
+      ["Rosé", [
+        ["The Source Grenache, 375 ml", "India", null, 1157], ["Cape Dream Pinotage", "South Africa", null, 3953]
+      ]]
+    ]},
+    { name: "Beer & mahua", items: [
+      ["Heineken Lager", 391, ""], ["Heineken Silver", 391, ""], ["Kingfisher Ultra", 391, ""], ["Corona", 537, ""],
+      ["Six Brothers Mahua", 395, "Mahua spirit"]
+    ]},
+    { name: "Vodka", note: "Prices per 30 ml.", items: [
+      ["Absolut", 373, ""], ["Ketel One", 373, ""], ["Haku", 679, ""], ["Cîroc", 683, ""], ["Belvedere", 733, ""],
+      ["Grey Goose", 733, ""], ["Roberto Cavalli", 911, ""], ["Beluga", 959, ""]
+    ]},
+    { name: "Rum", note: "Prices per 30 ml.", items: [
+      ["Old Monk", 229, ""], ["Bacardi Black", 249, ""], ["Amrut Two Indies", 301, ""], ["Bacardi White", 319, ""],
+      ["Bacardi Limón", 329, ""], ["Kraken", 789, ""]
+    ]},
+    { name: "Tequila & mezcal", note: "Prices per 30 ml.", items: [
+      ["Jose Silver", 473, ""], ["Jose Cuervo Reposado", 537, ""], ["1800 Blanco", 933, ""], ["1800 Reposado", 1019, ""],
+      ["Patrón Silver", 1057, ""], ["Don Julio Blanco", 1089, ""], ["1800 Añejo", 1129, ""], ["Don Julio Reposado", 1189, ""],
+      ["Patrón Reposado", 1199, ""], ["Don Julio Añejo", 1619, ""], ["Don Julio 1942", 3991, ""], ["Clase Azul Reposado", 4991, ""],
+      ["400 Conejos", 979, "Mezcal"], ["Creyente Joven", 1109, "Mezcal"]
+    ]},
+    { name: "Brandy & cognac", note: "Prices per 30 ml.", items: [
+      ["Martell VS", 651, ""], ["Hennessy VS", 851, ""], ["Hennessy VSOP", 1521, ""]
+    ]},
+    { name: "Liqueurs & shots", note: "Prices per 30 ml.", items: [
+      ["Aperol", 329, ""], ["Coffee Liqueur", 389, ""], ["Sambuca", 423, ""], ["Limoncello", 429, ""], ["Campari", 429, ""],
+      ["Baileys", 451, ""], ["Jack Daniel's Fire", 497, ""], ["Amaretto", 503, ""], ["Jack Daniel's Honey", 559, ""],
+      ["Amaro Montenegro", 579, ""], ["Fernet Branca", 579, ""], ["Absinthe", 587, ""], ["Jägermeister", 589, ""],
+      ["Picante shot", 391, "In-house"], ["Basil Smash shot", 391, "In-house"]
+    ]}
+  ]
+};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = n => n == null ? "·" : n.toLocaleString("en-IN");
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const state = { tab: "food", veg: false, q: "" };
+
+function itemHTML([name, price, desc, diet]) {
+  let marks = "";
+  if (diet === "v" || diet === "vg") marks += '<span class="mark v" title="Vegetarian"></span>';
+  if (diet === "n") marks += '<span class="mark n" title="Non vegetarian"></span>';
+  if (diet === "vg") marks += '<span class="tag">VEGAN</span>';
+  return `<div class="item"><h3>${esc(name)}${marks}</h3><div class="price">${fmt(price)}</div>${desc ? `<p>${esc(desc)}</p>` : ""}</div>`;
+}
+
+function render() {
+  const q = state.q.trim().toLowerCase();
+  const match = (...parts) => !q || parts.join(" ").toLowerCase().includes(q);
+  const vegOn = state.tab === "food" && state.veg;
+  let html = "", chips = "";
+  for (const sec of MENU[state.tab]) {
+    let body = "";
+    if (sec.wine) {
+      for (const [g, rows] of sec.groups) {
+        const hits = rows.filter(r => match(r[0], r[1], g));
+        if (!hits.length) continue;
+        body += `<div class="cols"><span style="text-align:left">${esc(g)}</span><span>Glass</span><span>Bottle</span></div>`;
+        body += hits.map(([n, o, gl, bt]) => `<div class="item wine"><h3>${esc(n)}</h3><div class="price">${fmt(gl)}</div><div class="price">${fmt(bt)}</div><div class="origin">${esc(o)}</div></div>`).join("");
+      }
+    } else {
+      const hits = sec.items.filter(it => match(it[0], it[2] || "", sec.name) && (!vegOn || it[3] === "v" || it[3] === "vg"));
+      body = hits.map(itemHTML).join("");
+    }
+    if (!body) continue;
+    const id = slug(sec.name);
+    chips += `<button class="chip" data-target="${id}">${esc(sec.name)}</button>`;
+    html += `<section class="sec" id="${id}"><div class="sec-head"><h2>${esc(sec.name)}</h2></div>`
+      + (sec.note ? `<p class="sec-note">${esc(sec.note)}</p>` : "")
+      + body
+      + (sec.vegan ? '<div class="vegan-box"><b>Make it vegan</b><span>Almond milk 145</span><span>Soya milk 105</span></div>' : "")
+      + `</section>`;
+  }
+  if (!html) html = `<div class="empty">Nothing matches “${esc(state.q)}”. Try another word.</div>`;
+  if (state.tab === "food" && html.indexOf("empty") === -1)
+    html = '<div class="legend"><span><span class="mark v"></span>Vegetarian</span><span><span class="mark n"></span>Non vegetarian</span><span>Unmarked: ask us about eggs and gelatin</span></div>' + html;
+  $("#pages").innerHTML = html;
+  $("#chips").innerHTML = chips;
+  $("#veg-wrap").hidden = state.tab !== "food";
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
+  spy();
+}
+
+function spy() {
+  const secs = [...document.querySelectorAll("section.sec")];
+  const barH = document.querySelector(".bar").getBoundingClientRect().bottom + 10;
+  let cur = secs[0];
+  for (const s of secs) if (s.getBoundingClientRect().top <= barH) cur = s;
+  document.querySelectorAll(".chip").forEach(c => {
+    const on = cur && c.dataset.target === cur.id;
+    if (on && !c.classList.contains("on")) c.scrollIntoView({ block: "nearest", inline: "center" });
+    c.classList.toggle("on", on);
+  });
+}
+
+document.querySelector(".tabs").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  state.tab = b.dataset.tab; render();
+  window.scrollTo({ top: document.querySelector(".cover").offsetHeight, behavior: "auto" });
+  try { localStorage.setItem("gather-tab", state.tab); } catch (_) {}
+});
+$("#chips").addEventListener("click", e => {
+  const c = e.target.closest(".chip"); if (!c) return;
+  document.getElementById(c.dataset.target).scrollIntoView();
+});
+$("#veg-only").addEventListener("change", e => { state.veg = e.target.checked; render(); });
+$("#q").addEventListener("input", e => { state.q = e.target.value; render(); });
+window.addEventListener("scroll", () => requestAnimationFrame(spy), { passive: true });
+
+// Nivānt runs 4 to 7 pm, Pune time
+const ist = new Date(Date.now() + (330 + new Date().getTimezoneOffset()) * 60000);
+if (ist.getHours() >= 16 && ist.getHours() < 19) $("#nivant").hidden = false;
+
+try { const t = localStorage.getItem("gather-tab"); if (t && MENU[t]) state.tab = t; } catch (_) {}
+const hashTab = location.hash.slice(1);
+if (MENU[hashTab]) state.tab = hashTab;
+render();
+</script>
