@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tulsi &amp; Toast</title>
+<meta name="description" content="All-day vegetarian café, Koregaon Park, Pune. Browse the menu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --olive: #5F6D28;
+  --olive-deep: #3E4522;
+  --butter: #E9B949;
+  --crust: #A86F2D;
+  --ground: #FBF8F1;
+  --surface: #FFFFFF;
+  --ink: #2B2A1D;
+  --muted: #6F6B55;
+  --line: #E8E2D3;
+  --chip: #F0ECE0;
+  --veg: #1E8A3C;
+  --chilli: #C2412D;
+  --band-ink: #F7F0DE;
+  --i-vegan: #4F7A2A;
+  --i-jain: #C27A1E;
+  --i-spicy: #C2412D;
+  --i-nuts: #8A5A2B;
+  --i-eggless: #6A6F8C;
+  --icon-bg: var(--ground);
+  --shadow: 0 1px 2px rgba(43, 42, 29, .07), 0 8px 24px rgba(43, 42, 29, .09);
+  --serif: "Gloock", "Georgia", "Times New Roman", serif;
+  --sans: "Figtree", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 400 15px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 520px; margin-inline: auto; padding-inline: 16px; }
+
+/* Masthead: an olive band with a scatter of tulsi leaves */
+.band {
+  background-color: var(--olive-deep);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23F7F0DE' fill-opacity='.07'%3E%3Cpath d='M22 40c-10-4-13-15-7-25 10 4 13 15 7 25z'/%3E%3Cpath d='M86 30c3-10 13-14 23-9-3 10-13 14-23 9z'/%3E%3Cpath d='M60 96c-9-6-10-17-2-26 8 7 9 18 2 26z'/%3E%3Cpath d='M100 88c-10 0-16-8-15-19 10 1 16 9 15 19z'/%3E%3Cpath d='M14 98c2-10 11-15 21-12-2 10-11 15-21 12z'/%3E%3C/g%3E%3C/svg%3E");
+  color: var(--band-ink);
+  padding-block: 28px 76px;
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.logo { width: 58px; height: 58px; flex: none; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); }
+.brand h1 {
+  margin: 0;
+  font: 400 34px/1 var(--serif);
+  letter-spacing: -.01em;
+}
+.brand h1 .amp { color: var(--butter); font-style: italic; }
+.brand p { margin: 6px 0 0; font-size: 13.5px; opacity: .82; }
+.facts {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 20px 0 0; padding: 0; list-style: none;
+  font-size: 12.5px; font-weight: 500;
+}
+.facts li {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 5px 11px;
+  border: 1px solid rgba(247, 240, 222, .22);
+  border-radius: 999px;
+}
+.facts .veg { border-color: #7BD892; }
+.facts .veg::after { background: #7BD892; }
+
+.hero {
+  margin-top: -56px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: var(--chip);
+}
+.hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero figcaption {
+  position: absolute; left: 12px; bottom: 12px;
+  background: var(--butter); color: #2B2A1D;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 8px;
+}
+
+/* Search and sticky course tabs */
+.finder { margin-top: 20px; }
+.search {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0 14px;
+}
+.search svg { width: 18px; height: 18px; color: var(--muted); flex: none; }
+.search input {
+  flex: 1; min-width: 0;
+  border: 0; background: transparent; color: var(--ink);
+  font: 500 15px var(--sans);
+  padding: 13px 0;
+}
+.search input::placeholder { color: var(--muted); }
+.search input:focus { outline: none; }
+.search:focus-within { border-color: var(--olive); box-shadow: 0 0 0 3px color-mix(in srgb, var(--olive) 20%, transparent); }
+
+.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--ground);
+  margin-top: 12px;
+  padding-block: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.tabs nav {
+  display: flex; gap: 8px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.tabs nav::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--ink);
+  font-size: 13.5px; font-weight: 600;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.chip[aria-current="true"] { background: var(--olive); color: var(--ground); }
+.chip:focus-visible, .fav:focus-visible, .review-btn:focus-visible { outline: 3px solid var(--butter); outline-offset: 2px; }
+
+/* Most loved strip */
+.loved { margin-top: 26px; }
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--crust);
+}
+.fav-row {
+  display: flex; gap: 12px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+.fav-row::-webkit-scrollbar { display: none; }
+.fav {
+  flex: none; width: 150px;
+  scroll-snap-align: start;
+  display: flex; flex-direction: column; gap: 2px;
+  color: var(--ink); text-decoration: none;
+}
+.fav img {
+  width: 150px; height: 150px; max-width: 100%;
+  object-fit: cover; border-radius: 16px; display: block;
+  margin-bottom: 8px;
+}
+.fav-name { font-weight: 600; font-size: 14px; line-height: 1.3; }
+.fav-price { margin-top: auto; color: var(--muted); font-size: 13.5px; font-variant-numeric: tabular-nums; }
+
+/* Courses */
+.course { margin-top: 34px; scroll-margin-top: 70px; }
+.course-head h2 {
+  display: flex; align-items: center; gap: 10px;
+  margin: 0;
+  font: 400 27px/1.1 var(--serif);
+  color: var(--ink);
+  text-wrap: balance;
+}
+.sprig { width: 28px; height: 20px; color: var(--olive); flex: none; }
+.course-head p { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; max-width: 60ch; }
+.dishes { list-style: none; margin: 14px 0 0; padding: 0; display: grid; }
+.dish {
+  display: grid; grid-template-columns: 1fr 112px; gap: 14px; align-items: start;
+  padding-block: 16px;
+  border-top: 1px dashed var(--line);
+}
+.dish:first-child { border-top: 0; }
+.dish-text { min-width: 0; }
+.dish-top { display: flex; align-items: center; gap: 8px; min-height: 18px; }
+.dish h3 { margin: 6px 0 0; font-size: 16.5px; font-weight: 700; line-height: 1.3; }
+.price { margin: 2px 0 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.desc { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+.thumb {
+  width: 112px; height: 112px; max-width: 100%;
+  object-fit: cover; border-radius: 14px; display: block;
+  box-shadow: var(--shadow);
+}
+.veg {
+  display: inline-grid; place-items: center;
+  width: 14px; height: 14px; flex: none;
+  border: 1.5px solid var(--veg); border-radius: 2px;
+}
+.veg::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--veg); }
+.best {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--butter); color: #2B2A1D;
+  font-size: 11px; font-weight: 700; letter-spacing: .03em;
+  padding: 2px 8px; border-radius: 6px;
+}
+.best::before { content: "★"; font-size: 10px; }
+.icons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.icon {
+  display: inline-grid; place-items: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: color-mix(in srgb, currentColor 13%, transparent);
+}
+.icon svg { width: 15px; height: 15px; }
+.icon-lg { width: 34px; height: 34px; flex: none; }
+.icon-lg svg { width: 19px; height: 19px; }
+.icon-vegan { color: var(--i-vegan); }
+.icon-jain { color: var(--i-jain); }
+.icon-spicy { color: var(--i-spicy); }
+.icon-nuts { color: var(--i-nuts); }
+.icon-eggless { color: var(--i-eggless); }
+
+/* Icon key */
+.key { margin-top: 40px; }
+.key h2 { margin: 0 0 14px; font: 400 23px/1.15 var(--serif); }
+.key ul {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 14px;
+}
+.key li { display: flex; gap: 12px; align-items: flex-start; }
+.key li div { display: grid; gap: 1px; }
+.key strong { font-size: 14.5px; }
+.key li span:not(.icon) { color: var(--muted); font-size: 13.5px; line-height: 1.4; }
+.key .veg-row .veg { width: 20px; height: 20px; margin: 7px; }
+.key .veg-row .veg::after { width: 8px; height: 8px; }
+
+.empty { margin: 30px 0 0; text-align: center; color: var(--muted); }
+
+/* Review card */
+.review {
+  margin-top: 44px;
+  background: var(--olive-deep);
+  color: var(--band-ink);
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: grid; gap: 14px; justify-items: start;
+}
+.stars { display: flex; gap: 4px; color: var(--butter); }
+.stars svg { width: 22px; height: 22px; }
+.review h2 { margin: 0; font: 400 25px/1.15 var(--serif); text-wrap: balance; }
+.review p { margin: 0; font-size: 14px; opacity: .85; max-width: 42ch; }
+.review-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--butter); color: #2B2A1D;
+  border: 0; border-radius: 12px;
+  padding: 12px 18px;
+  font: 700 15px var(--sans);
+  text-decoration: none; cursor: pointer;
+}
+.review-btn svg { width: 18px; height: 18px; }
+.review-note { font-size: 13px; background: rgba(247,240,222,.12); padding: 10px 12px; border-radius: 10px; }
+
+.fine {
+  margin-top: 28px; padding-block: 18px 40px;
+  border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 12.5px;
+  display: grid; gap: 8px;
+}
+.fine p { margin: 0; }
+.sample { font-style: italic; }
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+  <path d="M14 56V27C6 25 5 11 17 8.5 25 6.8 39 6.8 47 8.5 59 11 58 25 50 27v29z" fill="var(--butter)" stroke="var(--crust)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M32 48c-9-5-10-17-1-26 9 9 8 21 1 26z" fill="var(--olive)"/>
+  <path d="M31.5 45V26" stroke="var(--butter)" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M31.5 38l-5-4M31.5 32l4.5-3.5" stroke="var(--butter)" stroke-width="1.4" stroke-linecap="round"/>
+</svg>
+      <div>
+        <h1>Tulsi <span class="amp">&amp;</span> Toast</h1>
+        <p>All-day vegetarian café · Koregaon Park, Pune</p>
+      </div>
+    </div>
+    <ul class="facts">
+      <li><span class="veg" role="img" aria-label="Vegetarian"></span> 100% vegetarian</li>
+      <li>Open daily, 8 am to 11 pm</li>
+      <li>Jain and vegan options</li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+  <figure class="hero" style="margin-inline:0">
+    <img src="photos/hero.jpg" alt="A table set with brunch dishes and coffee">
+    <figcaption>Brunch served all day</figcaption>
+  </figure>
+
+  <div class="finder">
+    <label class="search" for="q">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search dishes, like paneer or Jain" autocomplete="off" aria-label="Search the menu">
+    </label>
+  </div>
+
+  <div class="tabs">
+    <nav aria-label="Menu sections">
+      <a class="chip" href="#coffee" data-for="coffee">Coffee</a>
+<a class="chip" href="#tea--shakes" data-for="tea--shakes">Tea &amp; Shakes</a>
+<a class="chip" href="#all-day-breakfast" data-for="all-day-breakfast">All-Day Breakfast</a>
+<a class="chip" href="#sandwiches" data-for="sandwiches">Sandwiches</a>
+<a class="chip" href="#bowls--pasta" data-for="bowls--pasta">Bowls &amp; Pasta</a>
+<a class="chip" href="#pizza" data-for="pizza">Pizza</a>
+<a class="chip" href="#desserts" data-for="desserts">Desserts</a>
+    </nav>
+  </div>
+
+  <section class="loved" id="loved">
+    <p class="eyebrow">Most loved here</p>
+    <div class="fav-row">
+      <a class="fav" href="#coffee">
+  <img src="photos/cold-coffee.jpg" alt="Hazelnut Cold Coffee" width="150" height="150">
+  <span class="fav-name">Hazelnut Cold Coffee</span>
+  <span class="fav-price">₹270</span>
+</a>
+<a class="fav" href="#tea--shakes">
+  <img src="photos/chai.jpg" alt="Tulsi Masala Chai" width="150" height="150">
+  <span class="fav-name">Tulsi Masala Chai</span>
+  <span class="fav-price">₹120</span>
+</a>
+<a class="fav" href="#all-day-breakfast">
+  <img src="photos/avocado-toast.jpg" alt="Smashed Avocado Toast" width="150" height="150">
+  <span class="fav-name">Smashed Avocado Toast</span>
+  <span class="fav-price">₹380</span>
+</a>
+<a class="fav" href="#sandwiches">
+  <img src="photos/paneer-panini.jpg" alt="Paneer Tikka Panini" width="150" height="150">
+  <span class="fav-name">Paneer Tikka Panini</span>
+  <span class="fav-price">₹350</span>
+</a>
+<a class="fav" href="#desserts">
+  <img src="photos/cheesecake.jpg" alt="Biscoff Cheesecake" width="150" height="150">
+  <span class="fav-name">Biscoff Cheesecake</span>
+  <span class="fav-price">₹320</span>
+</a>
+    </div>
+  </section>
+
+  <section class="course" id="coffee">
+  <header class="course-head">
+    <h2><svg class="sprig" viewBox="0 0 28 20" aria-hidden="true"><path d="M2 18C9 15 16 10 26 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 12.6c-3.2-.4-5-2.6-5-5.6 3 .1 5 2.2 5 5.6zM17 8.4c.4-3.2 2.6-5 5.6-5-.1 3-2.2 5-5.6 5zM16.4 9c-3.2-.6-4.8-2.9-4.6-5.9 3 .3 4.8 2.5 4.6 5.9zM22 5c3 .9 4.3 3.3 3.8 6.2-2.9-.6-4.4-2.9-3.8-6.2z" fill="currentColor"/></svg>Coffee</h2>
+    <p>Single-origin beans from Chikmagalur, roasted in small batches.</p>
+  </header>
+  <ul class="dishes"><li class="dish" data-search="cappuccino double shot of espresso under thick, velvety milk foam. ">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Cappuccino</h3>
+    <p class="price">₹220</p>
+    <p class="desc">Double shot of espresso under thick, velvety milk foam.</p>
+    
+  </div>
+  <img class="thumb" src="photos/cappuccino.jpg" alt="Cappuccino" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="café latte smooth and milky. add hazelnut or vanilla for ₹40. ">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Café Latte</h3>
+    <p class="price">₹240</p>
+    <p class="desc">Smooth and milky. Add hazelnut or vanilla for ₹40.</p>
+    
+  </div>
+  <img class="thumb" src="photos/latte.jpg" alt="Café Latte" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="hazelnut cold coffee blended thick with vanilla ice cream and roasted hazelnut. contains nuts">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span><span class="best">Bestseller</span></div>
+    <h3>Hazelnut Cold Coffee</h3>
+    <p class="price">₹270</p>
+    <p class="desc">Blended thick with vanilla ice cream and roasted hazelnut.</p>
+    <div class="icons"><span class="icon icon-nuts" role="img" aria-label="Contains nuts" title="Contains nuts"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8c3 2 4.4 5.8 3.6 9-.5 2-2 3.3-3.6 3.3s-3.1-1.3-3.6-3.3C3.6 7.6 5 3.8 8 1.8z" fill="currentColor"/><path d="M8 4.5v7.5" stroke="var(--icon-bg)" stroke-width="1" stroke-linecap="round" opacity=".7"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/cold-coffee.jpg" alt="Hazelnut Cold Coffee" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="vietnamese iced coffee strong drip coffee poured over condensed milk and ice. ">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Vietnamese Iced Coffee</h3>
+    <p class="price">₹280</p>
+    <p class="desc">Strong drip coffee poured over condensed milk and ice.</p>
+    
+  </div>
+  <img class="thumb" src="photos/vietnamese-coffee.jpg" alt="Vietnamese Iced Coffee" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="cold brew tonic coffee steeped for 18 hours, topped with tonic and orange peel. vegan jain option">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Cold Brew Tonic</h3>
+    <p class="price">₹290</p>
+    <p class="desc">Coffee steeped for 18 hours, topped with tonic and orange peel.</p>
+    <div class="icons"><span class="icon icon-vegan" role="img" aria-label="Vegan" title="Vegan"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M8 9C8 5.5 5.5 3.5 2 3.6 2 7 4.5 9 8 9z" fill="currentColor"/><path d="M8 7.5c0-3 2-4.8 5.5-4.8 0 3-2 4.8-5.5 4.8z" fill="currentColor"/></svg></span><span class="icon icon-jain" role="img" aria-label="Jain option" title="Jain option"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c1.9 2.4 1.9 6.1 0 8.6-1.9-2.5-1.9-6.2 0-8.6z" fill="currentColor"/><path d="M1.6 6.6c3 .1 5.3 1.9 6.1 4.4-3 .4-5.3-1.4-6.1-4.4zM14.4 6.6c-3 .1-5.3 1.9-6.1 4.4 3 .4 5.3-1.4 6.1-4.4z" fill="currentColor"/><path d="M3 13.4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/cold-brew-tonic.jpg" alt="Cold Brew Tonic" loading="lazy" width="112" height="112">
+</li></ul>
+</section>
+<section class="course" id="tea--shakes">
+  <header class="course-head">
+    <h2><svg class="sprig" viewBox="0 0 28 20" aria-hidden="true"><path d="M2 18C9 15 16 10 26 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 12.6c-3.2-.4-5-2.6-5-5.6 3 .1 5 2.2 5 5.6zM17 8.4c.4-3.2 2.6-5 5.6-5-.1 3-2.2 5-5.6 5zM16.4 9c-3.2-.6-4.8-2.9-4.6-5.9 3 .3 4.8 2.5 4.6 5.9zM22 5c3 .9 4.3 3.3 3.8 6.2-2.9-.6-4.4-2.9-3.8-6.2z" fill="currentColor"/></svg>Tea &amp; Shakes</h2>
+    <p>Our tulsi comes from a farm in Mulshi, picked fresh every week.</p>
+  </header>
+  <ul class="dishes"><li class="dish" data-search="tulsi masala chai brewed with ginger, cardamom and fresh tulsi leaves. jain option">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span><span class="best">Bestseller</span></div>
+    <h3>Tulsi Masala Chai</h3>
+    <p class="price">₹120</p>
+    <p class="desc">Brewed with ginger, cardamom and fresh tulsi leaves.</p>
+    <div class="icons"><span class="icon icon-jain" role="img" aria-label="Jain option" title="Jain option"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c1.9 2.4 1.9 6.1 0 8.6-1.9-2.5-1.9-6.2 0-8.6z" fill="currentColor"/><path d="M1.6 6.6c3 .1 5.3 1.9 6.1 4.4-3 .4-5.3-1.4-6.1-4.4zM14.4 6.6c-3 .1-5.3 1.9-6.1 4.4 3 .4 5.3-1.4 6.1-4.4z" fill="currentColor"/><path d="M3 13.4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/chai.jpg" alt="Tulsi Masala Chai" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="iced matcha latte ceremonial-grade matcha over ice, with oat or dairy milk. ">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Iced Matcha Latte</h3>
+    <p class="price">₹320</p>
+    <p class="desc">Ceremonial-grade matcha over ice, with oat or dairy milk.</p>
+    
+  </div>
+  <img class="thumb" src="photos/matcha.jpg" alt="Iced Matcha Latte" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="tulsi lemon iced tea cold-steeped tulsi and lemon, sweetened with jaggery. vegan jain option">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Tulsi Lemon Iced Tea</h3>
+    <p class="price">₹200</p>
+    <p class="desc">Cold-steeped tulsi and lemon, sweetened with jaggery.</p>
+    <div class="icons"><span class="icon icon-vegan" role="img" aria-label="Vegan" title="Vegan"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M8 9C8 5.5 5.5 3.5 2 3.6 2 7 4.5 9 8 9z" fill="currentColor"/><path d="M8 7.5c0-3 2-4.8 5.5-4.8 0 3-2 4.8-5.5 4.8z" fill="currentColor"/></svg></span><span class="icon icon-jain" role="img" aria-label="Jain option" title="Jain option"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c1.9 2.4 1.9 6.1 0 8.6-1.9-2.5-1.9-6.2 0-8.6z" fill="currentColor"/><path d="M1.6 6.6c3 .1 5.3 1.9 6.1 4.4-3 .4-5.3-1.4-6.1-4.4zM14.4 6.6c-3 .1-5.3 1.9-6.1 4.4 3 .4 5.3-1.4 6.1-4.4z" fill="currentColor"/><path d="M3 13.4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/iced-tea.jpg" alt="Tulsi Lemon Iced Tea" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="kesar pista shake saffron milk blended with pistachio and ice cream. contains nuts">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Kesar Pista Shake</h3>
+    <p class="price">₹280</p>
+    <p class="desc">Saffron milk blended with pistachio and ice cream.</p>
+    <div class="icons"><span class="icon icon-nuts" role="img" aria-label="Contains nuts" title="Contains nuts"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8c3 2 4.4 5.8 3.6 9-.5 2-2 3.3-3.6 3.3s-3.1-1.3-3.6-3.3C3.6 7.6 5 3.8 8 1.8z" fill="currentColor"/><path d="M8 4.5v7.5" stroke="var(--icon-bg)" stroke-width="1" stroke-linecap="round" opacity=".7"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/kesar-shake.jpg" alt="Kesar Pista Shake" loading="lazy" width="112" height="112">
+</li></ul>
+</section>
+<section class="course" id="all-day-breakfast">
+  <header class="course-head">
+    <h2><svg class="sprig" viewBox="0 0 28 20" aria-hidden="true"><path d="M2 18C9 15 16 10 26 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 12.6c-3.2-.4-5-2.6-5-5.6 3 .1 5 2.2 5 5.6zM17 8.4c.4-3.2 2.6-5 5.6-5-.1 3-2.2 5-5.6 5zM16.4 9c-3.2-.6-4.8-2.9-4.6-5.9 3 .3 4.8 2.5 4.6 5.9zM22 5c3 .9 4.3 3.3 3.8 6.2-2.9-.6-4.4-2.9-3.8-6.2z" fill="currentColor"/></svg>All-Day Breakfast</h2>
+    <p>Served from opening to closing, because brunch has no curfew.</p>
+  </header>
+  <ul class="dishes"><li class="dish" data-search="smashed avocado toast sourdough, lime, chilli flakes, crumbled feta and microgreens. ">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span><span class="best">Bestseller</span></div>
+    <h3>Smashed Avocado Toast</h3>
+    <p class="price">₹380</p>
+    <p class="desc">Sourdough, lime, chilli flakes, crumbled feta and microgreens.</p>
+    
+  </div>
+  <img class="thumb" src="photos/avocado-toast.jpg" alt="Smashed Avocado Toast" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="mushroom &amp; thyme toast garlic butter mushrooms piled on toasted sourdough. ">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Mushroom &amp; Thyme Toast</h3>
+    <p class="price">₹360</p>
+    <p class="desc">Garlic butter mushrooms piled on toasted sourdough.</p>
+    
+  </div>
+  <img class="thumb" src="photos/mushroom-toast.jpg" alt="Mushroom &amp; Thyme Toast" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="buttermilk pancakes a stack of three with maple syrup, blueberries and whipped butter. eggless">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Buttermilk Pancakes</h3>
+    <p class="price">₹320</p>
+    <p class="desc">A stack of three with maple syrup, blueberries and whipped butter.</p>
+    <div class="icons"><span class="icon icon-eggless" role="img" aria-label="Eggless" title="Eggless"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c2.5 0 4.3 3.8 4.3 6.8a4.3 4.3 0 0 1-8.6 0c0-3 1.8-6.8 4.3-6.8z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.8 13.8 13.2 2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/pancakes.jpg" alt="Buttermilk Pancakes" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="masala corn cheese toast spiced sweet corn, melted cheddar and green chutney. jain option spicy">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Masala Corn Cheese Toast</h3>
+    <p class="price">₹280</p>
+    <p class="desc">Spiced sweet corn, melted cheddar and green chutney.</p>
+    <div class="icons"><span class="icon icon-jain" role="img" aria-label="Jain option" title="Jain option"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c1.9 2.4 1.9 6.1 0 8.6-1.9-2.5-1.9-6.2 0-8.6z" fill="currentColor"/><path d="M1.6 6.6c3 .1 5.3 1.9 6.1 4.4-3 .4-5.3-1.4-6.1-4.4zM14.4 6.6c-3 .1-5.3 1.9-6.1 4.4 3 .4 5.3-1.4 6.1-4.4z" fill="currentColor"/><path d="M3 13.4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="icon icon-spicy" role="img" aria-label="Spicy" title="Spicy"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11.5 3.2c.4-.9 1.3-1.5 2.3-1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 4.2c1.8.6 2.3 2.6 1.2 4.6-1.6 3-5.4 5.4-9.2 5.6-.7 0-.8-.9-.2-1.1 2.8-1 5-3.2 6.1-6.2.4-1.3 1-2.6 2.1-2.9z" fill="currentColor"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/corn-toast.jpg" alt="Masala Corn Cheese Toast" loading="lazy" width="112" height="112">
+</li></ul>
+</section>
+<section class="course" id="sandwiches">
+  <header class="course-head">
+    <h2><svg class="sprig" viewBox="0 0 28 20" aria-hidden="true"><path d="M2 18C9 15 16 10 26 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 12.6c-3.2-.4-5-2.6-5-5.6 3 .1 5 2.2 5 5.6zM17 8.4c.4-3.2 2.6-5 5.6-5-.1 3-2.2 5-5.6 5zM16.4 9c-3.2-.6-4.8-2.9-4.6-5.9 3 .3 4.8 2.5 4.6 5.9zM22 5c3 .9 4.3 3.3 3.8 6.2-2.9-.6-4.4-2.9-3.8-6.2z" fill="currentColor"/></svg>Sandwiches</h2>
+    <p>All sandwiches come with a side of house-made potato wafers.</p>
+  </header>
+  <ul class="dishes"><li class="dish" data-search="paneer tikka panini tandoori paneer, grilled peppers and mint mayo, pressed crisp. spicy">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span><span class="best">Bestseller</span></div>
+    <h3>Paneer Tikka Panini</h3>
+    <p class="price">₹350</p>
+    <p class="desc">Tandoori paneer, grilled peppers and mint mayo, pressed crisp.</p>
+    <div class="icons"><span class="icon icon-spicy" role="img" aria-label="Spicy" title="Spicy"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11.5 3.2c.4-.9 1.3-1.5 2.3-1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 4.2c1.8.6 2.3 2.6 1.2 4.6-1.6 3-5.4 5.4-9.2 5.6-.7 0-.8-.9-.2-1.1 2.8-1 5-3.2 6.1-6.2.4-1.3 1-2.6 2.1-2.9z" fill="currentColor"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/paneer-panini.jpg" alt="Paneer Tikka Panini" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="caprese sandwich fresh mozzarella, tomato, basil pesto and balsamic glaze. contains nuts">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Caprese Sandwich</h3>
+    <p class="price">₹360</p>
+    <p class="desc">Fresh mozzarella, tomato, basil pesto and balsamic glaze.</p>
+    <div class="icons"><span class="icon icon-nuts" role="img" aria-label="Contains nuts" title="Contains nuts"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8c3 2 4.4 5.8 3.6 9-.5 2-2 3.3-3.6 3.3s-3.1-1.3-3.6-3.3C3.6 7.6 5 3.8 8 1.8z" fill="currentColor"/><path d="M8 4.5v7.5" stroke="var(--icon-bg)" stroke-width="1" stroke-linecap="round" opacity=".7"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/caprese.jpg" alt="Caprese Sandwich" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="bombay grilled sandwich potato, beetroot, cucumber and green chutney, loaded with cheese. spicy">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Bombay Grilled Sandwich</h3>
+    <p class="price">₹260</p>
+    <p class="desc">Potato, beetroot, cucumber and green chutney, loaded with cheese.</p>
+    <div class="icons"><span class="icon icon-spicy" role="img" aria-label="Spicy" title="Spicy"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11.5 3.2c.4-.9 1.3-1.5 2.3-1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 4.2c1.8.6 2.3 2.6 1.2 4.6-1.6 3-5.4 5.4-9.2 5.6-.7 0-.8-.9-.2-1.1 2.8-1 5-3.2 6.1-6.2.4-1.3 1-2.6 2.1-2.9z" fill="currentColor"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/bombay-sandwich.jpg" alt="Bombay Grilled Sandwich" loading="lazy" width="112" height="112">
+</li></ul>
+</section>
+<section class="course" id="bowls--pasta">
+  <header class="course-head">
+    <h2><svg class="sprig" viewBox="0 0 28 20" aria-hidden="true"><path d="M2 18C9 15 16 10 26 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 12.6c-3.2-.4-5-2.6-5-5.6 3 .1 5 2.2 5 5.6zM17 8.4c.4-3.2 2.6-5 5.6-5-.1 3-2.2 5-5.6 5zM16.4 9c-3.2-.6-4.8-2.9-4.6-5.9 3 .3 4.8 2.5 4.6 5.9zM22 5c3 .9 4.3 3.3 3.8 6.2-2.9-.6-4.4-2.9-3.8-6.2z" fill="currentColor"/></svg>Bowls &amp; Pasta</h2>
+    <p>Pasta is cooked to order. Ask for whole wheat at no extra cost.</p>
+  </header>
+  <ul class="dishes"><li class="dish" data-search="pesto spaghetti basil and cashew pesto, blistered cherry tomatoes, parmesan. contains nuts">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Pesto Spaghetti</h3>
+    <p class="price">₹390</p>
+    <p class="desc">Basil and cashew pesto, blistered cherry tomatoes, parmesan.</p>
+    <div class="icons"><span class="icon icon-nuts" role="img" aria-label="Contains nuts" title="Contains nuts"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8c3 2 4.4 5.8 3.6 9-.5 2-2 3.3-3.6 3.3s-3.1-1.3-3.6-3.3C3.6 7.6 5 3.8 8 1.8z" fill="currentColor"/><path d="M8 4.5v7.5" stroke="var(--icon-bg)" stroke-width="1" stroke-linecap="round" opacity=".7"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/pesto-pasta.jpg" alt="Pesto Spaghetti" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="penne arrabbiata slow-cooked tomato sauce with garlic and red chilli, finished with olive oil. vegan spicy">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Penne Arrabbiata</h3>
+    <p class="price">₹360</p>
+    <p class="desc">Slow-cooked tomato sauce with garlic and red chilli, finished with olive oil.</p>
+    <div class="icons"><span class="icon icon-vegan" role="img" aria-label="Vegan" title="Vegan"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M8 9C8 5.5 5.5 3.5 2 3.6 2 7 4.5 9 8 9z" fill="currentColor"/><path d="M8 7.5c0-3 2-4.8 5.5-4.8 0 3-2 4.8-5.5 4.8z" fill="currentColor"/></svg></span><span class="icon icon-spicy" role="img" aria-label="Spicy" title="Spicy"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11.5 3.2c.4-.9 1.3-1.5 2.3-1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 4.2c1.8.6 2.3 2.6 1.2 4.6-1.6 3-5.4 5.4-9.2 5.6-.7 0-.8-.9-.2-1.1 2.8-1 5-3.2 6.1-6.2.4-1.3 1-2.6 2.1-2.9z" fill="currentColor"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/arrabbiata.jpg" alt="Penne Arrabbiata" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="baked mac &amp; cheese three cheeses under a crisp breadcrumb crust. jain option">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Baked Mac &amp; Cheese</h3>
+    <p class="price">₹380</p>
+    <p class="desc">Three cheeses under a crisp breadcrumb crust.</p>
+    <div class="icons"><span class="icon icon-jain" role="img" aria-label="Jain option" title="Jain option"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c1.9 2.4 1.9 6.1 0 8.6-1.9-2.5-1.9-6.2 0-8.6z" fill="currentColor"/><path d="M1.6 6.6c3 .1 5.3 1.9 6.1 4.4-3 .4-5.3-1.4-6.1-4.4zM14.4 6.6c-3 .1-5.3 1.9-6.1 4.4 3 .4 5.3-1.4 6.1-4.4z" fill="currentColor"/><path d="M3 13.4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/mac-cheese.jpg" alt="Baked Mac &amp; Cheese" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="mexican bean salad rajma, corn and peppers tossed in a lime and coriander dressing. vegan">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Mexican Bean Salad</h3>
+    <p class="price">₹340</p>
+    <p class="desc">Rajma, corn and peppers tossed in a lime and coriander dressing.</p>
+    <div class="icons"><span class="icon icon-vegan" role="img" aria-label="Vegan" title="Vegan"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M8 9C8 5.5 5.5 3.5 2 3.6 2 7 4.5 9 8 9z" fill="currentColor"/><path d="M8 7.5c0-3 2-4.8 5.5-4.8 0 3-2 4.8-5.5 4.8z" fill="currentColor"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/bean-salad.jpg" alt="Mexican Bean Salad" loading="lazy" width="112" height="112">
+</li></ul>
+</section>
+<section class="course" id="pizza">
+  <header class="course-head">
+    <h2><svg class="sprig" viewBox="0 0 28 20" aria-hidden="true"><path d="M2 18C9 15 16 10 26 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 12.6c-3.2-.4-5-2.6-5-5.6 3 .1 5 2.2 5 5.6zM17 8.4c.4-3.2 2.6-5 5.6-5-.1 3-2.2 5-5.6 5zM16.4 9c-3.2-.6-4.8-2.9-4.6-5.9 3 .3 4.8 2.5 4.6 5.9zM22 5c3 .9 4.3 3.3 3.8 6.2-2.9-.6-4.4-2.9-3.8-6.2z" fill="currentColor"/></svg>Pizza</h2>
+    <p>Hand-stretched sourdough bases, baked to order. Allow 15 minutes.</p>
+  </header>
+  <ul class="dishes"><li class="dish" data-search="margherita san marzano tomato, fresh mozzarella and basil. jain option">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Margherita</h3>
+    <p class="price">₹420</p>
+    <p class="desc">San Marzano tomato, fresh mozzarella and basil.</p>
+    <div class="icons"><span class="icon icon-jain" role="img" aria-label="Jain option" title="Jain option"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c1.9 2.4 1.9 6.1 0 8.6-1.9-2.5-1.9-6.2 0-8.6z" fill="currentColor"/><path d="M1.6 6.6c3 .1 5.3 1.9 6.1 4.4-3 .4-5.3-1.4-6.1-4.4zM14.4 6.6c-3 .1-5.3 1.9-6.1 4.4 3 .4 5.3-1.4 6.1-4.4z" fill="currentColor"/><path d="M3 13.4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/margherita.jpg" alt="Margherita" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="farmhouse peppers, onion, mushroom, black olives and jalapeños. spicy">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Farmhouse</h3>
+    <p class="price">₹480</p>
+    <p class="desc">Peppers, onion, mushroom, black olives and jalapeños.</p>
+    <div class="icons"><span class="icon icon-spicy" role="img" aria-label="Spicy" title="Spicy"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11.5 3.2c.4-.9 1.3-1.5 2.3-1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 4.2c1.8.6 2.3 2.6 1.2 4.6-1.6 3-5.4 5.4-9.2 5.6-.7 0-.8-.9-.2-1.1 2.8-1 5-3.2 6.1-6.2.4-1.3 1-2.6 2.1-2.9z" fill="currentColor"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/farmhouse.jpg" alt="Farmhouse" loading="lazy" width="112" height="112">
+</li></ul>
+</section>
+<section class="course" id="desserts">
+  <header class="course-head">
+    <h2><svg class="sprig" viewBox="0 0 28 20" aria-hidden="true"><path d="M2 18C9 15 16 10 26 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 12.6c-3.2-.4-5-2.6-5-5.6 3 .1 5 2.2 5 5.6zM17 8.4c.4-3.2 2.6-5 5.6-5-.1 3-2.2 5-5.6 5zM16.4 9c-3.2-.6-4.8-2.9-4.6-5.9 3 .3 4.8 2.5 4.6 5.9zM22 5c3 .9 4.3 3.3 3.8 6.2-2.9-.6-4.4-2.9-3.8-6.2z" fill="currentColor"/></svg>Desserts</h2>
+    <p>Every dessert on this menu is made without eggs.</p>
+  </header>
+  <ul class="dishes"><li class="dish" data-search="biscoff cheesecake baked cheesecake on a lotus biscoff crumb, with caramel. eggless">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span><span class="best">Bestseller</span></div>
+    <h3>Biscoff Cheesecake</h3>
+    <p class="price">₹320</p>
+    <p class="desc">Baked cheesecake on a Lotus Biscoff crumb, with caramel.</p>
+    <div class="icons"><span class="icon icon-eggless" role="img" aria-label="Eggless" title="Eggless"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c2.5 0 4.3 3.8 4.3 6.8a4.3 4.3 0 0 1-8.6 0c0-3 1.8-6.8 4.3-6.8z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.8 13.8 13.2 2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/cheesecake.jpg" alt="Biscoff Cheesecake" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="brownie sundae warm fudgy brownie, vanilla ice cream and hot chocolate sauce. eggless contains nuts">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Brownie Sundae</h3>
+    <p class="price">₹280</p>
+    <p class="desc">Warm fudgy brownie, vanilla ice cream and hot chocolate sauce.</p>
+    <div class="icons"><span class="icon icon-eggless" role="img" aria-label="Eggless" title="Eggless"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c2.5 0 4.3 3.8 4.3 6.8a4.3 4.3 0 0 1-8.6 0c0-3 1.8-6.8 4.3-6.8z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.8 13.8 13.2 2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="icon icon-nuts" role="img" aria-label="Contains nuts" title="Contains nuts"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8c3 2 4.4 5.8 3.6 9-.5 2-2 3.3-3.6 3.3s-3.1-1.3-3.6-3.3C3.6 7.6 5 3.8 8 1.8z" fill="currentColor"/><path d="M8 4.5v7.5" stroke="var(--icon-bg)" stroke-width="1" stroke-linecap="round" opacity=".7"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/brownie.jpg" alt="Brownie Sundae" loading="lazy" width="112" height="112">
+</li>
+<li class="dish" data-search="tiramisu jar coffee-soaked sponge layered with mascarpone cream. eggless">
+  <div class="dish-text">
+    <div class="dish-top"><span class="veg" role="img" aria-label="Vegetarian"></span></div>
+    <h3>Tiramisu Jar</h3>
+    <p class="price">₹340</p>
+    <p class="desc">Coffee-soaked sponge layered with mascarpone cream.</p>
+    <div class="icons"><span class="icon icon-eggless" role="img" aria-label="Eggless" title="Eggless"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c2.5 0 4.3 3.8 4.3 6.8a4.3 4.3 0 0 1-8.6 0c0-3 1.8-6.8 4.3-6.8z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.8 13.8 13.2 2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+  </div>
+  <img class="thumb" src="photos/tiramisu.jpg" alt="Tiramisu Jar" loading="lazy" width="112" height="112">
+</li></ul>
+</section>
+
+  <p class="empty" id="empty" hidden>No dishes match that search. Try another word.</p>
+
+  <section class="key" aria-labelledby="key-title">
+    <h2 id="key-title">What the icons mean</h2>
+    <ul>
+      <li class="veg-row"><span class="veg" role="img" aria-label="Vegetarian"></span><div><strong>Vegetarian</strong><span>Everything we serve is vegetarian.</span></div></li>
+      <li><span class="icon icon-lg icon-vegan" role="img" aria-label="Vegan" title="Vegan"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M8 9C8 5.5 5.5 3.5 2 3.6 2 7 4.5 9 8 9z" fill="currentColor"/><path d="M8 7.5c0-3 2-4.8 5.5-4.8 0 3-2 4.8-5.5 4.8z" fill="currentColor"/></svg></span><div><strong>Vegan</strong><span>No dairy, eggs or honey.</span></div></li>
+<li><span class="icon icon-lg icon-jain" role="img" aria-label="Jain option" title="Jain option"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c1.9 2.4 1.9 6.1 0 8.6-1.9-2.5-1.9-6.2 0-8.6z" fill="currentColor"/><path d="M1.6 6.6c3 .1 5.3 1.9 6.1 4.4-3 .4-5.3-1.4-6.1-4.4zM14.4 6.6c-3 .1-5.3 1.9-6.1 4.4 3 .4 5.3-1.4 6.1-4.4z" fill="currentColor"/><path d="M3 13.4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><div><strong>Jain option</strong><span>Can be made without onion, garlic or root vegetables. Ask when you order.</span></div></li>
+<li><span class="icon icon-lg icon-spicy" role="img" aria-label="Spicy" title="Spicy"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11.5 3.2c.4-.9 1.3-1.5 2.3-1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 4.2c1.8.6 2.3 2.6 1.2 4.6-1.6 3-5.4 5.4-9.2 5.6-.7 0-.8-.9-.2-1.1 2.8-1 5-3.2 6.1-6.2.4-1.3 1-2.6 2.1-2.9z" fill="currentColor"/></svg></span><div><strong>Spicy</strong><span>Has a kick. Ask us to make it milder.</span></div></li>
+<li><span class="icon icon-lg icon-nuts" role="img" aria-label="Contains nuts" title="Contains nuts"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8c3 2 4.4 5.8 3.6 9-.5 2-2 3.3-3.6 3.3s-3.1-1.3-3.6-3.3C3.6 7.6 5 3.8 8 1.8z" fill="currentColor"/><path d="M8 4.5v7.5" stroke="var(--icon-bg)" stroke-width="1" stroke-linecap="round" opacity=".7"/></svg></span><div><strong>Contains nuts</strong><span>Made with nuts. Tell us about any allergy.</span></div></li>
+<li><span class="icon icon-lg icon-eggless" role="img" aria-label="Eggless" title="Eggless"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2c2.5 0 4.3 3.8 4.3 6.8a4.3 4.3 0 0 1-8.6 0c0-3 1.8-6.8 4.3-6.8z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.8 13.8 13.2 2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><div><strong>Eggless</strong><span>Made without eggs.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="review" aria-labelledby="review-title">
+    <div class="stars" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>
+    </div>
+    <h2 id="review-title">Enjoyed your meal?</h2>
+    <p>Tell others about it on Google. It takes a minute and helps a small café more than you might think.</p>
+    <a class="review-btn" id="review" href="#" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.2v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.2a6.6 6.6 0 0 1 0-4.3V7.1H2.2a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.1-3.1A11 11 0 0 0 2.2 7.1l3.6 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg>
+      Rate us on Google
+    </a>
+    <p class="review-note" id="review-note" hidden>On your café's menu, this button opens your own Google review page, so happy customers can leave a review in two taps.</p>
+  </section>
+
+  <footer class="fine">
+    <p>All prices are in Indian rupees and exclusive of GST. Please tell our team about any allergies before you order.</p>
+    <p class="sample">Sample menu made to show our work. Tulsi &amp; Toast is not a real café.</p>
+  </footer>
+</main>
+
+<script>
+(() => {
+  const q = document.getElementById("q");
+  const courses = [...document.querySelectorAll(".course")];
+  const loved = document.getElementById("loved");
+  const empty = document.getElementById("empty");
+  const chips = [...document.querySelectorAll(".chip")];
+
+  q.addEventListener("input", () => {
+    const term = q.value.trim().toLowerCase();
+    let shown = 0;
+    courses.forEach(c => {
+      let n = 0;
+      c.querySelectorAll(".dish").forEach(d => {
+        const hit = !term || d.dataset.search.includes(term);
+        d.hidden = !hit;
+        if (hit) n++;
+      });
+      c.hidden = n === 0;
+      shown += n;
+    });
+    loved.hidden = !!term;
+    empty.hidden = shown > 0;
+    current = null;
+    spy();
+  });
+
+  const tabs = document.querySelector(".tabs");
+  const nav = tabs.querySelector("nav");
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const barHeight = () => tabs.offsetHeight + (parseFloat(getComputedStyle(tabs).top) || 0);
+  let current = null;
+  let lockUntil = 0;
+
+  // Highlight a tab and slide the tab bar sideways only, never the page
+  const setActive = id => {
+    if (id === current) return;
+    current = id;
+    chips.forEach(ch => ch.setAttribute("aria-current", ch.dataset.for === id ? "true" : "false"));
+    const chip = chips.find(ch => ch.dataset.for === id);
+    if (chip) {
+      const left = chip.offsetLeft - nav.offsetLeft - (nav.clientWidth - chip.offsetWidth) / 2;
+      nav.scrollTo({ left, behavior: calm ? "instant" : "smooth" });
+    }
+  };
+
+  // Work out which section is under the tab bar
+  const spy = () => {
+    if (Date.now() < lockUntil) return;
+    const visible = courses.filter(c => !c.hidden);
+    if (!visible.length) return;
+    const line = barHeight() + 24;
+    let id = visible[0].id;
+    visible.forEach(c => { if (c.getBoundingClientRect().top <= line) id = c.id; });
+    const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+    if (atBottom) id = visible[visible.length - 1].id;
+    setActive(id);
+  };
+
+  let ticking = false;
+  addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; spy(); });
+  }, { passive: true });
+
+  // Our own scroll animation, so it behaves the same on every phone
+  let glideId = 0;
+  const glide = top => {
+    const from = scrollY;
+    const to = Math.max(0, Math.min(top, document.documentElement.scrollHeight - innerHeight));
+    const run = ++glideId;
+    const ms = calm ? 0 : 450;
+    lockUntil = Date.now() + ms + 150;
+    const start = performance.now();
+    const step = now => {
+      if (run !== glideId) return;
+      const t = ms ? Math.min(1, (now - start) / ms) : 1;
+      const ease = 1 - Math.pow(1 - t, 3);
+      window.scrollTo({ top: from + (to - from) * ease, behavior: "instant" });
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  addEventListener("touchstart", () => { glideId++; lockUntil = 0; }, { passive: true });
+  addEventListener("wheel", () => { glideId++; lockUntil = 0; }, { passive: true });
+
+  // Tabs and "most loved" photos jump to their section, just below the tab bar
+  const jump = (ev, id) => {
+    const target = document.getElementById(id);
+    if (!target || target.hidden) return;
+    ev.preventDefault();
+    const top = target.getBoundingClientRect().top + scrollY - barHeight() - 8;
+    setActive(id);
+    glide(top);
+  };
+  chips.forEach(ch => ch.addEventListener("click", ev => jump(ev, ch.dataset.for)));
+  document.querySelectorAll(".fav").forEach(f => f.addEventListener("click", ev => jump(ev, f.getAttribute("href").slice(1))));
+  spy();
+
+  const reviewUrl = "";
+  const btn = document.getElementById("review");
+  if (reviewUrl) {
+    btn.href = reviewUrl;
+    btn.target = "_blank";
+  } else {
+    btn.addEventListener("click", ev => {
+      ev.preventDefault();
+      document.getElementById("review-note").hidden = false;
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
