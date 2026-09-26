@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0B1F14">
+<meta name="theme-color" content="#F6F1E7">
 <title>Squisito Menu</title>
 <meta name="description" content="Squisito, The Italian Ristorante, Koregaon Park, Pune. Browse the menu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,217 +11,177 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap">
 <style>
 :root {
-  color-scheme: dark;
-  --night: #10291B;
-  --night-deep: #0B1F14;
-  --panel: rgba(255, 244, 214, .035);
-  --gold: #C9A462;
-  --gold-hi: #EBD6A4;
-  --gold-lo: #9C7A3E;
-  --gold-line: rgba(201, 164, 98, .38);
-  --cream: #F3ECDB;
-  --muted: #B3AD97;
-  --line: rgba(201, 164, 98, .16);
-  --gilt: linear-gradient(100deg, #B8914F 0%, #EBD6A4 38%, #C9A462 62%, #F1DFB2 100%);
+  color-scheme: light;
+  --paper: #F6F1E7;
+  --green: #1E4A34;
+  --gold: #94763F;
+  --ink: #26261F;
+  --muted: #6E6957;
+  --rule: #D8CCB2;
   --serif: "Cormorant Garamond", "Georgia", serif;
   --script: "Pinyon Script", "Snell Roundhand", cursive;
   --label: "Jost", -apple-system, "Segoe UI", sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-padding-top: 64px; background: var(--night); }
+html { scroll-padding-top: 64px; background: var(--paper); }
 body {
   margin: 0;
-  color: var(--cream);
-  font: 500 18px/1.45 var(--serif);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 18px/1.5 var(--serif);
   -webkit-font-smoothing: antialiased;
-  background-color: var(--night);
-  /* Warm lamp glow at the top, a faint linen grain over everything */
-  background-image:
-    radial-gradient(90% 520px at 50% -80px, rgba(214, 160, 82, .22), transparent 70%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .85 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: no-repeat, repeat;
+  text-align: center;
 }
-.wrap { max-width: 540px; margin-inline: auto; padding-inline: 16px; }
-.gilt {
-  background: var(--gilt);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+.wrap { max-width: 480px; margin-inline: auto; padding-inline: 20px; }
 
 /* Masthead */
-.mast { text-align: center; padding: 40px 0 30px; }
-.frame {
-  position: relative;
-  border: 1px solid var(--gold-line);
-  outline: 1px solid var(--gold-line);
-  outline-offset: 5px;
-  padding: 34px 16px 30px;
-  margin-inline: 7px;
-}
-.corner { position: absolute; width: 34px; height: 34px; color: var(--gold); }
-.corner.tl { top: -9px; left: -9px; }
-.corner.tr { top: -9px; right: -9px; transform: scaleX(-1); }
-.corner.bl { bottom: -9px; left: -9px; transform: scaleY(-1); }
-.corner.br { bottom: -9px; right: -9px; transform: scale(-1, -1); }
+.mast { padding: 64px 0 44px; }
 .mast h1 {
   margin: 0;
-  padding: 0 .12em .08em;
-  font: 400 76px/1.05 var(--script);
+  font: 400 72px/1.05 var(--script);
+  color: var(--green);
 }
 .mast .sub {
-  margin: 6px 0 0;
-  font: 500 12px/1 var(--label);
-  letter-spacing: .34em;
+  margin: 10px 0 0;
+  font: 500 11.5px/1 var(--label);
+  letter-spacing: .38em;
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--ink);
 }
-.orn { display: block; margin: 20px auto 16px; width: 140px; height: 16px; color: var(--gold); }
+.orn { display: block; margin: 26px auto 20px; width: 48px; height: 1px; background: var(--gold); }
 .mast .since {
   margin: 0;
   font-style: italic;
-  font-size: 17.5px;
+  font-size: 17px;
+  line-height: 1.6;
   color: var(--muted);
 }
 
 /* Section tabs */
 nav {
   position: sticky; top: 0; z-index: 5;
-  background: rgba(11, 31, 20, .9);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-block: 1px solid var(--gold-line);
+  background: rgba(246, 241, 231, .96);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-block: 1px solid var(--rule);
 }
 nav ul {
-  display: flex; justify-content: center; gap: 4px;
+  display: flex; justify-content: center; gap: 6px;
   margin: 0; padding: 0; list-style: none;
   overflow-x: auto; scrollbar-width: none;
 }
 nav ul::-webkit-scrollbar { display: none; }
 nav a {
   display: block;
-  padding: 15px 12px 13px;
-  font: 500 11.5px/1 var(--label);
-  letter-spacing: .2em;
+  padding: 16px 12px 14px;
+  font: 500 11px/1 var(--label);
+  letter-spacing: .24em;
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
   white-space: nowrap;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid transparent;
 }
-nav a.on { color: var(--gold-hi); border-bottom-color: var(--gold); }
+nav a.on { color: var(--green); border-bottom-color: var(--green); }
 
 /* Sections */
-section { padding: 44px 0 6px; }
-section + section::before {
-  content: "";
-  display: block;
-  width: 140px; height: 16px;
-  margin: -6px auto 38px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 16'%3E%3Cg fill='none' stroke='%23C9A462' stroke-width='1'%3E%3Cpath d='M0 8h52M88 8h52'/%3E%3Cpath d='M70 1l7 7-7 7-7-7z'/%3E%3C/g%3E%3Ccircle cx='57' cy='8' r='1.6' fill='%23C9A462'/%3E%3Ccircle cx='83' cy='8' r='1.6' fill='%23C9A462'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-.head { text-align: center; margin-bottom: 22px; }
+section { padding: 64px 0 8px; }
+.head { margin-bottom: 36px; }
 .head h2 {
-  display: inline-block;
   margin: 0;
-  padding: 0 .12em .06em;
-  font: 400 52px/1.05 var(--script);
+  font: 600 15px/1 var(--label);
+  font-weight: 500;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--green);
+  padding-left: .42em;
 }
 .head .it {
-  margin: 4px 0 0;
-  font: 500 11px/1 var(--label);
-  letter-spacing: .32em;
-  text-transform: uppercase;
+  margin: 10px 0 0;
+  font: italic 500 17px/1 var(--serif);
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--gold);
 }
 .head .note {
-  margin: 14px auto 0;
-  max-width: 34ch;
+  margin: 16px auto 0;
+  max-width: 32ch;
   font-style: italic;
   font-size: 16.5px;
   color: var(--muted);
 }
 
-.dishes {
-  margin: 0; padding: 4px 18px;
-  list-style: none;
-  background: var(--panel);
-  border: 1px solid var(--line);
-}
-.dish { padding: 16px 0 17px; border-bottom: 1px solid var(--line); }
-.dish:last-child { border-bottom: 0; }
-.row { display: flex; align-items: baseline; gap: 10px; }
+.dishes { margin: 0; padding: 0; list-style: none; }
+.dish { padding: 0 0 30px; }
+.row { display: block; }
 .row h3 {
+  display: inline;
   margin: 0;
-  font: 600 21px/1.25 var(--serif);
-  color: var(--cream);
+  font: 600 21px/1.3 var(--serif);
+  color: var(--ink);
 }
-.row .dots { flex: 1; border-bottom: 1px dotted var(--gold-line); transform: translateY(-5px); min-width: 16px; }
+.row .dots { display: none; }
 .row .price {
-  font: 500 15px/1 var(--label);
-  color: var(--gold-hi);
-  letter-spacing: .02em;
+  display: inline-block;
+  margin-left: 10px;
+  font: 500 14px/1 var(--label);
+  letter-spacing: .04em;
+  color: var(--gold);
   font-variant-numeric: tabular-nums;
 }
 .dish p {
-  margin: 5px 0 0;
+  margin: 4px auto 0;
+  max-width: 36ch;
   font-style: italic;
   font-size: 17px;
+  line-height: 1.45;
   color: var(--muted);
 }
 .tag {
-  display: inline-block;
-  margin: 9px 0 0;
-  padding: 5px 9px 4px;
-  font: 500 10px/1 var(--label);
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  border: 1px solid var(--gold-line);
+  display: block;
+  margin: 6px 0 0;
+  font: italic 500 15px/1.2 var(--serif);
   color: var(--gold);
 }
-.tag.chef { background: var(--gilt); border-color: transparent; color: var(--night-deep); }
+.tag::before, .tag::after { content: "~"; margin: 0 6px; opacity: .7; }
 
 .sub-h {
-  margin: 26px 0 10px;
-  text-align: center;
-  font: 500 11px/1 var(--label);
-  letter-spacing: .3em;
+  margin: 12px 0 18px;
+  font: 500 10.5px/1 var(--label);
+  letter-spacing: .32em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--muted);
 }
+.sub-h.last { margin-top: 4px; font: italic 500 16px/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--gold); }
+section#drinks .dish { padding-bottom: 14px; }
+section#drinks .dishes { margin-bottom: 22px; }
 
 /* Footer */
 footer {
-  margin-top: 48px;
-  padding: 38px 0 48px;
-  text-align: center;
-  background: var(--night-deep);
-  border-top: 1px solid var(--gold-line);
-  color: var(--cream);
+  margin-top: 40px;
+  padding: 44px 0 56px;
+  border-top: 1px solid var(--rule);
 }
-footer .mark { display: inline-block; margin: 0; padding: 0 .12em .06em; font: 400 44px/1.05 var(--script); }
-footer p { margin: 10px 0 0; font-size: 16px; color: var(--muted); }
+footer .mark { margin: 0; font: 400 40px/1.05 var(--script); color: var(--green); }
+footer .orn { margin-block: 18px 16px; }
+footer p { margin: 0; font-size: 16px; color: var(--muted); }
 footer .small {
-  margin-top: 18px;
-  font: 400 11px/1.6 var(--label);
-  letter-spacing: .14em;
+  margin-top: 14px;
+  font: 500 10.5px/1.8 var(--label);
+  letter-spacing: .24em;
   text-transform: uppercase;
   color: var(--gold);
 }
-footer .orn { margin-block: 14px 6px; }
 </style>
 </head>
 <body>
 
 <header class="mast">
   <div class="wrap">
-    <div class="frame">
-      <svg class="corner tl" viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1"><path d="M1 33V9a8 8 0 0 1 8-8h24"/><path d="M5 25c0-11 6-20 20-20"/><path d="M9 14c2-3 4-4 7-5"/></g><circle cx="9" cy="9" r="2" fill="currentColor"/></svg><svg class="corner tr" viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1"><path d="M1 33V9a8 8 0 0 1 8-8h24"/><path d="M5 25c0-11 6-20 20-20"/><path d="M9 14c2-3 4-4 7-5"/></g><circle cx="9" cy="9" r="2" fill="currentColor"/></svg><svg class="corner bl" viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1"><path d="M1 33V9a8 8 0 0 1 8-8h24"/><path d="M5 25c0-11 6-20 20-20"/><path d="M9 14c2-3 4-4 7-5"/></g><circle cx="9" cy="9" r="2" fill="currentColor"/></svg><svg class="corner br" viewBox="0 0 34 34" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1"><path d="M1 33V9a8 8 0 0 1 8-8h24"/><path d="M5 25c0-11 6-20 20-20"/><path d="M9 14c2-3 4-4 7-5"/></g><circle cx="9" cy="9" r="2" fill="currentColor"/></svg>
-      <h1 class="gilt">Squisito</h1>
-      <p class="sub">The Italian Ristorante</p>
-      <svg class="orn" viewBox="0 0 120 14" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M0 7h46M74 7h46"/><path d="M60 1l6 6-6 6-6-6z"/></g><circle cx="50" cy="7" r="1.5" fill="currentColor"/><circle cx="70" cy="7" r="1.5" fill="currentColor"/></svg>
-      <p class="since">Twenty years of pure vegetarian dining<br>Lane 5, Koregaon Park</p>
-    </div>
+    <h1>Squisito</h1>
+    <p class="sub">The Italian Ristorante</p>
+    <span class="orn" aria-hidden="true"></span>
+    <p class="since">Twenty years of pure vegetarian dining<br>Lane 5, Koregaon Park</p>
   </div>
 </header>
 
@@ -238,7 +198,7 @@ footer .orn { margin-block: 14px 6px; }
 
   <section id="antipasti">
     <div class="head">
-      <h2 class="gilt">Antipasti</h2>
+      <h2>Antipasti</h2>
       <p class="it">Starters</p>
     </div>
     <ul class="dishes">
@@ -276,7 +236,7 @@ footer .orn { margin-block: 14px 6px; }
 
   <section id="pasta">
     <div class="head">
-      <h2 class="gilt">Pasta</h2>
+      <h2>Pasta</h2>
       <p class="it">Primi</p>
       <p class="note">Tagliatelle, spaghetti, penne, ravioli or rigatoni. Tell us which you prefer.</p>
     </div>
@@ -310,7 +270,7 @@ footer .orn { margin-block: 14px 6px; }
 
   <section id="pizza">
     <div class="head">
-      <h2 class="gilt">Pizza</h2>
+      <h2>Pizza</h2>
       <p class="it">Dal forno</p>
     </div>
     <ul class="dishes">
@@ -340,12 +300,12 @@ footer .orn { margin-block: 14px 6px; }
         <p>Spicy tomato sauce with Italian herbs, mushrooms, mozzarella, olives, onions and corn</p>
       </li>
     </ul>
-    <p class="sub-h">Extra toppings from ₹25</p>
+    <p class="sub-h last">Extra toppings from ₹25</p>
   </section>
 
   <section id="drinks">
     <div class="head">
-      <h2 class="gilt">Drinks</h2>
+      <h2>Drinks</h2>
       <p class="it">Bevande</p>
     </div>
     <p class="sub-h">Mojitos</p>
@@ -369,8 +329,8 @@ footer .orn { margin-block: 14px 6px; }
 
 <footer>
   <div class="wrap">
-    <p class="mark gilt">Grazie</p>
-    <svg class="orn" viewBox="0 0 120 14" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M0 7h46M74 7h46"/><path d="M60 1l6 6-6 6-6-6z"/></g></svg>
+    <p class="mark">Grazie</p>
+    <span class="orn" aria-hidden="true"></span>
     <p>Lane 5, Koregaon Park, Pune</p>
     <p class="small">Entirely vegetarian<br>Taxes as applicable</p>
   </div>
