@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squisito Menu</title>
+<meta name="description" content="Squisito, The Italian Ristorante, Koregaon Park, Pune. Browse the menu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --paper: #F7F2E6;
+  --paper-deep: #EFE7D4;
+  --green: #1E4A34;
+  --green-soft: #2F6147;
+  --gold: #A8844C;
+  --gold-soft: #CDB483;
+  --ink: #23231C;
+  --muted: #6B6655;
+  --line: #DCCFB2;
+  --serif: "Cormorant Garamond", "Georgia", serif;
+  --script: "Pinyon Script", "Snell Roundhand", cursive;
+  --label: "Jost", -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 18px/1.45 var(--serif);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 540px; margin-inline: auto; padding-inline: 16px; }
+
+/* Masthead */
+.mast {
+  text-align: center;
+  padding: 44px 0 26px;
+  background:
+    radial-gradient(120% 80% at 50% 0%, #FBF8F0 0%, var(--paper) 70%);
+}
+.frame {
+  border: 1px solid var(--gold-soft);
+  outline: 1px solid var(--gold-soft);
+  outline-offset: 4px;
+  padding: 30px 16px 26px;
+  margin-inline: 6px;
+}
+.mast h1 {
+  margin: 0;
+  font: 400 66px/1 var(--script);
+  color: var(--green);
+}
+.mast .sub {
+  margin: 8px 0 0;
+  font: 500 12px/1 var(--label);
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.orn { display: block; margin: 18px auto 14px; width: 120px; height: 14px; color: var(--gold); }
+.mast .since {
+  margin: 0;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--muted);
+}
+
+/* Section tabs */
+nav {
+  position: sticky; top: 0; z-index: 5;
+  background: rgba(247, 242, 230, .94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-block: 1px solid var(--line);
+}
+nav ul {
+  display: flex; justify-content: center; gap: 4px;
+  margin: 0; padding: 0; list-style: none;
+  overflow-x: auto; scrollbar-width: none;
+}
+nav ul::-webkit-scrollbar { display: none; }
+nav a {
+  display: block;
+  padding: 15px 12px 13px;
+  font: 500 11.5px/1 var(--label);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+}
+nav a.on { color: var(--green); border-bottom-color: var(--gold); }
+
+/* Sections */
+section { padding: 40px 0 8px; }
+.head { text-align: center; margin-bottom: 26px; }
+.head h2 {
+  margin: 0;
+  font: 400 44px/1 var(--script);
+  color: var(--green);
+}
+.head .it {
+  margin: 6px 0 0;
+  font: 500 11px/1 var(--label);
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.head .note {
+  margin: 12px auto 0;
+  max-width: 34ch;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.dishes { margin: 0; padding: 0; list-style: none; }
+.dish { padding: 15px 0 16px; border-bottom: 1px solid var(--line); }
+.dish:last-child { border-bottom: 0; }
+.row { display: flex; align-items: baseline; gap: 10px; }
+.row h3 {
+  margin: 0;
+  font: 600 20px/1.25 var(--serif);
+  color: var(--ink);
+}
+.row .dots { flex: 1; border-bottom: 1px dotted var(--gold-soft); transform: translateY(-5px); min-width: 16px; }
+.row .price {
+  font: 500 15px/1 var(--label);
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+.dish p {
+  margin: 5px 0 0;
+  font-style: italic;
+  font-size: 16.5px;
+  color: var(--muted);
+}
+.tag {
+  display: inline-block;
+  margin: 8px 0 0;
+  padding: 4px 9px 3px;
+  font: 500 10px/1 var(--label);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold-soft);
+  color: var(--gold);
+}
+.tag.chef { background: var(--green); border-color: var(--green); color: var(--paper); }
+
+.sub-h {
+  margin: 26px 0 2px;
+  text-align: center;
+  font: 500 11px/1 var(--label);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Footer */
+footer {
+  margin-top: 36px;
+  padding: 34px 0 44px;
+  text-align: center;
+  background: var(--green);
+  color: #EDE6D3;
+}
+footer .mark { font: 400 38px/1 var(--script); color: #F4EEDD; margin: 0; }
+footer p { margin: 10px 0 0; font-size: 16px; }
+footer .small {
+  margin-top: 18px;
+  font: 400 11px/1.6 var(--label);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+footer .orn { color: var(--gold-soft); margin-block: 16px 8px; }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="frame">
+      <h1>Squisito</h1>
+      <p class="sub">The Italian Ristorante</p>
+      <svg class="orn" viewBox="0 0 120 14" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M0 7h46M74 7h46"/><path d="M60 1l6 6-6 6-6-6z"/></g><circle cx="50" cy="7" r="1.5" fill="currentColor"/><circle cx="70" cy="7" r="1.5" fill="currentColor"/></svg>
+      <p class="since">Twenty years of pure vegetarian dining<br>Lane 5, Koregaon Park</p>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Menu sections">
+  <ul>
+    <li><a href="#antipasti">Antipasti</a></li>
+    <li><a href="#pasta">Pasta</a></li>
+    <li><a href="#pizza">Pizza</a></li>
+    <li><a href="#drinks">Drinks</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <section id="antipasti">
+    <div class="head">
+      <h2>Antipasti</h2>
+      <p class="it">Starters</p>
+    </div>
+    <ul class="dishes">
+      <li class="dish">
+        <div class="row"><h3>Stuffed Garlic Bread</h3><span class="dots"></span><span class="price">₹340</span></div>
+        <p>Oven fresh, stuffed with onions, capsicum and garlic chilli oil</p>
+        <span class="tag">Popular</span>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Bruschetta</h3><span class="dots"></span><span class="price">₹375</span></div>
+        <p>Traditional Italian savoury, enriched with olive oil and fresh tomatoes</p>
+        <span class="tag">Popular</span>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Spinach Dips</h3><span class="dots"></span><span class="price">₹550</span></div>
+        <p>A sumptuous mix of spinach, served with crispy bread</p>
+        <span class="tag">Popular</span>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Funghi Trifolati con Patate Arrosto</h3><span class="dots"></span><span class="price">₹460</span></div>
+        <p>Fresh mushrooms and roasted potato cubes sautéed with Italian herbs and paprika, served with bread</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Cheese Fondue</h3><span class="dots"></span><span class="price">₹625</span></div>
+        <p>Melted cheese with Italian herbs, served with bread and vegetables</p>
+        <span class="tag">Popular</span>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Squisito Wok</h3><span class="dots"></span><span class="price">₹750</span></div>
+        <p>A bowl of flat pasta or rice with your choice of exotic vegetables, stir-fried with a spicy kick</p>
+        <span class="tag chef">Chef's recommendation</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="pasta">
+    <div class="head">
+      <h2>Pasta</h2>
+      <p class="it">Primi</p>
+      <p class="note">Tagliatelle, spaghetti, penne, ravioli or rigatoni. Tell us which you prefer.</p>
+    </div>
+    <ul class="dishes">
+      <li class="dish">
+        <div class="row"><h3>Pasta alla Funghi Spinachi</h3><span class="dots"></span><span class="price">₹650</span></div>
+        <p>Mushrooms, spinach and soft cheese, flavoured with walnut oil</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Aglio Olio e Peperoncino</h3><span class="dots"></span><span class="price">₹575</span></div>
+        <p>The simple classic: garlic, olive oil, chilli and parsley</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>All'Arrabbiata</h3><span class="dots"></span><span class="price">₹625</span></div>
+        <p>Fresh tomato sauce, garlic, chilli and parsley</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Al Pesto</h3><span class="dots"></span><span class="price">₹675</span></div>
+        <p>Fresh basil crushed with garlic, walnuts, olive oil and cheese</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Ai Quattro Formaggi</h3><span class="dots"></span><span class="price">₹695</span></div>
+        <p>Blue cheese, mozzarella, gouda and parmesan. Fresh tomato sauce on request.</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Pasta al Forno</h3><span class="dots"></span><span class="price">₹695</span></div>
+        <p>Baked in the oven with creamy béchamel, mushrooms, mozzarella and fresh tomato sauce</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="pizza">
+    <div class="head">
+      <h2>Pizza</h2>
+      <p class="it">Dal forno</p>
+    </div>
+    <ul class="dishes">
+      <li class="dish">
+        <div class="row"><h3>Pizza di Squisito</h3><span class="dots"></span><span class="price">₹695</span></div>
+        <p>Thin base with fresh tomato sauce, mozzarella, mushrooms, garlic, pickled onions, sun-dried tomatoes and fresh basil, all marinated in chilli sauce</p>
+        <span class="tag chef">House signature</span>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Pizza dello Chef</h3><span class="dots"></span><span class="price">₹695</span></div>
+        <p>Thin base with fresh tomato sauce, mozzarella, mushrooms, onions, sun-dried tomatoes and parmesan</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Garden</h3><span class="dots"></span><span class="price">₹595</span></div>
+        <p>Fresh tomato sauce, mozzarella, sliced tomato and basil</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Pesto Pizza</h3><span class="dots"></span><span class="price">₹695</span></div>
+        <p>Pesto sauce, potatoes, garlic and cheese</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Pizza alla Vodka</h3><span class="dots"></span><span class="price">₹695</span></div>
+        <p>Fresh tomato sauce with mozzarella, parmesan, jalapeño, red pepper, capers, pineapple and vodka</p>
+      </li>
+      <li class="dish">
+        <div class="row"><h3>Manali</h3><span class="dots"></span><span class="price">₹695</span></div>
+        <p>Spicy tomato sauce with Italian herbs, mushrooms, mozzarella, olives, onions and corn</p>
+      </li>
+    </ul>
+    <p class="sub-h">Extra toppings from ₹25</p>
+  </section>
+
+  <section id="drinks">
+    <div class="head">
+      <h2>Drinks</h2>
+      <p class="it">Bevande</p>
+    </div>
+    <p class="sub-h">Mojitos</p>
+    <ul class="dishes">
+      <li class="dish"><div class="row"><h3>Virgin Mojito</h3><span class="dots"></span><span class="price">₹250</span></div></li>
+      <li class="dish"><div class="row"><h3>Raspberry &amp; Rosemary Mojito</h3><span class="dots"></span><span class="price">₹275</span></div></li>
+    </ul>
+    <p class="sub-h">Iced teas</p>
+    <ul class="dishes">
+      <li class="dish"><div class="row"><h3>Peach Iced Tea</h3><span class="dots"></span><span class="price">₹250</span></div></li>
+      <li class="dish"><div class="row"><h3>Raspberry &amp; Peach Iced Tea</h3><span class="dots"></span><span class="price">₹275</span></div></li>
+    </ul>
+    <p class="sub-h">Shakes</p>
+    <ul class="dishes">
+      <li class="dish"><div class="row"><h3>Cold Coffee</h3><span class="dots"></span><span class="price">₹250</span></div></li>
+      <li class="dish"><div class="row"><h3>Brownie Burst</h3><span class="dots"></span><span class="price">₹310</span></div></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="mark">Grazie</p>
+    <svg class="orn" viewBox="0 0 120 14" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M0 7h46M74 7h46"/><path d="M60 1l6 6-6 6-6-6z"/></g></svg>
+    <p>Lane 5, Koregaon Park, Pune</p>
+    <p class="small">Entirely vegetarian<br>Taxes as applicable</p>
+  </div>
+</footer>
+
+<script>
+// Underline the tab for the section in view
+(function () {
+  var links = document.querySelectorAll("nav a");
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+  if (!("IntersectionObserver" in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove("on"); });
+      var a = byId[e.target.id];
+      if (a) {
+        a.classList.add("on");
+        a.scrollIntoView({ block: "nearest", inline: "center" });
+      }
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll("section[id]").forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

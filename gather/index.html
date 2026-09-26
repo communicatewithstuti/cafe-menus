@@ -1,9 +1,11 @@
+<meta charset="utf-8">
 <title>Gather Menu</title>
 <meta name="description" content="The Gather menu: food, coffee and the bar. Senapati Bapat Road, Pune.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&display=swap">
+<link rel="stylesheet" href="cart.css?v=2">
 <style>
   :root {
     color-scheme: light;
@@ -140,6 +142,18 @@
 </div>
 
 <script>
+// Ordering settings for this restaurant. cart.js is the same file for every restaurant and reads only this.
+// orderingEnabled: false keeps the menu view-only, exactly as it was before the cart.
+window.MENU_CONFIG = {
+  restaurantId: "gather",
+  restaurantName: "Gather",
+  currency: "₹",
+  serviceChargePercent: 5,
+  serviceChargeNote: "Optional. It goes to our staff and can be removed on request.",
+  orderingEnabled: true,
+  orderWebhookUrl: ""
+};
+
 // [name, price, description, diet]  diet: v = veg, vg = vegan, n = non veg, "" = ask your server
 const MENU = {
   food: [
@@ -376,13 +390,31 @@ const state = { tab: "food", veg: false, q: "" };
 // Dishes Google marks as popular with Gather's diners
 const LOVED = new Set(["Jakhia Kulcha", "Guacamole", "Lamb Seekh", "Pistachio Burrata", "Mangalorean Prawn Gassi", "Coffee Tres Leches"]);
 
-function itemHTML([name, price, desc, diet]) {
+// Cart ids come from tab, section and dish name, so renaming a dish gives it a new id
+const itemId = (tab, sec, name) => `${tab}/${slug(sec)}/${slug(name.normalize("NFD").replace(/\p{M}/gu, ""))}`;
+
+// Every orderable item by id, for cart.js. Wines are sold by the glass and the bottle, so they carry variants.
+function buildCatalogue() {
+  const out = {};
+  for (const tab in MENU) for (const sec of MENU[tab]) {
+    if (sec.wine) {
+      for (const [, rows] of sec.groups) for (const [n, , gl, bt] of rows)
+        out[itemId(tab, sec.name, n)] = { name: n, variants: [gl != null && { label: "Glass", price: gl }, { label: "Bottle", price: bt }].filter(Boolean) };
+    } else {
+      for (const [n, p] of sec.items) out[itemId(tab, sec.name, n)] = { name: n, price: p };
+    }
+  }
+  return out;
+}
+window.MENU_CATALOGUE = buildCatalogue();
+
+function itemHTML([name, price, desc, diet], id) {
   let marks = "";
   if (LOVED.has(name)) marks += '<span class="loved">most loved</span>';
   if (diet === "v" || diet === "vg") marks += '<span class="mark v" title="Vegetarian"></span>';
   if (diet === "n") marks += '<span class="mark n" title="Non vegetarian"></span>';
   if (diet === "vg") marks += '<span class="tag">VEGAN</span>';
-  return `<div class="item"><h3>${esc(name)}${marks}</h3><div class="price">${fmt(price)}</div>${desc ? `<p>${esc(desc)}</p>` : ""}</div>`;
+  return `<div class="item" data-item-id="${esc(id)}"><h3>${esc(name)}${marks}</h3><div class="price">${fmt(price)}</div>${desc ? `<p>${esc(desc)}</p>` : ""}</div>`;
 }
 
 function render() {
@@ -397,11 +429,11 @@ function render() {
         const hits = rows.filter(r => match(r[0], r[1], g));
         if (!hits.length) continue;
         body += `<div class="cols"><span style="text-align:left">${esc(g)}</span><span>Glass</span><span>Bottle</span></div>`;
-        body += hits.map(([n, o, gl, bt]) => `<div class="item wine"><h3>${esc(n)}</h3><div class="price">${fmt(gl)}</div><div class="price">${fmt(bt)}</div><div class="origin">${esc(o)}</div></div>`).join("");
+        body += hits.map(([n, o, gl, bt]) => `<div class="item wine" data-item-id="${esc(itemId(state.tab, sec.name, n))}"><h3>${esc(n)}</h3><div class="price">${fmt(gl)}</div><div class="price">${fmt(bt)}</div><div class="origin">${esc(o)}</div></div>`).join("");
       }
     } else {
       const hits = sec.items.filter(it => match(it[0], it[2] || "", sec.name) && (!vegOn || it[3] === "v" || it[3] === "vg"));
-      body = hits.map(itemHTML).join("");
+      body = hits.map(it => itemHTML(it, itemId(state.tab, sec.name, it[0]))).join("");
     }
     if (!body) continue;
     const id = slug(sec.name);
@@ -420,6 +452,7 @@ function render() {
   $("#veg-wrap").hidden = state.tab !== "food";
   document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
   spy();
+  document.dispatchEvent(new Event("menu:rendered"));
 }
 
 function spy() {
@@ -460,3 +493,4 @@ const hashTab = location.hash.slice(1);
 if (MENU[hashTab]) state.tab = hashTab;
 render();
 </script>
+<script src="cart.js?v=2"></script>
