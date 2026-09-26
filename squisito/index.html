@@ -370,7 +370,12 @@ footer .orn { color: var(--gold-soft); margin-block: 16px 8px; }
       mark(a);
       jumping = true;
       var top = target.getBoundingClientRect().top + window.pageYOffset - nav.offsetHeight + 1;
-      window.scrollTo({ top: top, behavior: "smooth" });
+      try { window.scrollTo({ top: top, behavior: "smooth" }); } catch (err) { window.scrollTo(0, top); }
+      // Backup: if the smooth scroll stalled or never started, jump straight there
+      setTimeout(function () {
+        if (Math.abs(target.getBoundingClientRect().top - nav.offsetHeight) > 8) window.scrollTo(0, top);
+        jumping = false;
+      }, 900);
     });
   });
 
