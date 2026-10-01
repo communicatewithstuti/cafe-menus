@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beetroot Bistro Menu</title>
+<meta name="description" content="Beetroot Bistro, a rooftop bistro in Koregaon Park, Pune. Browse the food and drinks menu.">
+<meta name="theme-color" content="#F5ECDD">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,600;125,800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Daytime on the rooftop: canopy cream, dark wood, lamp glow, terracotta wall */
+  --bg: #F5ECDD;
+  --card: #FBF6EE;
+  --ink: #3B2618;
+  --muted: #7A6252;
+  --line: #E3D4BE;
+  --accent: #B65A2B;      /* terracotta */
+  --glow: #E9A548;        /* paper lamp */
+  --beet: #7A1C28;
+  --chip: #EFE2CD;
+  --chip-on: #3B2618;
+  --chip-on-text: #FBF6EE;
+  --veg: #1E7A3A;
+  --nonveg: #8B3A1C;
+  --tile-a: #2B201A;
+  --tile-b: #F5ECDD;
+  --art-ink: 1;
+}
+body.evening {
+  /* Drinks: the same rooftop after sunset, under the lamps */
+  --bg: #231711;
+  --card: #2E1F17;
+  --ink: #F6E8D0;
+  --muted: #C7AE92;
+  --line: #4A3426;
+  --accent: #F0A65A;
+  --glow: #F3B562;
+  --chip: #3A281D;
+  --chip-on: #F3B562;
+  --chip-on-text: #231711;
+  --veg: #5CC77A;
+  --nonveg: #E0855C;
+  --tile-a: #F6E8D0;
+  --tile-b: #231711;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 15px/1.5 Inter, system-ui, sans-serif;
+  transition: background-color .4s ease, color .4s ease;
+}
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; text-align: center; padding: 28px 16px 0; overflow: hidden; }
+.lights { position: absolute; inset: 0 0 auto 0; height: 70px; pointer-events: none; }
+.lights path { fill: none; stroke: var(--muted); stroke-width: 1; opacity: .5; }
+.lights circle { fill: var(--glow); filter: drop-shadow(0 0 4px var(--glow)); animation: twinkle 3.2s ease-in-out infinite; }
+.lights circle:nth-child(3n) { animation-delay: 1.1s; }
+.lights circle:nth-child(3n+1) { animation-delay: 2.1s; }
+@keyframes twinkle { 50% { opacity: .55; } }
+.logo { width: 132px; margin: 22px auto 10px; position: relative; }
+.logo .cream { display: none; }
+body.evening .logo .ink { display: none; }
+body.evening .logo .cream { display: block; }
+.tagline {
+  font: 800 19px/1.15 Archivo, sans-serif; font-stretch: 125%;
+  text-transform: uppercase; letter-spacing: .02em; margin: 6px 0 0;
+}
+.script { font-family: "Pinyon Script", cursive; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--accent); }
+.tagline .script { font-size: 1.6em; line-height: .6; margin-left: 2px; }
+.intro { color: var(--muted); max-width: 30em; margin: 12px auto 0; font-size: 14px; }
+.cuisines { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 14px 0 0; font-weight: 600; }
+.hero-art { margin: 18px auto 0; max-width: 520px; }
+body.evening .hero-art { opacity: .0; height: 0; margin: 0; }
+.tiles {
+  height: 14px; margin-top: 0;
+  background:
+    radial-gradient(circle at 50% 50%, var(--tile-b) 2.5px, transparent 3px) 0 0 / 14px 14px,
+    conic-gradient(from 45deg, var(--tile-a) 25%, var(--tile-b) 0 50%, var(--tile-a) 0 75%, var(--tile-b) 0) 0 0 / 14px 14px;
+  opacity: .9;
+}
+
+/* ---------- Sticky bar ---------- */
+.bar { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); transition: background-color .4s ease; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px 0 8px; }
+.tab {
+  border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 9px 0;
+  font: 800 13px Archivo, sans-serif; font-stretch: 125%; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+}
+.tab[aria-selected="true"] { background: var(--chip-on); color: var(--chip-on-text); border-color: var(--chip-on); }
+.filters { display: flex; gap: 6px; padding-bottom: 8px; flex-wrap: wrap; }
+.filter {
+  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--card);
+  border-radius: 999px; padding: 6px 12px 6px 9px; font-size: 13px; font-weight: 500; cursor: pointer;
+}
+.filter[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-text); border-color: var(--chip-on); }
+.filter[hidden] { display: none; }
+.cats { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-bottom: 9px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+.cats::-webkit-scrollbar { display: none; }
+.cat { flex: none; border: 0; background: var(--chip); border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer; white-space: nowrap; color: var(--ink); }
+.cat.on { background: var(--accent); color: var(--card); }
+body.evening .cat.on { color: var(--bg); }
+
+/* ---------- Marks ---------- */
+.mark { width: 14px; height: 14px; border: 1.5px solid var(--veg); border-radius: 2px; display: inline-grid; place-items: center; flex: none; }
+.mark::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--veg); }
+.mark.nv { border-color: var(--nonveg); }
+.mark.nv::after { border-radius: 0; width: 0; height: 0; background: none; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid var(--nonveg); }
+.badge { display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; letter-spacing: .04em; border-radius: 4px; padding: 1px 5px; line-height: 1.5; text-transform: uppercase; }
+.b-g { background: #E7DCCB; color: #5A4636; }
+.b-e { background: #F6E3C7; color: #8B5A1C; }
+.b-fav { background: var(--beet); color: #FBEDE6; }
+body.evening .b-g { background: #3F3128; color: #E2CFB8; }
+
+/* ---------- Sections ---------- */
+main { padding-bottom: 24px; }
+.panel[hidden] { display: none; }
+section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
+.sec-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.sec-head h2 {
+  margin: 0; font: 800 21px/1.1 Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; letter-spacing: .01em;
+}
+.sec-head h2 .script { font-size: 1.55em; margin-left: 4px; }
+.sec-note { color: var(--muted); font-size: 13px; margin: 4px 0 0; font-style: italic; }
+.addons { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.addons li { border: 1px dashed var(--accent); color: var(--accent); border-radius: 999px; padding: 2px 10px; font-size: 12.5px; font-weight: 500; }
+.sub { margin: 18px 0 2px; font: 600 11.5px Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.cols { display: flex; justify-content: flex-end; gap: 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 8px; }
+.cols span { width: 66px; text-align: right; }
+.sec-art { margin: 16px 0 4px; border-radius: 14px; overflow: hidden; }
+.sec-art.card { background: #F5ECDD; padding: 10px; }
+.sec-art.ink img { max-height: 280px; margin: 0 auto; }
+.sec-art.side { float: right; width: 34%; max-width: 170px; margin: 4px 0 10px 14px; }
+.sec-art.side img { width: 100%; border-radius: 12px; }
+.cat-sec::after { content: ""; display: block; clear: both; }
+
+.items { list-style: none; margin: 8px 0 0; padding: 0; }
+.item { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.row { display: flex; align-items: flex-start; gap: 8px; }
+.row .mark { margin-top: 3px; }
+.name { flex: 1; font-weight: 600; font-size: 15px; }
+.name .badge { margin-left: 4px; vertical-align: 2px; }
+.price { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.prices { display: flex; }
+.prices span { width: 66px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.desc { color: var(--muted); font-size: 13.5px; margin: 3px 0 0 22px; }
+.drinks .desc, .drinks .tags { margin-left: 0; }
+.tags { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0 0 22px; }
+.variants { margin: 6px 0 0 22px; display: grid; gap: 4px; }
+.variant { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.variant .vname { flex: 1; }
+.variant[hidden] { display: none; }
+
+.empty { text-align: center; color: var(--muted); padding: 40px 0; }
+
+/* ---------- Footer ---------- */
+.key { margin-top: 34px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; font-size: 13px; }
+.key h3 { margin: 0 0 8px; font: 800 13px Archivo, sans-serif; font-stretch: 125%; letter-spacing: .06em; text-transform: uppercase; }
+.key ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.key li { display: flex; align-items: center; gap: 8px; }
+.key p { margin: 10px 0 0; color: var(--muted); }
+.rules { text-align: center; margin-top: 34px; }
+.rules h3 { margin: 0; font: 800 17px/1.2 Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; }
+.rules ol { list-style: none; padding: 0; margin: 12px 0 0; color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
+.rules .seven { margin-top: 12px; font: 800 15px Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; }
+.rules .seven small { display: block; font: 600 11px Inter, sans-serif; letter-spacing: .14em; color: var(--accent); }
+.insta { margin-top: 34px; text-align: center; }
+.insta .art { margin: 0 auto; max-width: 480px; }
+.insta-card {
+  margin-top: -6px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 16px;
+}
+.insta-card .big { font: 800 18px/1.2 Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; margin: 0; }
+.insta-card p { margin: 6px 0 0; color: var(--muted); }
+.insta-btn {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 11px 20px; border-radius: 999px;
+  background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 600;
+}
+.insta-btn svg { width: 18px; height: 18px; }
+footer { text-align: center; color: var(--muted); font-size: 12px; padding: 22px 16px 34px; }
+body.evening .sec-art.ink img { filter: invert(1) hue-rotate(180deg) brightness(1.05); }
+@media (prefers-reduced-motion: reduce) { .lights circle { animation: none; } html { scroll-behavior: auto; } body, .bar { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="lights" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 8 Q 100 52 200 14 T 400 10"/>
+    <circle cx="24" cy="15" r="2.6"/><circle cx="58" cy="27" r="2.6"/><circle cx="94" cy="35" r="2.6"/>
+    <circle cx="130" cy="34" r="2.6"/><circle cx="166" cy="25" r="2.6"/><circle cx="204" cy="14" r="2.6"/>
+    <circle cx="242" cy="8" r="2.6"/><circle cx="280" cy="8" r="2.6"/><circle cx="318" cy="11" r="2.6"/>
+    <circle cx="356" cy="13" r="2.6"/><circle cx="390" cy="11" r="2.6"/>
+  </svg>
+  <div class="logo">
+    <img class="ink" src="art/logo-ink.png" alt="Beetroot Bistro, established 2014">
+    <img class="cream" src="art/logo-cream.png" alt="" aria-hidden="true">
+  </div>
+  <p class="tagline">A little above,<br>a lot of <span class="script">good</span></p>
+  <p class="intro">A breezy rooftop in the greenery of Koregaon Park. Come for brunch, a quick bite, a hearty meal, or just coffee and conversation.</p>
+  <p class="cuisines">Italian · Continental · Asian · Coffee · Bakes</p>
+  <img class="hero-art" src="art/rooftop.png" alt="Pen sketch of the rooftop: tables under umbrellas and trees">
+</header>
+<div class="tiles" aria-hidden="true"></div>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-food" aria-selected="true" aria-controls="food">Food</button>
+      <button class="tab" role="tab" id="tab-drinks" aria-selected="false" aria-controls="drinks">Drinks</button>
+    </div>
+    <div class="filters" aria-label="Filters">
+      <button class="filter" data-f="veg" aria-pressed="false"><span class="mark" aria-hidden="true"></span>Veg only</button>
+      <button class="filter" data-f="gf" aria-pressed="false"><span class="badge b-g" aria-hidden="true">GF</span>Gluten-free</button>
+    </div>
+    <nav class="cats" id="cats" aria-label="Menu sections"></nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="panel" id="food" role="tabpanel" aria-labelledby="tab-food"></div>
+  <div class="panel drinks" id="drinks" role="tabpanel" aria-labelledby="tab-drinks" hidden></div>
+
+  <aside class="key" aria-label="How to read this menu">
+    <h3>Reading the menu</h3>
+    <ul>
+      <li><span class="mark"></span> Vegetarian</li>
+      <li><span class="mark nv"></span> Non-vegetarian, including egg</li>
+      <li><span class="badge b-g">GF</span> Gluten-free</li>
+    </ul>
+    <p>Have an allergy? Please tell your server before you order. Prices are in rupees.</p>
+  </aside>
+
+  <section class="rules" aria-label="House rules">
+    <h3>The unofficial<br>house rules</h3>
+    <ol>
+      <li>01. Come hungry. Leave happy.</li>
+      <li>02. Calories consumed here do not count. We checked.</li>
+      <li>03. One more drink is always a good idea.</li>
+      <li>04. No loud music. Just loud laughter.</li>
+      <li>05. Dessert is never 'too much'.</li>
+      <li>06. Be yourself. Feel at home.</li>
+    </ol>
+    <p class="seven"><small>Rule no. 07</small>Come back soon</p>
+  </section>
+
+  <section class="insta" aria-label="Instagram">
+    <img class="art" src="art/crowd.webp" alt="Pen sketch of friends sharing a table at Beetroot Bistro">
+    <div class="insta-card">
+      <p class="big">Good food. Good mood.</p>
+      <p>Tag us. We love seeing your Beetroot moments.</p>
+      <a class="insta-btn" href="https://www.instagram.com/beetrootbistro/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Follow @beetrootbistro
+      </a>
+    </div>
+  </section>
+</main>
+<footer>Beetroot Bistro · Koregaon Park, Pune · Est. 2014</footer>
+
+<script>
+/*
+  Menu data. Each item:
+    n: name, p: price (or [a, b] for two columns), d: description
+    t: "v" veg, "nv" non-veg, "e" contains egg (shown as non-veg)
+    g: 1 gluten-free, fav: 1 Beetroot favourite
+    vars: [[label, price, type], ...] for dishes sold in versions (paneer / chicken)
+  Section fields: id, title, script (the script word), note, addons, cols, art, sub (sub-headings)
+  GLUTEN-FREE MARKS ARE DRAFTS. Confirm with the owner before this goes live.
+*/
+const FOOD = [
+  { id: "salads", nav: "Salads", title: "Salad", script: "days", addons: ["Paneer +80", "Chicken +100"], items: [
+    { n: "House Caesar", p: 280, t: "v", d: "Lettuce, croutons and parmesan in mayo dressing." },
+    { n: "Quinoa Watermelon Feta Salad", p: 360, t: "v", g: 1, d: "Watermelon, apple, cashew nuts, bell pepper, cucumber, feta and quinoa with balsamic glaze." },
+    { n: "Edamame Quinoa Salad", p: 380, t: "v", d: "Cucumber, coleslaw mix, edamame, peanuts, quinoa and sesame in Asian dressing." },
+    { n: "Greek Style Avo Salad", g: 1, d: "Bell pepper, avocado, cucumber, cherry tomato and lettuce in lemon vinaigrette.", vars: [["Grilled Paneer", 360, "v"], ["Grilled Chicken", 390, "nv"]] },
+    { n: "Mexican Crunch", g: 1, d: "Avocado, beans, corn, edamame, onion and cherry tomato in chipotle dressing.", vars: [["Paneer", 360, "v"], ["Chicken", 390, "nv"]] },
+  ]},
+  { id: "platter", nav: "Protein platter", title: "Protein", script: "power", titleAfter: "Platter", items: [
+    { n: "Protein Platter", d: "Avocado salad, veg quinoa, edamame, falafel and hummus.", vars: [["Grilled Paneer", 630, "v"], ["Grilled Chicken", 650, "nv"]] },
+  ]},
+  { id: "eggs", nav: "Eggs", noEggTag: 1, title: "Eggs,", script: "actually", note: "Served with salad and garlic bread.", addons: ["Sourdough +50", "Cheese +50"], items: [
+    { n: "Sunny Side Up, Turkish Style", p: 320, t: "e", d: "Fried eggs with garlicky Greek yoghurt, chilli butter and fresh herbs." },
+    { n: "Parsi Egg Akuri", p: 300, t: "e", d: "Soft-scrambled eggs with onions, tomatoes, chillies and spices." },
+    { n: "Tornado Eggs", p: 280, t: "e", d: "Fluffy scrambled eggs with a delicate swirl, served on sourdough." },
+    { sub: "Stuffed Omelette", subNote: "Omelette with your choice of filling." },
+    { n: "Farmhouse", p: 320, t: "e" },
+    { n: "Mushroom & Spinach", p: 310, t: "e" },
+    { n: "Chicken & Cheese", p: 360, t: "nv" },
+    { sub: "Simple Eggs, Your Way", subNote: "Sunny side up, fried, scrambled or omelette." },
+    { n: "Plain", p: 250, t: "e" },
+    { n: "Masala", p: 300, t: "e" },
+  ]},
+  { id: "toasts", nav: "Avocado toasts", title: "Avocado", script: "open", titleAfter: "Toasts", note: "Served on toasted sourdough, with salad.", items: [
+    { n: "Caprese Avo Toast", p: 390, t: "v", d: "Guacamole, cherry tomato, basil and fresh mozzarella with balsamic glaze." },
+    { n: "Avocado Hummus Toast", p: 380, t: "v", d: "Creamy hummus layered with sliced avocado and a drizzle of olive oil." },
+    { n: "Guac & Egg", p: 370, t: "e", d: "Guacamole topped with a fried egg and chilli oil." },
+    { n: "Spicy Chicken Avocado Toast", p: 450, t: "nv", d: "Guacamole layered with spicy chicken chunks." },
+  ]},
+  { id: "favourites", nav: "Bistro favourites", title: "Bistro", script: "favourites", art: { src: "art/couple.png", alt: "Pen sketch of two friends talking at a rooftop table", kind: "ink" }, items: [
+    { n: "Jalapeño Cheese Poppers", p: 300, t: "v" },
+    { n: "Hummus & Pita", p: 320, t: "v" },
+    { n: "Falafel Platter", p: 400, t: "v" },
+    { n: "Honey Chilli Potato", p: 330, t: "v" },
+    { n: "Hummus Chicken", p: 420, t: "nv" },
+    { n: "Chicken Popcorn", p: 320, t: "nv" },
+    { n: "Sesame Fried Chicken", p: 370, t: "nv" },
+    { n: "Fish and Chips", p: 480, t: "nv" },
+    { sub: "Nachos" },
+    { n: "Veg Nachos", p: 380, t: "v" },
+    { n: "Chicken Nachos", p: 400, t: "nv" },
+    { sub: "Fries" },
+    { n: "Salted", p: 270, t: "v" },
+    { n: "Peri Peri", p: 280, t: "v" },
+    { n: "Cheese / Cheese Chilli", p: 350, t: "v" },
+    { n: "Chicken Loaded Cheese Fries", p: 390, t: "nv" },
+    { sub: "Potato Wedges" },
+    { n: "Herb & Garlic", p: 280, t: "v" },
+    { n: "Peri Peri Wedges", p: 280, t: "v" },
+    { sub: "Garlic Bread" },
+    { n: "Plain", p: 240, t: "v" },
+    { n: "Cheese / Cheese Chilli", p: 300, t: "v" },
+    { n: "Pull-Apart Cheese Chilli Garlic Bun", p: 290, t: "v" },
+    { sub: "Bruschetta" },
+    { n: "Classic", p: 300, t: "v" },
+    { n: "Pesto Tomato", p: 330, t: "v" },
+    { n: "Mushroom", p: 330, t: "v" },
+    { n: "Chicken", p: 360, t: "nv" },
+  ]},
+  { id: "wings", nav: "Wings", title: "Wings", script: "and things", items: [
+    { n: "Korean Gochujang Wings", p: 390, t: "nv" },
+    { n: "Honey Garlic Wings", p: 380, t: "nv" },
+    { n: "Crispy Chicken Pops", p: 380, t: "nv" },
+  ]},
+  { id: "wok", nav: "Wok", title: "From the", script: "wok", items: [
+    { n: "Lotus Stem", t: "v", vars: [["Crunchy", 320, "v"], ["Honey Chilli", 350, "v"]] },
+    { n: "Korean Chilli Garlic Potato", p: 330, t: "v" },
+    { n: "Crispy Corn", p: 330, t: "v" },
+    { n: "Stir-Fried Vegetables", p: 340, t: "v" },
+    { n: "Veg Manchurian", p: 340, t: "v" },
+    { n: "Paneer Chilli", p: 350, t: "v" },
+    { n: "Paneer Garlic & Pepper", p: 350, t: "v" },
+    { n: "Burnt Red Pepper Paneer", p: 350, t: "v" },
+    { n: "Mushroom Chilli", p: 330, t: "v" },
+    { n: "Chicken Chilli", p: 360, t: "nv" },
+    { n: "Kung Pao Chicken", p: 380, t: "nv" },
+    { n: "Burnt Red Pepper Chicken", p: 360, t: "nv" },
+    { n: "Thai Lemongrass Chicken", p: 380, t: "nv" },
+    { n: "Fish Chilli", p: 440, t: "nv" },
+    { n: "Prawns Chilli", p: 480, t: "nv" },
+    { n: "Thai Chilli Prawns", p: 480, t: "nv" },
+  ]},
+  { id: "bites", nav: "Small bites", title: "Small", script: "bites", items: [
+    { n: "Raw Mango Peanut Chaat", p: 280, t: "v", g: 1 },
+    { n: "Butter Garlic Mushrooms", p: 320, t: "v", g: 1 },
+    { n: "Stuffed Mushrooms", p: 330, t: "v" },
+    { n: "Italian Cottage Cheese Skewers", p: 360, t: "v", g: 1 },
+    { n: "Broccoli & Corn Kebab", p: 390, t: "v" },
+    { n: "Peri Peri Chicken", p: 370, t: "nv", g: 1 },
+    { n: "Garlic Parmesan Chicken Skewers", p: 380, t: "nv", g: 1 },
+    { n: "Grilled Chicken & Zucchini Bites", p: 380, t: "nv" },
+    { n: "Butter Garlic Prawns", p: 480, t: "nv", g: 1 },
+    { n: "Fish Fingers", p: 400, t: "nv" },
+  ]},
+  { id: "sandwiches", nav: "Sandwiches", title: "Between", script: "breads", note: "Served with fries.", addons: ["Sourdough +50"], items: [
+    { n: "Basil, Mozzarella & Tomato", p: 350, t: "v" },
+    { n: "Farmhouse Classic", p: 370, t: "v" },
+    { n: "Cottage Cheese, Corn & Spinach", p: 370, t: "v" },
+    { n: "Paneer Makhni", p: 380, t: "v" },
+    { n: "Roast Chicken", p: 390, t: "nv" },
+    { n: "Chicken Pesto", p: 390, t: "nv" },
+    { n: "Butter Chicken", p: 400, t: "nv" },
+  ]},
+  { id: "burgers", nav: "Burgers", title: "Burger", script: "business", note: "Served with fries.", items: [
+    { n: "Veggie Burger", p: 380, t: "v" },
+    { n: "Crispy Cottage Cheese Burger", p: 400, t: "v" },
+    { n: "Peri Peri Cottage Cheese Burger", p: 400, t: "v" },
+    { n: "Grilled Chicken Burger", p: 410, t: "nv" },
+    { n: "Crispy Chicken Burger", p: 410, t: "nv" },
+    { n: "Peri Peri Chicken Burger", p: 420, t: "nv" },
+  ]},
+  { id: "pizza", nav: "Pizza", title: "Pizza,", script: "please", items: [
+    { n: "Margherita", p: 480, t: "v", d: "Tomato, basil and mozzarella." },
+    { n: "Cecilia", p: 500, t: "v", d: "Bell peppers, onions and sun-dried tomatoes." },
+    { n: "Contadina", p: 520, t: "v", d: "Broccoli, bell peppers, sun-dried tomatoes, olives and jalapeños." },
+    { n: "Fiery Cottage Cheese", p: 520, t: "v", d: "Onion, peri peri cottage cheese and bell peppers." },
+    { n: "Chicken Exotic", p: 570, t: "nv", d: "Grilled chicken, bell peppers, green olives and onion." },
+    { n: "Fiery Chicken", p: 550, t: "nv", d: "Peri peri chicken, mushrooms, onions and jalapeños." },
+    { n: "Butter Chicken", p: 550, t: "nv", d: "BBQ chicken brushed with our butter chicken sauce." },
+    { n: "Desi Chicken Keema", p: 560, t: "nv", d: "Spiced chicken mince, onion, jalapeño and olives." },
+    { n: "Make It Half & Half", p: 600, d: "Pick any two." },
+  ]},
+  { id: "pasta", nav: "Pasta", title: "Pasta", script: "la vista", note: "Choice of penne or spaghetti.", addons: ["Chicken +100", "Prawns +180"], items: [
+    { n: "Arrabiata", p: 410, t: "v", d: "Penne or spaghetti in a rich tomato basil sauce with vegetables." },
+    { n: "Aglio Olio Peperoncino", p: 420, t: "v", d: "Spaghetti tossed in olive oil, garlic, herbs and parmesan." },
+    { n: "Basil Pesto", p: 420, t: "v", d: "Spaghetti in creamy basil pesto with cheese." },
+    { n: "Alfredo", p: 430, t: "v", d: "Penne or spaghetti in a creamy, cheesy white sauce with mushrooms, olives and broccoli." },
+    { n: "Primavera", p: 430, t: "v", d: "Penne or spaghetti in a creamy pink sauce with bell peppers." },
+    { n: "Veg Lasagna", p: 480, t: "v", d: "Pasta sheets layered with mushrooms, zucchini, bell peppers, beans, sweet corn and tomato basil sauce." },
+    { n: "Chicken Lasagna", p: 520, t: "nv", d: "Pasta sheets layered with chicken and mushrooms in tomato basil sauce." },
+    { n: "Mushroom Ricotta Ravioli", p: 500, t: "v", d: "Black ravioli filled with mushroom and ricotta, in a rich creamy white sauce." },
+  ]},
+  { id: "soups", nav: "Soups", title: "Soups", addons: ["Chicken +80", "Prawns +140"], items: [
+    { n: "Tomato & Basil", p: 270, t: "v", g: 1 },
+    { n: "Mushroom & Basil", p: 290, t: "v" },
+    { n: "Lemon Coriander", p: 260, t: "v" },
+    { n: "Tom Kha", p: 300, t: "v", g: 1 },
+    { n: "Manchow", p: 280, t: "v" },
+  ]},
+  { id: "mains", nav: "Mains", title: "The Main Event", note: "Continental classics, with sautéed vegetables and rice or mash.", addons: ["Upgrade to veg quinoa +50"], items: [
+    { n: "Cottage Cheese Steak", p: 560, t: "v", d: "Stuffed cottage cheese steak in a rich brown sauce." },
+    { n: "Cottage Cheese Supreme", p: 550, t: "v", d: "Cottage cheese tossed in an Italian tomato cream sauce." },
+    { n: "Mushroom Crepes", p: 530, t: "v", d: "Thin crepes filled with mushroom ragout, finished with herb garlic butter." },
+    { n: "Veg Paprika with Spinach Rice", p: 530, t: "v", d: "Sautéed vegetables in paprika sauce, served with spinach rice." },
+    { n: "Hunter's Chicken", p: 590, t: "nv", fav: 1, d: "Our signature. Chicken breast and mushrooms in a rich brown sauce." },
+    { n: "Mediterranean Chicken", p: 580, t: "nv", d: "Chicken breast in a creamy white sauce." },
+    { n: "Herbed Garlic Grilled Chicken", p: 570, t: "nv", g: 1, d: "Tender grilled chicken marinated with herbs and garlic, served with mash." },
+    { n: "Honey Roasted Paprika Chicken", p: 580, t: "nv", g: 1, d: "Roasted chicken glazed with honey and paprika." },
+    { n: "Chicken Mushroom Stroganoff", p: 580, t: "nv", d: "Chicken and mushrooms in a creamy, tangy sauce." },
+    { n: "Fish in Honey Mustard", p: 610, t: "nv", g: 1, d: "Grilled basa fish finished with honey mustard." },
+    { n: "Grilled Fish", p: 600, t: "nv", g: 1, d: "Our special herb and condiment-rubbed grilled basa fish." },
+    { n: "Prawns Theodore", p: 620, t: "nv", d: "Prawns cooked in a creamy white sauce." },
+  ]},
+  { id: "asian", nav: "Asian", title: "Asian Table", items: [
+    { n: "Burmese Khao Suey", fav: 1, d: "Silky coconut broth with noodles and toppings including fried garlic, onions and peanuts. Add prawns +180.", vars: [["Veg", 550, "v"], ["Chicken", 590, "nv"]] },
+    { n: "Omurice", p: 520, t: "nv", d: "Japanese-style omelette served over fried rice with chicken gravy." },
+    { n: "Thai Red Curry & Rice", g: 1, d: "Traditional Thai red curry cooked in coconut milk, served with steamed rice.", vars: [["Veg", 520, "v"], ["Chicken", 570, "nv"]] },
+    { n: "Thai Green Curry & Rice", g: 1, d: "Traditional Thai green curry cooked in coconut milk, served with steamed rice.", vars: [["Veg", 520, "v"], ["Chicken", 570, "nv"]] },
+    { n: "Nasi Goreng", d: "Indonesian-style fried rice served with a fried egg.", vars: [["Veg, with egg", 410, "e"], ["Chicken", 460, "nv"]] },
+    { n: "Togarashi Grilled Chicken", p: 570, t: "nv", d: "Japanese spice-rubbed grilled chicken with mustard mash and stir-fried greens." },
+    { n: "Togarashi Grilled Fish", p: 600, t: "nv", d: "Japanese spice-rubbed grilled fish with mustard mash and stir-fried greens." },
+  ]},
+  { id: "indo", nav: "Indo-Chinese", title: "Indo-", script: "Chinese", items: [
+    { n: "Paneer Chilli Gravy", p: 390, t: "v" },
+    { n: "Veg Manchurian Gravy", p: 380, t: "v" },
+    { n: "Vegetables in Hot Garlic Sauce", p: 370, t: "v" },
+    { n: "Chicken Chilli Gravy", p: 410, t: "nv" },
+  ]},
+  { id: "rice", nav: "Rice & noodles", title: "Rice and", script: "noodles", addons: ["Prawns +180"], items: [
+    { n: "Pad Thai Noodles", vars: [["Veg", 360, "v"], ["Chicken", 390, "nv"]] },
+    { n: "Hakka Noodles", vars: [["Veg", 340, "v"], ["Chicken", 380, "nv"]] },
+    { n: "Fried Rice", vars: [["Veg", 340, "v"], ["Chicken", 380, "nv"]] },
+    { n: "Burnt Garlic", vars: [["Veg", 350, "v"], ["Chicken", 390, "nv"]] },
+    { n: "Schezwan", vars: [["Veg", 350, "v"], ["Chicken", 390, "nv"]] },
+    { n: "Thai Basil Rice", vars: [["Veg", 350, "v"], ["Chicken", 390, "nv"]] },
+    { n: "Steamed Rice", p: 220, t: "v", g: 1 },
+  ]},
+  { id: "desserts", nav: "Desserts", title: "Save room", script: "for this", items: [
+    { sub: "Cheesecakes" },
+    { n: "Coffee Cheesecake Flan", p: 280, t: "e", d: "A smooth baked cheesecake finished with a coffee-infused caramel glaze." },
+    { n: "Lotus Biscoff", p: 320, t: "v", tag: "Eggless", d: "Cheesecake on a Biscoff biscuit base, topped with smooth Biscoff spread." },
+    { n: "Mango Coconut", p: 320, t: "v", tag: "Eggless", d: "Coconut cheesecake with a creamy mango layer." },
+    { sub: "More sweet things" },
+    { n: "Tiramisu", p: 320, t: "e", d: "Espresso-soaked ladyfingers layered with mascarpone cream, delicately infused with dark rum." },
+    { n: "Apple Pie with Ice Cream", p: 300, t: "v", tag: "Eggless", d: "Warm cinnamon-spiced apple pie with vanilla ice cream and blueberry compote." },
+    { n: "Chocolate Brownie with Ice Cream", p: 300, t: "v", tag: "Eggless", d: "Rich chocolate-walnut brownie served warm with vanilla ice cream and hot chocolate sauce." },
+  ]},
+];
+
+const DRINKS = [
+  { id: "cocktails", nav: "Cocktails", title: "Cocktails", items: [
+    { sub: "Beer cocktails" },
+    { n: "Classic Shandy", p: 300, d: "Beer meets lemonade. Simple, refreshing, timeless." },
+    { n: "Lemon Ginger Radler", p: 300, d: "Bright lemon, a little ginger and a whole lot of refreshment." },
+    { n: "Citrus Beer Spritzer", p: 300, d: "Beer and orange. A zesty drink." },
+    { n: "Spiced Beer Cooler", p: 300, d: "Beer, apple and a little cinnamon warmth." },
+    { sub: "Wine cocktails", cols: ["Glass", "Jug"] },
+    { n: "Classic Red Sangria", p: [330, 1700], g: 1, d: "Fruity, easy and made for long conversations." },
+    { n: "White Symphony Sangria", p: [330, 1700], g: 1, d: "Light, crisp and ready for a slow afternoon." },
+    { n: "Rosé Romance Sangria", p: [330, 1700], g: 1, d: "Pink, playful and made for good company." },
+    { n: "White Wine Mojito", p: [330, null], g: 1, d: "Wine meets mint, citrus and a little mojito magic." },
+  ]},
+  { id: "beer", nav: "Beer", title: "Beer", art: { src: "art/beer-hands.webp", alt: "Illustration of hands raising two beer bottles", kind: "side" }, items: [
+    { sub: "Bottled" },
+    { n: "Budweiser", p: 320 },
+    { n: "Kingfisher Ultra", p: 320 },
+    { n: "Heineken Silver", p: 320 },
+    { n: "Hoegaarden", p: 400 },
+    { n: "Corona", p: 400 },
+    { n: "People's Lager Beer (Goa)", p: 320 },
+    { sub: "Mead, bottled", subNote: "A honey-fermented drink, smooth and lightly sweet with floral, fruity notes." },
+    { n: "Moonshine Apple Cider", p: 310, g: 1 },
+    { n: "Moonshine Guava Chilli", p: 310, g: 1 },
+  ]},
+  { id: "tap", nav: "On tap", title: "On the", script: "tap", art: { src: "art/beer-tap.webp", alt: "Illustration of a beer tap filling a glass", kind: "side" }, items: [
+    { sub: "Draft beer" },
+    { n: "KF Premium", p: 230 },
+    { n: "KF Ultra", p: 250 },
+    { sub: "Craft beer", cols: ["250 ml", "500 ml"] },
+    { n: "Toit Tint-in-Wit", p: [230, 360], d: "A refreshing Belgian witbier with coriander and orange peel. Zesty, citrusy and smooth." },
+    { n: "Toit Hefeweizen", p: [230, 360], d: "A full-bodied, refreshing wheat ale with low to moderate banana and clove flavour." },
+    { n: "Yavasura Basil Peppercorn Mint", p: [230, 360], d: "A light witbier with basil and black peppercorns. Basil on the nose, balanced by the pepper." },
+    { n: "Yavasura Crème Noir Stout", p: [230, 360], d: "Balanced bitterness with notes of dark chocolate and coffee. Contains lactose." },
+  ]},
+  { id: "wine", nav: "Wine", title: "Wine", allG: 1, note: "All our wines are gluten-free.", art: { src: "art/vineyard.webp", alt: "Pen sketch of a vineyard and farmhouse", kind: "card" }, items: [
+    { sub: "Red", cols: ["Glass", "Bottle"] },
+    { n: "House Wine (Virgin Hills)", p: [300, 1400], g: 1 },
+    { n: "Shiraz (Sula)", p: [360, 1700], g: 1 },
+    { n: "Source Cabernet (Sula)", p: [null, 2400], g: 1 },
+    { n: "La Reserve (Grover Zampa)", p: [null, 2400], g: 1 },
+    { n: "Jacob's Creek Merlot (Australia)", p: [null, 3450], g: 1 },
+    { sub: "White", cols: ["Glass", "Bottle"] },
+    { n: "House Wine (Virgin Hills)", p: [300, 1400], g: 1 },
+    { n: "Chenin Blanc (Sula)", p: [360, 1700], g: 1 },
+    { n: "Source SBL Reserve (Sula)", p: [null, 2400], g: 1 },
+    { n: "Jacob's Creek Chardonnay (Australia)", p: [null, 3450], g: 1 },
+    { sub: "Rosé", cols: ["Glass", "Bottle"] },
+    { n: "House Wine (Virgin Hills)", p: [300, 1400], g: 1 },
+    { n: "Zinfandel (Sula)", p: [360, 1700], g: 1 },
+    { n: "Source Grenache (Sula)", p: [null, 2400], g: 1 },
+    { sub: "Sparkling", cols: ["Glass", "Bottle"] },
+    { n: "Brut (Sula)", p: [null, 2300], g: 1 },
+    { n: "Source Moscato (Sula)", p: [null, 2400], g: 1 },
+  ]},
+  { id: "coolers", nav: "Coolers & shakes", title: "Coolers", items: [
+    { sub: "Mocktails" },
+    { n: "Mint Ginger Cooler", p: 190, g: 1 },
+    { n: "Kalakhatta Cooler", p: 200, g: 1 },
+    { n: "Guava Mary", p: 220, g: 1 },
+    { n: "Virgin Mojito", p: 220, g: 1 },
+    { n: "Watermelon Mojito", p: 240, g: 1 },
+    { n: "Orange Mojito", p: 240, g: 1 },
+    { sub: "Iced teas" },
+    { n: "Lemon Iced Tea", p: 150, g: 1 },
+    { n: "Peach / Raspberry Iced Tea", p: 200, g: 1 },
+    { sub: "Soft drinks" },
+    { n: "Coke / Thums Up / Sprite", p: 100, g: 1 },
+    { n: "Diet Coke", p: 150, g: 1 },
+    { n: "Red Bull", p: 230, g: 1 },
+    { sub: "Shakes" },
+    { n: "Chocolate / Strawberry / Oreo / Nutella / Nutella Banana", p: 270 },
+    { n: "KitKat Coffee Shake", p: 280 },
+    { n: "Brownie Shake", p: 280 },
+  ]},
+  { id: "healthy", nav: "Go healthy", title: "Go", script: "healthy", items: [
+    { sub: "Fresh" },
+    { n: "Fresh Lime Water / Soda", p: 150, g: 1 },
+    { n: "Kokum Chia Lemonade", p: 190, g: 1 },
+    { n: "Cucumber Chia Refresher", p: 200, g: 1 },
+    { n: "Seasonal Fruit Juice", p: 280, g: 1 },
+    { n: "Zinger", p: 290, g: 1, d: "Orange, carrot, apple and ginger." },
+    { n: "ABC Juice", p: 290, g: 1, d: "Apple, beetroot and carrot." },
+    { sub: "Smoothies", subNote: "Made with Greek yoghurt and honey." },
+    { n: "Avocado Banana", p: 320, g: 1 },
+    { n: "Peanut Butter Banana", p: 280, g: 1 },
+    { sub: "Fermented" },
+    { n: "Kombucha (Umami Brew)", p: 250, g: 1, d: "Ask us for today's flavours." },
+  ]},
+  { id: "coffee", nav: "Hot coffee", title: "Coffee", script: "hot", scriptFirst: 1, addons: ["Oat milk +60", "Soy milk +60", "Hazelnut +70"], items: [
+    { n: "Espresso", p: 200, g: 1 },
+    { n: "Americano", p: 200, g: 1 },
+    { n: "Cortado", p: 220, g: 1 },
+    { n: "Cappuccino", p: 230, g: 1 },
+    { n: "Flat White", p: 240, g: 1 },
+    { n: "Latte", p: 240, g: 1 },
+    { n: "Mocha", p: 260, g: 1 },
+    { n: "Hot Chocolate", p: 300, g: 1 },
+  ]},
+  { id: "tea", nav: "Tea", title: "Tea &", script: "infusions", items: [
+    { n: "Green Tea", p: 120, g: 1 },
+    { n: "Black Tea", p: 130, g: 1 },
+    { n: "Masala Tea", p: 150, g: 1 },
+    { sub: "Herbal infusions" },
+    { n: "Ginger Honey Lemon", p: 150, g: 1 },
+    { n: "Chamomile", p: 150, g: 1 },
+    { n: "Butterfly Pea", p: 150, g: 1 },
+    { n: "Hibiscus", p: 150, g: 1 },
+  ]},
+  { id: "cold-coffee", nav: "Cold coffee", title: "Coffee", script: "cold", scriptFirst: 1, addons: ["Vanilla or chocolate ice cream +50"], items: [
+    { n: "Classic Cold Coffee", p: 280, g: 1 },
+    { n: "Iced Americano", p: 210, g: 1 },
+    { n: "Iced Latte", p: 250, g: 1 },
+    { n: "Iced Mocha", p: 270, g: 1, d: "Milk, chocolate syrup and espresso." },
+    { n: "Iced Hazelnut Coffee", p: 280, g: 1, d: "Milk, hazelnut syrup and espresso." },
+    { n: "Vietnamese Iced Coffee", p: 280, g: 1, d: "Condensed milk and espresso." },
+    { n: "Vietnamese Coconut Coffee", p: 290, g: 1, d: "Condensed milk, coconut cream and espresso." },
+    { n: "Affogato", p: 290, d: "Vanilla ice cream, chocolate syrup and espresso." },
+  ]},
+  { id: "bakes", nav: "Bakes", title: "Bakes", script: "and treats", items: [
+    { n: "Oatmeal n Raisin Cookie", p: 50 },
+    { n: "Orange Almond Biscotti", p: 50 },
+    { sub: "Tea cakes", subNote: "Made with oat flour." },
+    { n: "Date and Walnut", p: 100, d: "No added sugar." },
+    { n: "Banana Chocochips", p: 80 },
+    { n: "Carrot and Orange", p: 80 },
+    { sub: "Something bigger" },
+    { n: "Choco Cookie Pie", p: 180 },
+  ]},
+];
+
+/* ---------- Rendering ---------- */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const money = v => v == null ? "–" : "₹" + v.toLocaleString("en-IN");
+const mark = t => !t ? "" : `<span class="mark${t === "v" ? "" : " nv"}" role="img" aria-label="${t === "v" ? "Vegetarian" : t === "e" ? "Contains egg" : "Non-vegetarian"}"></span>`;
+
+function heading(s) {
+  const script = s.script ? `<span class="script">${esc(s.script)}</span>` : "";
+  const title = s.scriptFirst
+    ? `${script} ${esc(s.title)}`
+    : `${esc(s.title)}${script ? " " + script : ""}`;
+  return title + (s.titleAfter ? ` ${esc(s.titleAfter)}` : "");
+}
+
+function tags(it, showEgg) {
+  const out = [];
+  if (it.fav) out.push(`<span class="badge b-fav">Beetroot favourite</span>`);
+  if (showEgg && it.t === "e") out.push(`<span class="badge b-e">Egg</span>`);
+  if (it.tag) out.push(`<span class="badge b-g">${esc(it.tag)}</span>`);
+  if (it.g) out.push(`<span class="badge b-g" title="Gluten-free">GF</span>`);
+  return out.length ? `<div class="tags">${out.join("")}</div>` : "";
+}
+
+function itemHTML(it, isFood, eggTag) {
+  const v = it.vars;
+  const types = v ? v.map(x => x[2]) : [it.t];
+  const attrs = `data-veg="${types.includes("v") ? 1 : 0}" data-gf="${it.g || it.gAll ? 1 : 0}"`;
+  let price = "";
+  if (Array.isArray(it.p)) price = `<span class="prices">${it.p.map(x => `<span>${money(x)}</span>`).join("")}</span>`;
+  else if (it.p != null) price = `<span class="price">${money(it.p)}</span>`;
+  const lead = isFood && !v ? mark(it.t) : "";
+  const variants = v ? `<div class="variants">${v.map(x =>
+      `<div class="variant" data-vt="${x[2]}">${isFood ? mark(x[2]) : ""}<span class="vname">${esc(x[0])}</span><span class="price">${money(x[1])}</span></div>`).join("")}</div>` : "";
+  return `<li class="item" ${attrs}>
+    <div class="row">${lead}<span class="name">${esc(it.n)}</span>${price}</div>
+    ${it.d ? `<p class="desc">${esc(it.d)}</p>` : ""}${variants}${tags(it, isFood && eggTag)}
+  </li>`;
+}
+
+function sectionHTML(s, isFood) {
+  let body = "", open = false;
+  const close = () => { if (open) { body += "</ul></div>"; open = false; } };
+  for (const it of s.items) {
+    if (it.sub) {
+      close();
+      body += `<div class="subgroup"><h3 class="sub">${esc(it.sub)}</h3>${it.subNote ? `<p class="sec-note">${esc(it.subNote)}</p>` : ""}${it.cols ? `<div class="cols">${it.cols.map(c => `<span>${esc(c)}</span>`).join("")}</div>` : ""}<ul class="items">`;
+      open = true;
+      continue;
+    }
+    if (!open) { body += `<div class="subgroup"><ul class="items">`; open = true; }
+    body += itemHTML(s.allG ? { ...it, g: 0, gAll: 1 } : it, isFood, !s.noEggTag);
+  }
+  close();
+  const art = s.art ? `<figure class="sec-art ${s.art.kind}"><img src="${s.art.src}" alt="${esc(s.art.alt)}" loading="lazy"></figure>` : "";
+  const addons = s.addons ? `<ul class="addons" aria-label="Add-ons">${s.addons.map(a => `<li>${esc(a.replace(/\+(\d+)/, "+₹$1"))}</li>`).join("")}</ul>` : "";
+  return `<section class="cat-sec" id="${s.id}" aria-labelledby="h-${s.id}">
+    <div class="sec-head"><h2 id="h-${s.id}">${heading(s)}</h2></div>
+    ${s.note ? `<p class="sec-note">${esc(s.note)}</p>` : ""}${addons}${art}${body}
+  </section>`;
+}
+
+const panels = { food: $("#food"), drinks: $("#drinks") };
+panels.food.innerHTML = FOOD.map(s => sectionHTML(s, true)).join("") + `<p class="empty" hidden>Nothing matches these filters. Try removing one.</p>`;
+panels.drinks.innerHTML = DRINKS.map(s => sectionHTML(s, false)).join("") + `<p class="empty" hidden>Nothing matches these filters. Try removing one.</p>`;
+
+/* ---------- Tabs, filters, section nav ---------- */
+let current = "food";
+const filters = { veg: false, gf: false };
+const catsEl = $("#cats");
+const tabs = { food: $("#tab-food"), drinks: $("#tab-drinks") };
+const meta = document.querySelector('meta[name="theme-color"]');
+
+function buildCats() {
+  const data = current === "food" ? FOOD : DRINKS;
+  catsEl.innerHTML = data.map(s => `<button class="cat" data-id="${s.id}">${esc(s.nav)}</button>`).join("");
+}
+
+function applyFilters() {
+  const panel = panels[current];
+  let shown = 0;
+  panel.querySelectorAll(".item").forEach(li => {
+    const ok = (!filters.veg || current === "drinks" || li.dataset.veg === "1")
+            && (!filters.gf || li.dataset.gf === "1");
+    li.hidden = !ok; if (ok) shown++;
+    li.querySelectorAll(".variant").forEach(v => {
+      v.hidden = (filters.veg && current === "food" && v.dataset.vt !== "v");
+    });
+  });
+  panel.querySelectorAll(".subgroup").forEach(g => { g.hidden = !g.querySelector(".item:not([hidden])"); });
+  panel.querySelectorAll(".cat-sec").forEach(sec => {
+    const any = !!sec.querySelector(".item:not([hidden])");
+    sec.hidden = !any;
+    const btn = catsEl.querySelector(`[data-id="${sec.id}"]`); if (btn) btn.hidden = !any;
+  });
+  panel.querySelector(".empty").hidden = shown > 0;
+}
+
+function setTab(name) {
+  current = name;
+  for (const k in tabs) { tabs[k].setAttribute("aria-selected", k === name); panels[k].hidden = k !== name; }
+  document.body.classList.toggle("evening", name === "drinks");
+  meta.content = name === "drinks" ? "#231711" : "#F5ECDD";
+  $('[data-f="veg"]').hidden = name === "drinks";
+  buildCats(); applyFilters(); observe();
+  const bar = $(".bar");
+  if (window.scrollY > bar.offsetTop) window.scrollTo({ top: bar.offsetTop, behavior: "auto" });
+}
+
+tabs.food.addEventListener("click", () => setTab("food"));
+tabs.drinks.addEventListener("click", () => setTab("drinks"));
+document.querySelectorAll(".filter").forEach(b => b.addEventListener("click", () => {
+  const f = b.dataset.f; filters[f] = !filters[f]; b.setAttribute("aria-pressed", filters[f]); applyFilters();
+}));
+catsEl.addEventListener("click", e => {
+  const b = e.target.closest(".cat"); if (!b) return;
+  const sec = document.getElementById(b.dataset.id);
+  jumping = true; clearTimeout(jumpTimer); jumpTimer = setTimeout(() => { jumping = false; }, 900);
+  catsEl.querySelectorAll(".cat").forEach(c => c.classList.toggle("on", c === b));
+  const y = sec.getBoundingClientRect().top + window.scrollY - $(".bar").offsetHeight - 6;
+  window.scrollTo({ top: y, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+});
+
+let io, jumping = false, jumpTimer;
+function observe() {
+  if (io) io.disconnect();
+  io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting || jumping) return;
+      catsEl.querySelectorAll(".cat").forEach(c => c.classList.toggle("on", c.dataset.id === en.target.id));
+      const on = catsEl.querySelector(".cat.on");
+      if (on) catsEl.scrollLeft = on.offsetLeft - 16;
+    });
+  }, { rootMargin: "-170px 0px -65% 0px" });
+  panels[current].querySelectorAll(".cat-sec").forEach(s => io.observe(s));
+}
+
+setTab("food");
+</script>
+</body>
+</html>
