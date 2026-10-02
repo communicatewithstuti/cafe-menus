@@ -13,7 +13,7 @@ body.garden, body.garden.evening {
   --chip-on-text: #FFFDF2;
   --veg: #2E7D3A;
   --nonveg: #8B3A1C;
-  font-family: "Nunito Sans", system-ui, sans-serif;
+  font-family: Quicksand, system-ui, sans-serif; font-weight: 500;
   overflow-x: hidden;
 }
 
@@ -29,15 +29,15 @@ body.garden, body.garden.evening {
 .garden .logo img { filter: brightness(0); }
 .garden.evening .logo .ink { display: block; }
 .garden .logo .cream { display: none; }
-.garden .tagline { font: 900 21px/1.15 Nunito, sans-serif; text-transform: uppercase; letter-spacing: .01em; margin-top: 14px; }
+.garden .tagline { font: 600 23px/1.15 Fredoka, sans-serif; text-transform: uppercase; letter-spacing: .01em; margin-top: 14px; }
 .garden .tagline .script { font: inherit; color: var(--accent); text-transform: inherit; }
 .garden .cuisines { color: var(--accent); font-weight: 700; }
 
 /* ---------- Bar ---------- */
 .garden .bar { box-shadow: 0 1px 0 var(--line); }
-.garden .tab { font: 800 14px Nunito, sans-serif; text-transform: uppercase; letter-spacing: .06em; border-color: var(--line); }
-.garden .filter { font-family: "Nunito Sans", sans-serif; font-weight: 600; }
-.garden .cat { font: 600 15px "Nunito Sans", sans-serif; }
+.garden .tab { font: 600 15px Fredoka, sans-serif; text-transform: uppercase; letter-spacing: .06em; border-color: var(--line); }
+.garden .filter { font-family: Quicksand, sans-serif; font-weight: 700; }
+.garden .cat { font: 600 15px Quicksand, sans-serif; }
 
 /* ---------- Sections as framed panels ---------- */
 .garden section.cat-sec {
@@ -58,7 +58,7 @@ body.garden, body.garden.evening {
 .garden .panel > section.cat-sec:nth-of-type(3n)::before { background-image: url(art/fronds.svg); transform: rotate(18deg); }
 
 .garden .sec-head { padding-right: 58px; }
-.garden .sec-head h2 { font: 900 24px/1.1 Nunito, sans-serif; text-transform: uppercase; letter-spacing: .01em; }
+.garden .sec-head h2 { font: 600 26px/1.1 Fredoka, sans-serif; text-transform: uppercase; letter-spacing: .01em; }
 .garden .sec-head h2 .script { font: inherit; color: inherit; margin-left: 0; text-transform: inherit; }
 .garden .sec-head::after {
   content: ""; flex-basis: 100%; height: 4px; margin-top: 8px;
@@ -66,18 +66,18 @@ body.garden, body.garden.evening {
 }
 .garden .sec-note { font-style: italic; }
 .garden .addons li { border-color: var(--accent); color: var(--accent); }
-.garden .sub { font: 500 15px Oswald, sans-serif; color: var(--ink); letter-spacing: .03em; margin-top: 20px; }
+.garden .sub { font: 600 16px Fredoka, sans-serif; color: var(--ink); letter-spacing: .02em; margin-top: 20px; }
 .garden .sec-art { display: none; }
 
 /* ---------- Dish rows with dot leaders ---------- */
 .garden .item { border-bottom: 0; padding: 7px 0; }
 .garden .row { align-items: baseline; gap: 6px; }
 .garden .row .mark { align-self: center; margin-top: 0; }
-.garden .name { flex: 0 1 auto; font: 500 16px/1.35 "Nunito Sans", sans-serif; }
+.garden .name { flex: 0 1 auto; font: 600 16.5px/1.35 Quicksand, sans-serif; }
 .garden .row::after { content: ""; flex: 1 1 18px; order: 2; border-bottom: 2px dotted #9AA08C; min-width: 18px; }
 .garden .row:not(:has(.price, .prices))::after { display: none; }
 .garden .row .price, .garden .row .prices { order: 3; }
-.garden .price, .garden .prices span { font: 600 16px "Nunito Sans", sans-serif; }
+.garden .price, .garden .prices span { font: 700 16.5px Quicksand, sans-serif; }
 .garden .desc { font-style: italic; font-size: 13.5px; margin-top: 1px; }
 .garden .variant::after { content: ""; flex: 1 1 18px; order: 2; border-bottom: 2px dotted #9AA08C; align-self: baseline; }
 .garden .variant { align-items: baseline; }
@@ -90,7 +90,7 @@ body.garden, body.garden.evening {
 /* ---------- Footer blocks ---------- */
 .garden .key { border-radius: 4px; }
 .garden .key h3, .garden .rules h3, .garden .rules .seven, .garden .insta-card .big {
-  font-family: Nunito, sans-serif; font-weight: 900; text-transform: uppercase; color: var(--ink);
+  font-family: Fredoka, sans-serif; font-weight: 600; text-transform: uppercase; color: var(--ink);
 }
 .garden .rules .seven small { color: var(--accent); }
 .garden-cluster { position: relative; height: 110px; margin: 30px auto -8px; max-width: 260px; }
