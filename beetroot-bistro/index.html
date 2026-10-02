@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#F5ECDD">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,600;125,800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
 :root {
   /* Daytime on the rooftop: canopy cream, dark wood, lamp glow, terracotta wall */
@@ -20,7 +20,6 @@
   --accent: #B65A2B;      /* terracotta */
   --glow: #E9A548;        /* paper lamp */
   --beet: #7A1C28;
-  --chip: #EFE2CD;
   --chip-on: #3B2618;
   --chip-on-text: #FBF6EE;
   --veg: #1E7A3A;
@@ -38,7 +37,6 @@ body.evening {
   --line: #4A3426;
   --accent: #F0A65A;
   --glow: #F3B562;
-  --chip: #3A281D;
   --chip-on: #F3B562;
   --chip-on-text: #231711;
   --veg: #5CC77A;
@@ -51,7 +49,7 @@ body.evening {
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--ink);
-  font: 400 15px/1.5 Inter, system-ui, sans-serif;
+  font: 400 15px/1.5 "DM Sans", system-ui, sans-serif;
   transition: background-color .4s ease, color .4s ease;
 }
 img { max-width: 100%; display: block; }
@@ -71,8 +69,8 @@ button { font: inherit; color: inherit; }
 body.evening .logo .ink { display: none; }
 body.evening .logo .cream { display: block; }
 .tagline {
-  font: 800 19px/1.15 Archivo, sans-serif; font-stretch: 125%;
-  text-transform: uppercase; letter-spacing: .02em; margin: 6px 0 0;
+  font: 600 24px/1.15 Fraunces, Georgia, serif;
+  margin: 6px 0 0;
 }
 .script { font-family: "Pinyon Script", cursive; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--accent); }
 .tagline .script { font-size: 1.6em; line-height: .6; margin-left: 2px; }
@@ -93,21 +91,27 @@ body.evening .hero-art { opacity: .0; height: 0; margin: 0; }
 .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px 0 8px; }
 .tab {
   border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 9px 0;
-  font: 800 13px Archivo, sans-serif; font-stretch: 125%; letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  font: 600 15px Fraunces, Georgia, serif; letter-spacing: .02em; cursor: pointer;
 }
 .tab[aria-selected="true"] { background: var(--chip-on); color: var(--chip-on-text); border-color: var(--chip-on); }
-.filters { display: flex; gap: 6px; padding-bottom: 8px; flex-wrap: wrap; }
+.filters { display: flex; gap: 8px; padding-bottom: 10px; flex-wrap: wrap; }
 .filter {
-  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--card);
-  border-radius: 999px; padding: 6px 12px 6px 9px; font-size: 13px; font-weight: 500; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--ink); background: var(--card);
+  border-radius: 10px; padding: 8px 14px 8px 10px; font-size: 14px; font-weight: 500; cursor: pointer;
+  box-shadow: 0 1px 0 rgba(59, 38, 24, .15);
 }
+.filter .box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid currentColor; display: grid; place-items: center; flex: none; }
 .filter[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-text); border-color: var(--chip-on); }
+.filter[aria-pressed="true"] .box { background: var(--chip-on-text); border-color: var(--chip-on-text); }
+.filter[aria-pressed="true"] .box::after { content: ""; width: 8px; height: 4px; border-left: 2px solid var(--chip-on); border-bottom: 2px solid var(--chip-on); transform: rotate(-45deg) translate(1px, -1px); }
 .filter[hidden] { display: none; }
-.cats { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-bottom: 9px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+.cats {
+  display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent);
+}
 .cats::-webkit-scrollbar { display: none; }
-.cat { flex: none; border: 0; background: var(--chip); border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer; white-space: nowrap; color: var(--ink); }
-.cat.on { background: var(--accent); color: var(--card); }
-body.evening .cat.on { color: var(--bg); }
+.cat { flex: none; border: 0; border-bottom: 2px solid transparent; background: none; padding: 4px 0 8px; font-size: 15px; cursor: pointer; white-space: nowrap; color: var(--muted); }
+.cat.on { color: var(--ink); border-bottom-color: var(--accent); }
 
 /* ---------- Marks ---------- */
 .mark { width: 14px; height: 14px; border: 1.5px solid var(--veg); border-radius: 2px; display: inline-grid; place-items: center; flex: none; }
@@ -126,13 +130,13 @@ main { padding-bottom: 24px; }
 section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
 .sec-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .sec-head h2 {
-  margin: 0; font: 800 21px/1.1 Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; letter-spacing: .01em;
+  margin: 0; font: 600 26px/1.1 Fraunces, Georgia, serif;
 }
-.sec-head h2 .script { font-size: 1.55em; margin-left: 4px; }
+.sec-head h2 .script { font-size: 1.3em; margin-left: 2px; }
 .sec-note { color: var(--muted); font-size: 13px; margin: 4px 0 0; font-style: italic; }
 .addons { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
 .addons li { border: 1px dashed var(--accent); color: var(--accent); border-radius: 999px; padding: 2px 10px; font-size: 12.5px; font-weight: 500; }
-.sub { margin: 18px 0 2px; font: 600 11.5px Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.sub { margin: 18px 0 2px; font: 600 11.5px "DM Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 .cols { display: flex; justify-content: flex-end; gap: 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 8px; }
 .cols span { width: 66px; text-align: right; }
 .sec-art { margin: 16px 0 4px; border-radius: 14px; overflow: hidden; }
@@ -147,11 +151,11 @@ section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
 .item:last-child { border-bottom: 0; }
 .row { display: flex; align-items: flex-start; gap: 8px; }
 .row .mark { margin-top: 3px; }
-.name { flex: 1; font-weight: 600; font-size: 15px; }
+.name { flex: 1; font: 500 16px/1.35 Fraunces, Georgia, serif; }
 .name .badge { margin-left: 4px; vertical-align: 2px; }
-.price { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.price { font: 600 16px Fraunces, Georgia, serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .prices { display: flex; }
-.prices span { width: 66px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.prices span { width: 66px; text-align: right; font: 600 16px Fraunces, Georgia, serif; font-variant-numeric: tabular-nums; }
 .desc { color: var(--muted); font-size: 13.5px; margin: 3px 0 0 22px; }
 .drinks .desc, .drinks .tags { margin-left: 0; }
 .tags { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0 0 22px; }
@@ -164,21 +168,21 @@ section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
 
 /* ---------- Footer ---------- */
 .key { margin-top: 34px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; font-size: 13px; }
-.key h3 { margin: 0 0 8px; font: 800 13px Archivo, sans-serif; font-stretch: 125%; letter-spacing: .06em; text-transform: uppercase; }
+.key h3 { margin: 0 0 8px; font: 600 16px Fraunces, Georgia, serif; }
 .key ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .key li { display: flex; align-items: center; gap: 8px; }
 .key p { margin: 10px 0 0; color: var(--muted); }
 .rules { text-align: center; margin-top: 34px; }
-.rules h3 { margin: 0; font: 800 17px/1.2 Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; }
+.rules h3 { margin: 0; font: 600 22px/1.2 Fraunces, Georgia, serif; }
 .rules ol { list-style: none; padding: 0; margin: 12px 0 0; color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
-.rules .seven { margin-top: 12px; font: 800 15px Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; }
-.rules .seven small { display: block; font: 600 11px Inter, sans-serif; letter-spacing: .14em; color: var(--accent); }
+.rules .seven { margin-top: 12px; font: 600 18px Fraunces, Georgia, serif; }
+.rules .seven small { display: block; text-transform: uppercase; font: 600 11px "DM Sans", sans-serif; letter-spacing: .14em; color: var(--accent); }
 .insta { margin-top: 34px; text-align: center; }
 .insta .art { margin: 0 auto; max-width: 480px; }
 .insta-card {
   margin-top: -6px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 16px;
 }
-.insta-card .big { font: 800 18px/1.2 Archivo, sans-serif; font-stretch: 125%; text-transform: uppercase; margin: 0; }
+.insta-card .big { font: 600 22px/1.2 Fraunces, Georgia, serif; margin: 0; }
 .insta-card p { margin: 6px 0 0; color: var(--muted); }
 .insta-btn {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 11px 20px; border-radius: 999px;
@@ -218,8 +222,8 @@ body.evening .sec-art.ink img { filter: invert(1) hue-rotate(180deg) brightness(
       <button class="tab" role="tab" id="tab-drinks" aria-selected="false" aria-controls="drinks">Drinks</button>
     </div>
     <div class="filters" aria-label="Filters">
-      <button class="filter" data-f="veg" aria-pressed="false"><span class="mark" aria-hidden="true"></span>Veg only</button>
-      <button class="filter" data-f="gf" aria-pressed="false"><span class="badge b-g" aria-hidden="true">GF</span>Gluten-free</button>
+      <button class="filter" data-f="veg" aria-pressed="false"><span class="box" aria-hidden="true"></span>Veg only</button>
+      <button class="filter" data-f="gf" aria-pressed="false"><span class="box" aria-hidden="true"></span>Gluten-free</button>
     </div>
     <nav class="cats" id="cats" aria-label="Menu sections"></nav>
   </div>
