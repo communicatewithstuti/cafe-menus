@@ -188,8 +188,11 @@ section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
   background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 600;
 }
 .insta-btn svg { width: 18px; height: 18px; }
+.review-card { margin-top: 12px; }
+.review-btn { background: var(--accent); color: var(--card); }
+body.evening .review-btn { color: var(--bg); }
 footer { text-align: center; color: var(--muted); font-size: 12px; padding: 22px 16px 34px; }
-body.evening .sec-art.ink img { filter: invert(1) hue-rotate(180deg) brightness(1.05); }
+body.evening .sec-art.ink img, body.evening .insta .art { filter: invert(1) hue-rotate(180deg) brightness(1.05); }
 @media (prefers-reduced-motion: reduce) { .lights circle { animation: none; } html { scroll-behavior: auto; } body, .bar { transition: none; } }
 </style>
 </head>
@@ -263,6 +266,14 @@ body.evening .sec-art.ink img { filter: invert(1) hue-rotate(180deg) brightness(
       <a class="insta-btn" href="https://www.instagram.com/beetrootbistro/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         Follow @beetrootbistro
+      </a>
+    </div>
+    <div class="insta-card review-card">
+      <p class="big">Enjoyed your meal?</p>
+      <p>A quick Google review helps more people find our rooftop.</p>
+      <a class="insta-btn review-btn" href="https://www.google.com/search?q=Beetroot+Bistro+Koregaon+Park&amp;ludocid=13245718322122985094#lrd=0x3bc2c10784e4a2c1:0xb7d23ea299060e86,3" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.7 6.3.9-4.6 4.4 1.1 6.3L12 17.1l-5.6 3 1.1-6.3L2.9 9.4l6.3-.9z"/></svg>
+        Review us on Google
       </a>
     </div>
   </section>
