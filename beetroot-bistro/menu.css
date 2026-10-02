@@ -1,0 +1,184 @@
+:root {
+  /* Daytime on the rooftop: canopy cream, dark wood, lamp glow, terracotta wall */
+  --bg: #F5ECDD;
+  --card: #FBF6EE;
+  --ink: #3B2618;
+  --muted: #7A6252;
+  --line: #E3D4BE;
+  --accent: #B65A2B;      /* terracotta */
+  --glow: #E9A548;        /* paper lamp */
+  --beet: #7A1C28;
+  --chip-on: #3B2618;
+  --chip-on-text: #FBF6EE;
+  --veg: #1E7A3A;
+  --nonveg: #8B3A1C;
+  --tile-a: #2B201A;
+  --tile-b: #F5ECDD;
+  --art-ink: 1;
+}
+body.evening {
+  /* Drinks: the same rooftop after sunset, under the lamps */
+  --bg: #231711;
+  --card: #2E1F17;
+  --ink: #F6E8D0;
+  --muted: #C7AE92;
+  --line: #4A3426;
+  --accent: #F0A65A;
+  --glow: #F3B562;
+  --chip-on: #F3B562;
+  --chip-on-text: #231711;
+  --veg: #5CC77A;
+  --nonveg: #E0855C;
+  --tile-a: #F6E8D0;
+  --tile-b: #231711;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 15px/1.5 "DM Sans", system-ui, sans-serif;
+  transition: background-color .4s ease, color .4s ease;
+}
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; text-align: center; padding: 28px 16px 0; overflow: hidden; }
+.lights { position: absolute; inset: 0 0 auto 0; height: 70px; pointer-events: none; }
+.lights path { fill: none; stroke: var(--muted); stroke-width: 1; opacity: .5; }
+.lights circle { fill: var(--glow); filter: drop-shadow(0 0 4px var(--glow)); animation: twinkle 3.2s ease-in-out infinite; }
+.lights circle:nth-child(3n) { animation-delay: 1.1s; }
+.lights circle:nth-child(3n+1) { animation-delay: 2.1s; }
+@keyframes twinkle { 50% { opacity: .55; } }
+.logo { width: 132px; margin: 22px auto 10px; position: relative; }
+.logo .cream { display: none; }
+body.evening .logo .ink { display: none; }
+body.evening .logo .cream { display: block; }
+.tagline {
+  font: 600 24px/1.15 Fraunces, Georgia, serif;
+  margin: 6px 0 0;
+}
+.script { font-family: "Pinyon Script", cursive; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--accent); }
+.tagline .script { font-size: 1.6em; line-height: .6; margin-left: 2px; }
+.intro { color: var(--muted); max-width: 30em; margin: 12px auto 0; font-size: 14px; }
+.cuisines { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 14px 0 0; font-weight: 600; }
+.hero-art { margin: 18px auto 0; max-width: 520px; }
+body.evening .hero-art { opacity: .0; height: 0; margin: 0; }
+.tiles {
+  height: 14px; margin-top: 0;
+  background:
+    radial-gradient(circle at 50% 50%, var(--tile-b) 2.5px, transparent 3px) 0 0 / 14px 14px,
+    conic-gradient(from 45deg, var(--tile-a) 25%, var(--tile-b) 0 50%, var(--tile-a) 0 75%, var(--tile-b) 0) 0 0 / 14px 14px;
+  opacity: .9;
+}
+
+/* ---------- Sticky bar ---------- */
+.bar { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); transition: background-color .4s ease; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px 0 8px; }
+.tab {
+  border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 9px 0;
+  font: 600 15px Fraunces, Georgia, serif; letter-spacing: .02em; cursor: pointer;
+}
+.tab[aria-selected="true"] { background: var(--chip-on); color: var(--chip-on-text); border-color: var(--chip-on); }
+.filters { display: flex; gap: 8px; padding-bottom: 10px; flex-wrap: wrap; }
+.filter {
+  display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--ink); background: var(--card);
+  border-radius: 10px; padding: 8px 14px 8px 10px; font-size: 14px; font-weight: 500; cursor: pointer;
+  box-shadow: 0 1px 0 rgba(59, 38, 24, .15);
+}
+.filter .box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid currentColor; display: grid; place-items: center; flex: none; }
+.filter[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-text); border-color: var(--chip-on); }
+.filter[aria-pressed="true"] .box { background: var(--chip-on-text); border-color: var(--chip-on-text); }
+.filter[aria-pressed="true"] .box::after { content: ""; width: 8px; height: 4px; border-left: 2px solid var(--chip-on); border-bottom: 2px solid var(--chip-on); transform: rotate(-45deg) translate(1px, -1px); }
+.filter[hidden] { display: none; }
+.cats {
+  display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 2px 16px 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent);
+}
+.cats::-webkit-scrollbar { display: none; }
+.cat { flex: none; border: 0; border-bottom: 2px solid transparent; background: none; padding: 4px 0 8px; font-size: 15px; cursor: pointer; white-space: nowrap; color: var(--muted); }
+.cat.on { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* ---------- Marks ---------- */
+.mark { width: 14px; height: 14px; border: 1.5px solid var(--veg); border-radius: 2px; display: inline-grid; place-items: center; flex: none; }
+.mark::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--veg); }
+.mark.nv { border-color: var(--nonveg); }
+.mark.nv::after { border-radius: 0; width: 0; height: 0; background: none; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid var(--nonveg); }
+.badge { display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; letter-spacing: .04em; border-radius: 4px; padding: 1px 5px; line-height: 1.5; text-transform: uppercase; }
+.b-g { background: #E7DCCB; color: #5A4636; }
+.b-e { background: #F6E3C7; color: #8B5A1C; }
+.b-fav { background: var(--beet); color: #FBEDE6; }
+body.evening .b-g { background: #3F3128; color: #E2CFB8; }
+
+/* ---------- Sections ---------- */
+main { padding-bottom: 24px; }
+.panel[hidden] { display: none; }
+section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
+.sec-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.sec-head h2 {
+  margin: 0; font: 600 26px/1.1 Fraunces, Georgia, serif;
+}
+.sec-head h2 .script { font-size: 1.3em; margin-left: 2px; }
+.sec-note { color: var(--muted); font-size: 13px; margin: 4px 0 0; font-style: italic; }
+.addons { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.addons li { border: 1px dashed var(--accent); color: var(--accent); border-radius: 999px; padding: 2px 10px; font-size: 12.5px; font-weight: 500; }
+.sub { margin: 18px 0 2px; font: 600 11.5px "DM Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.cols { display: flex; justify-content: flex-end; gap: 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 8px; }
+.cols span { width: 66px; text-align: right; }
+.sec-art { margin: 16px 0 4px; border-radius: 14px; overflow: hidden; }
+.sec-art.ink img { max-height: 280px; margin: 0 auto; }
+.sec-art.side { float: right; width: 34%; max-width: 170px; margin: 4px 0 10px 14px; }
+.sec-art.side img { width: 100%; border-radius: 12px; }
+.cat-sec::after { content: ""; display: block; clear: both; }
+
+.items { list-style: none; margin: 8px 0 0; padding: 0; }
+.item { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.row { display: flex; align-items: flex-start; gap: 8px; }
+.row .mark { margin-top: 3px; }
+.name { flex: 1; font: 500 16px/1.35 Fraunces, Georgia, serif; }
+.name .badge { margin-left: 4px; vertical-align: 2px; }
+.price { font: 600 16px Fraunces, Georgia, serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.prices { display: flex; }
+.prices span { width: 66px; text-align: right; font: 600 16px Fraunces, Georgia, serif; font-variant-numeric: tabular-nums; }
+.desc { color: var(--muted); font-size: 13.5px; margin: 3px 0 0 22px; }
+.drinks .desc, .drinks .tags { margin-left: 0; }
+.tags { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0 0 22px; }
+.variants { margin: 6px 0 0 22px; display: grid; gap: 4px; }
+.variant { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.variant .vname { flex: 1; }
+.variant[hidden] { display: none; }
+
+.empty { text-align: center; color: var(--muted); padding: 40px 0; }
+
+/* ---------- Footer ---------- */
+.key { margin-top: 34px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; font-size: 13px; }
+.key h3 { margin: 0 0 8px; font: 600 16px Fraunces, Georgia, serif; }
+.key ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.key li { display: flex; align-items: center; gap: 8px; }
+.key p { margin: 10px 0 0; color: var(--muted); }
+.rules { text-align: center; margin-top: 34px; }
+.rules h3 { margin: 0; font: 600 22px/1.2 Fraunces, Georgia, serif; }
+.rules ol { list-style: none; padding: 0; margin: 12px 0 0; color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
+.rules .seven { margin-top: 12px; font: 600 18px Fraunces, Georgia, serif; }
+.rules .seven small { display: block; text-transform: uppercase; font: 600 11px "DM Sans", sans-serif; letter-spacing: .14em; color: var(--accent); }
+.insta { margin-top: 34px; text-align: center; }
+.insta .art { margin: 0 auto; max-width: 480px; }
+.insta-card {
+  margin-top: -6px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 16px;
+}
+.insta-card .big { font: 600 22px/1.2 Fraunces, Georgia, serif; margin: 0; }
+.insta-card p { margin: 6px 0 0; color: var(--muted); }
+.insta-btn {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 11px 20px; border-radius: 999px;
+  background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 600;
+}
+.insta-btn svg { width: 18px; height: 18px; }
+.review-card { margin-top: 12px; }
+.review-btn { background: var(--accent); color: var(--card); }
+body.evening .review-btn { color: var(--bg); }
+footer { text-align: center; color: var(--muted); font-size: 12px; padding: 22px 16px 34px; }
+body.evening .sec-art.ink img, body.evening .insta .art { filter: invert(1) hue-rotate(180deg) brightness(1.05); }
+@media (prefers-reduced-motion: reduce) { .lights circle { animation: none; } html { scroll-behavior: auto; } body, .bar { transition: none; } }

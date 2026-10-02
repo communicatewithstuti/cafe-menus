@@ -1,0 +1,103 @@
+/* Garden look: the butter-cream and sage style of Beetroot Bistro's Zomato menu.
+   Loaded after menu.css and only changes the look. Drinks stay light here. */
+body.garden, body.garden.evening {
+  --bg: #FBF8E1;
+  --card: #FFFDF2;
+  --ink: #1F2A1A;
+  --muted: #646B5B;
+  --line: #E2DEB8;
+  --accent: #4E7A3F;
+  --sage: #E4E7CC;
+  --frame: #F4F2DA;
+  --chip-on: #3F6C34;
+  --chip-on-text: #FFFDF2;
+  --veg: #2E7D3A;
+  --nonveg: #8B3A1C;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------- Hero ---------- */
+.garden .hero { padding: 26px 16px 8px; }
+.garden-crest { display: flex; align-items: center; justify-content: center; gap: 0; }
+.garden-crest .side { position: relative; width: 104px; height: 120px; flex: none; }
+.garden-crest .side img { position: absolute; }
+.garden-crest .fronds { width: 100px; left: 6px; top: 4px; }
+.garden-crest .flower { width: 64px; left: 30px; top: 44px; }
+.garden-crest .side.right { transform: scaleX(-1); }
+.garden .logo { width: 128px; margin: 0; }
+.garden .logo img { filter: brightness(0); }
+.garden.evening .logo .ink { display: block; }
+.garden .logo .cream { display: none; }
+.garden .tagline { font: 900 21px/1.15 Nunito, sans-serif; text-transform: uppercase; letter-spacing: .01em; margin-top: 14px; }
+.garden .tagline .script { font: inherit; color: var(--accent); text-transform: inherit; }
+.garden .cuisines { color: var(--accent); font-weight: 700; }
+
+/* ---------- Bar ---------- */
+.garden .bar { box-shadow: 0 1px 0 var(--line); }
+.garden .tab { font: 800 14px Nunito, sans-serif; text-transform: uppercase; letter-spacing: .06em; border-color: var(--line); }
+.garden .filter { font-family: "Nunito Sans", sans-serif; font-weight: 600; }
+.garden .cat { font: 600 15px "Nunito Sans", sans-serif; }
+
+/* ---------- Sections as framed panels ---------- */
+.garden section.cat-sec {
+  position: relative; margin-top: 18px; padding: 22px 18px 16px; background: var(--bg);
+  border: 1.5px solid var(--line); border-radius: 4px;
+  box-shadow: inset 0 0 0 6px var(--bg), inset 0 0 0 7.5px var(--line);
+}
+.garden .panel > section.cat-sec:nth-of-type(even) {
+  background: var(--sage);
+  box-shadow: inset 0 0 0 6px var(--sage), inset 0 0 0 7.5px var(--frame);
+  border-color: var(--sage);
+}
+.garden section.cat-sec::before {
+  content: ""; position: absolute; width: 74px; height: 74px; top: -16px; right: -12px;
+  background: url(art/monstera.svg) center / contain no-repeat; transform: rotate(28deg); pointer-events: none;
+}
+.garden .panel > section.cat-sec:nth-of-type(3n+2)::before { background-image: url(art/hibiscus.svg); width: 60px; height: 60px; top: -12px; transform: rotate(-12deg); }
+.garden .panel > section.cat-sec:nth-of-type(3n)::before { background-image: url(art/fronds.svg); transform: rotate(18deg); }
+
+.garden .sec-head { padding-right: 58px; }
+.garden .sec-head h2 { font: 900 24px/1.1 Nunito, sans-serif; text-transform: uppercase; letter-spacing: .01em; }
+.garden .sec-head h2 .script { font: inherit; color: inherit; margin-left: 0; text-transform: inherit; }
+.garden .sec-head::after {
+  content: ""; flex-basis: 100%; height: 4px; margin-top: 8px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 14px, transparent 14px 26px) 0 0 / 150px 4px no-repeat;
+}
+.garden .sec-note { font-style: italic; }
+.garden .addons li { border-color: var(--accent); color: var(--accent); }
+.garden .sub { font: 500 15px Oswald, sans-serif; color: var(--ink); letter-spacing: .03em; margin-top: 20px; }
+.garden .sec-art { display: none; }
+
+/* ---------- Dish rows with dot leaders ---------- */
+.garden .item { border-bottom: 0; padding: 7px 0; }
+.garden .row { align-items: baseline; gap: 6px; }
+.garden .row .mark { align-self: center; margin-top: 0; }
+.garden .name { flex: 0 1 auto; font: 500 16px/1.35 "Nunito Sans", sans-serif; }
+.garden .row::after { content: ""; flex: 1 1 18px; order: 2; border-bottom: 2px dotted #9AA08C; min-width: 18px; }
+.garden .row:not(:has(.price, .prices))::after { display: none; }
+.garden .row .price, .garden .row .prices { order: 3; }
+.garden .price, .garden .prices span { font: 600 16px "Nunito Sans", sans-serif; }
+.garden .desc { font-style: italic; font-size: 13.5px; margin-top: 1px; }
+.garden .variant::after { content: ""; flex: 1 1 18px; order: 2; border-bottom: 2px dotted #9AA08C; align-self: baseline; }
+.garden .variant { align-items: baseline; }
+.garden .variant .vname { flex: 0 1 auto; }
+.garden .variant .price { order: 3; }
+.garden .b-g { background: #DDE3C6; color: #3F5A33; }
+.garden .b-e { background: #F1EAC8; color: #6E5A1C; }
+.garden .b-fav { background: var(--accent); color: var(--card); }
+
+/* ---------- Footer blocks ---------- */
+.garden .key { border-radius: 4px; }
+.garden .key h3, .garden .rules h3, .garden .rules .seven, .garden .insta-card .big {
+  font-family: Nunito, sans-serif; font-weight: 900; text-transform: uppercase; color: var(--ink);
+}
+.garden .rules .seven small { color: var(--accent); }
+.garden-cluster { position: relative; height: 110px; margin: 30px auto -8px; max-width: 260px; }
+.garden-cluster img { position: absolute; }
+.garden-cluster .m1 { width: 96px; left: 20px; top: 6px; transform: rotate(-24deg); }
+.garden-cluster .m2 { width: 84px; right: 18px; top: 10px; transform: rotate(30deg) scaleX(-1); }
+.garden-cluster .h1 { width: 74px; left: 92px; top: 20px; }
+.garden .insta-card { border-radius: 4px; }
+.garden .insta-btn { background: var(--chip-on); color: var(--card); }
+.garden .review-btn, .garden.evening .review-btn { background: var(--card); color: var(--chip-on); border: 1.5px solid var(--chip-on); }
