@@ -128,7 +128,6 @@ section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
 .cols { display: flex; justify-content: flex-end; gap: 0; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 8px; }
 .cols span { width: 66px; text-align: right; }
 .sec-art { margin: 16px 0 4px; border-radius: 14px; overflow: hidden; }
-.sec-art.ink img { max-height: 280px; margin: 0 auto; }
 .sec-art.side { float: right; width: 34%; max-width: 170px; margin: 4px 0 10px 14px; }
 .sec-art.side img { width: 100%; border-radius: 12px; }
 .cat-sec::after { content: ""; display: block; clear: both; }
@@ -165,7 +164,7 @@ section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
 .rules .seven { margin-top: 12px; font: 600 18px Fraunces, Georgia, serif; }
 .rules .seven small { display: block; text-transform: uppercase; font: 600 11px "DM Sans", sans-serif; letter-spacing: .14em; color: var(--accent); }
 .insta { margin-top: 34px; text-align: center; }
-.insta .art { margin: 0 auto; max-width: 480px; }
+.insta .art { margin: 0 auto; max-width: 340px; width: 100%; }
 .insta-card {
   margin-top: -6px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 16px;
 }
@@ -180,5 +179,5 @@ section.cat-sec { padding-top: 26px; scroll-margin-top: 150px; }
 .review-btn { background: var(--accent); color: var(--card); }
 body.evening .review-btn { color: var(--bg); }
 footer { text-align: center; color: var(--muted); font-size: 12px; padding: 22px 16px 34px; }
-body.evening .sec-art.ink img, body.evening .insta .art { filter: invert(1) hue-rotate(180deg) brightness(1.05); }
+body.evening .insta .art { filter: invert(1) hue-rotate(180deg) brightness(1.05); }
 @media (prefers-reduced-motion: reduce) { .lights circle { animation: none; } html { scroll-behavior: auto; } body, .bar { transition: none; } }

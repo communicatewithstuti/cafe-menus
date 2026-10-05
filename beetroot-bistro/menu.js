@@ -36,7 +36,7 @@ const FOOD = [
     { n: "Guac & Egg", p: 370, t: "e", d: "Guacamole topped with a fried egg and chilli oil." },
     { n: "Spicy Chicken Avocado Toast", p: 450, t: "nv", d: "Guacamole layered with spicy chicken chunks." },
   ]},
-  { id: "favourites", nav: "Bistro favourites", title: "Bistro", script: "favourites", art: { src: "art/couple.png", alt: "Pen sketch of two friends talking at a rooftop table", kind: "ink" }, items: [
+  { id: "favourites", nav: "Bistro favourites", title: "Bistro", script: "favourites", items: [
     { n: "Jalapeño Cheese Poppers", p: 300, t: "v" },
     { n: "Hummus & Pita", p: 320, t: "v" },
     { n: "Falafel Platter", p: 400, t: "v" },
